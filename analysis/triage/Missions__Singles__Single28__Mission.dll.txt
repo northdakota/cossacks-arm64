@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single28/Mission.dll
+taille       : 73728 octets
+sha256       : b265c8ea5189a69a575d217220e6fc8ce1e5f91d5e6338601df9ab6a2b2a8364
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 10:03:55 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100054fb
+sections     :
+   .text    va=0x10001000 vsize=   38522 raw=   40960 entropie=6.32 RX
+   .rdata   va=0x1000b000 vsize=    3982 raw=    4096 entropie=5.25 R
+   .data    va=0x1000c000 vsize=   27788 raw=   16384 entropie=1.51 RW
+   .reloc   va=0x10013000 vsize=    5604 raw=    8192 entropie=3.97 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (43), KERNEL32.DLL (57)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg EnableUnit ChangeFriends SetTrigg StartAI DisableUpgrade GetDiff EnableMission SetLightSpot DisableMission ShowVictory NationIsErased LooseGame RegisterFormation AskQuestion TimerDoneFirst RegisterZone RegisterUnitType RegisterVar SetPlayerName RegisterUnits RegisterUpgrade RunTimer TimerDone SelSendAndKill GetUnitsAmount1 GetResource SetResource SelDie SelSendTo SelectUnits GetUnitsAmount2 ShowPage ShowPageParam AddResource AskMultilineQuestion GetTotalAmount0 RemoveGroup RegisterDynGroup CreateObject0 TakeStone TakeWood TakeFood
+
+[KERNEL32.DLL] SetFilePointer InitializeCriticalSection InterlockedDecrement GetStringTypeW InterlockedIncrement LCMapStringW LCMapStringA GetStringTypeA SetEndOfFile LoadLibraryA MultiByteToWideChar GetOEMCP GetACP GetProcAddress CreateFileA GetCPInfo SetStdHandle RtlUnwind FlushFileBuffers HeapReAlloc WriteFile VirtualFree VirtualAlloc HeapDestroy GetVersionExA HeapCreate GetModuleHandleA GetEnvironmentStringsW GetEnvironmentVariableA GetCommandLineA GetVersion HeapFree EnterCriticalSection LeaveCriticalSection GetLastError CloseHandle ReadFile HeapAlloc SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection TlsFree SetLastError ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc GetModuleFileNameA TlsGetValue WideCharToMultiByte FreeEnvironmentStringsA FreeEnvironmentStringsW GetEnvironmentStrings

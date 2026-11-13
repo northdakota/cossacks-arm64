@@ -1,0 +1,19 @@
+fichier      : History_battl/Mook.dll
+taille       : 143360 octets
+sha256       : d09cc42ca3a51b1ac9b890b4c132aa45016c29dea901dfe2a9a4a472bc200091
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-07-06 15:25:27 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002760
+sections     :
+   .text    va=0x10001000 vsize=  100244 raw=  102400 entropie=5.47 RX
+   .rdata   va=0x1001a000 vsize=    8829 raw=   12288 entropie=3.65 R
+   .data    va=0x1001d000 vsize=   16512 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10022000 vsize=    3619 raw=    4096 entropie=4.28 RW
+   .reloc   va=0x10023000 vsize=    6024 raw=    8192 entropie=5.13 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (37), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetTotalAmount0 Trigg ShowPage GetUnitsAmount1 TimerDone SetTrigg RunTimer CreateObject0 GetUnitsAmount0 ShowCentralText GetResource RemoveGroup ChangeUnitParam TimerDoneFirst SetResource HINT RegisterVisibleZone RegisterUnits RegisterDynGroup RegisterString RegisterZone RegisterUnitType EnableUnit RegisterFormation ChangeFriends ClearSelection UnitsCenter SaveSelectedUnits GetNUnits GetUnitsByNation SelectUnitsInZone SelectUnits1 GetUnitInfo SetUnitInfo LooseGame GetMyNation ShowVictory
+
+[KERNEL32.DLL] TlsFree SetLastError SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCPInfo VirtualAlloc GetACP HeapAlloc UnhandledExceptionFilter HeapReAlloc LeaveCriticalSection EnterCriticalSection FatalAppExitA SetConsoleCtrlHandler VirtualFree InitializeCriticalSection GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc IsBadReadPtr IsBadWritePtr TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection HeapCreate HeapFree HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy

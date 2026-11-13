@@ -1,0 +1,18 @@
+fichier      : AI/Bavaria.dll
+taille       : 94208 octets
+sha256       : b1d857c732b5f3ee41880b682c4bbcda55dc23db19688c719ea5008cd4da9264
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-22 12:03:38 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10006ff4
+sections     :
+   .text    va=0x10001000 vsize=   51738 raw=   53248 entropie=6.42 RX
+   .rdata   va=0x1000e000 vsize=    3246 raw=    4096 entropie=4.59 R
+   .data    va=0x1000f000 vsize=   36156 raw=   20480 entropie=2.68 RW
+   .reloc   va=0x10018000 vsize=   10600 raw=   12288 entropie=4.41 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (54), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] SetFilePointer GetModuleHandleA LeaveCriticalSection EnterCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetEnvironmentVariableA GetVersionExA HeapDestroy HeapCreate VirtualFree HeapFree WriteFile GetProcAddress InterlockedDecrement InterlockedIncrement InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA SetStdHandle MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW RtlUnwind FlushFileBuffers CloseHandle
+
+[USER32.DLL] MessageBoxA

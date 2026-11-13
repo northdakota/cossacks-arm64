@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single9/Mission.dll
+taille       : 32768 octets
+sha256       : f9428ff8d7241911e85b27fe4bef58faa45d9c808b080345ab57b3e11a525ec6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-25 10:44:16 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001c09
+sections     :
+   .text    va=0x10001000 vsize=   13782 raw=   16384 entropie=5.79 RX
+   .rdata   va=0x10005000 vsize=    2846 raw=    4096 entropie=4.12 R
+   .data    va=0x10006000 vsize=    3552 raw=    4096 entropie=2.08 RW
+   .reloc   va=0x10007000 vsize=    1728 raw=    4096 entropie=3.20 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (30), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelSendTo GetTotalAmount0 GetUnitsAmount1 Trigg AllowAttack AddResource SetResource SetTrigg ShowPage GetDiff SelectUnits Patrol SelErase StartAI SetLightSpot ChangeFriends GetUnitsAmount0 AttackZoneByArtillery NationIsErased EnableUnit DisableUpgrade ShowVictory GetUnitsByNation LooseGame RegisterUnitType RegisterUnits RegisterZone InitialUpgrade RegisterUpgrade SetPlayerName
+
+[KERNEL32.DLL] TlsGetValue RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree GetStdHandle GetEnvironmentStrings SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA

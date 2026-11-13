@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single32/Mission.dll
+taille       : 57344 octets
+sha256       : eadd49105c01175acaeaf87d010bd5c8e6a3f5e06b8d93b0160d231da5620ff6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-04-24 14:50:40 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10005bb9
+sections     :
+   .text    va=0x10001000 vsize=   29846 raw=   32768 entropie=5.82 RX
+   .rdata   va=0x10009000 vsize=    3470 raw=    4096 entropie=4.77 R
+   .data    va=0x1000a000 vsize=    7168 raw=    8192 entropie=3.11 RW
+   .reloc   va=0x1000c000 vsize=    5808 raw=    8192 entropie=5.40 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (54), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] DoNotUseSelInAI TakeFood Trigg RunTimer GetDiff RemoveGroup ChangeFriends ClearSelection InitialUpgrade AddResource SetResource GetResource RegisterUpgrade AskMultilineQuestion EnableUnit ProduceUnitFast DisableUpgrade SelSendAndKill SetLightSpot SelSendTo StartAI SetTrigg SelErase ShowPage GetTotalAmount0 TimerDone GetUnitsAmount1 SaveSelectedUnits FreeTimer GetUnitsAmount0 AskQuestion SelChangeNation ShowPageParam SelectUnitsInZone ClearLightSpot GetUnitsAmount2 CreateZoneNearUnit CreateZoneNearGroup GetTotalAmount1 SelectTypeOfUnitsInZone AttackEnemyInZone SelectUnitsType ShowVictory NationIsErased LooseGame RegisterZone RegisterVar SetPlayerName RegisterUnitType RegisterUnits RegisterDynGroup CreateObject0 RegisterFormation SelectUnits
+
+[KERNEL32.DLL] RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetStartupInfoA SetHandleCount TlsFree TlsGetValue TlsSetValue GetCurrentThreadId TlsAlloc TerminateProcess ExitProcess GetCurrentProcess GetCommandLineA GetVersion

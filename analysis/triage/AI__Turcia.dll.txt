@@ -1,0 +1,18 @@
+fichier      : AI/Turcia.dll
+taille       : 69632 octets
+sha256       : c62687e33c9d3b935ba2fae3e6769c19d11e6774655f4e5dcc568d7aa9d90357
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-09-18 09:37:08 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10004542
+sections     :
+   .text    va=0x10001000 vsize=   37266 raw=   40960 entropie=6.25 RX
+   .rdata   va=0x1000b000 vsize=    3017 raw=    4096 entropie=4.34 R
+   .data    va=0x1000c000 vsize=   26620 raw=   12288 entropie=3.74 RW
+   .reloc   va=0x10013000 vsize=    7156 raw=    8192 entropie=4.42 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (52), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] SetFilePointer GetModuleHandleA EnterCriticalSection LeaveCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate VirtualFree HeapFree WriteFile InterlockedDecrement InterlockedIncrement GetProcAddress LCMapStringA InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringW SetStdHandle RtlUnwind FlushFileBuffers CloseHandle
+
+[USER32.DLL] MessageBoxA

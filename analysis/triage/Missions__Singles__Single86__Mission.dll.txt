@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single86/Mission.dll
+taille       : 73728 octets
+sha256       : 80e147eaa3bfffbe19135f82bab664ecf0185c45c7ef3dc5f6b802c1a1d615e3
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-06 15:21:32 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002581
+sections     :
+   .text    va=0x10001000 vsize=   35080 raw=   36864 entropie=6.50 RX
+   .rdata   va=0x1000a000 vsize=    4270 raw=    8192 entropie=3.35 R
+   .data    va=0x1000c000 vsize=   20204 raw=   16384 entropie=1.68 RW
+   .reloc   va=0x10011000 vsize=    4482 raw=    8192 entropie=2.99 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (37), KERNEL32.DLL (60)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelectUnitsInZone GetUnitsAmount0 SelSendAndKill SelAttackGroup ClearSelection SelectUnitsType UnitsCenter GetUnitInfo GetTopDst InsertUnitToGroup RemoveUnitFromGroup Trigg RunTimer SetTrigg SetResource GetDiff StartAI ShowPage EnableMission DisableMission GetTotalAmount0 RemoveGroup TimerDone CheckProduction ProduceUnit SaveSelectedUnits SelectUnits NationIsErased ShowVictory LooseGame RegisterVar RegisterDynGroup RegisterUnits RegisterZone RegisterUnitType ChangeFriends SetPlayerName
+
+[KERNEL32.DLL] GetProcAddress InitializeCriticalSection SetEnvironmentVariableA CompareStringW CompareStringA LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar SetFilePointer LoadLibraryA GetOEMCP GetACP GetCPInfo InterlockedIncrement InterlockedDecrement FlushFileBuffers SetStdHandle RtlUnwind HeapReAlloc VirtualAlloc HeapAlloc WriteFile VirtualFree GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError EnterCriticalSection LeaveCriticalSection HeapFree CloseHandle HeapDestroy HeapCreate GetModuleHandleA ExitProcess TerminateProcess GetCurrentProcess SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetEnvironmentVariableA GetVersionExA

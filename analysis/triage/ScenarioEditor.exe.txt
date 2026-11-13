@@ -1,0 +1,36 @@
+fichier      : ScenarioEditor.exe
+taille       : 2605760 octets
+sha256       : 41204ce68f569a2cba23b7db8ca8badf9b9079779364dddb5bcb015d0de86c98
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-02-25 16:43:07 UTC, éditeur de liens 6.0
+image base   : 0x400000, point d'entrée 0x4424d5
+sections     :
+   .text    va=0x00401000 vsize=  400710 raw=  401408 entropie=6.62 RX
+   .rdata   va=0x00463000 vsize=   74662 raw=   77824 entropie=4.41 R
+   .data    va=0x00476000 vsize=  306504 raw=   28672 entropie=3.47 RW
+   .rsrc    va=0x004c1000 vsize= 2085208 raw= 2088960 entropie=3.31 R
+données après le PE : 4800 octets
+imports      : ADVAPI32.DLL (4), COMCTL32.DLL (3), COMDLG32.DLL (3), GDI32.DLL (60), KERNEL32.DLL (126), OLE32.DLL (15), OLEAUT32.DLL (9), OLEDLG.DLL (1), OLEPRO32.DLL (1), USER32.DLL (139), WINSPOOL.DRV (3)
+marqueurs de protection/packer connus : aucun
+
+[ADVAPI32.DLL] RegCloseKey RegCreateKeyExA RegOpenKeyExA RegSetValueExA
+
+[COMCTL32.DLL] ImageList_Destroy _TrackMouseEvent #17
+
+[COMDLG32.DLL] GetFileTitleA GetOpenFileNameA GetSaveFileNameA
+
+[GDI32.DLL] GetStockObject SetBkMode SetMapMode SetViewportOrgEx SetViewportExtEx ScaleViewportExtEx OffsetViewportOrgEx SetWindowExtEx ScaleWindowExtEx MoveToEx IntersectClipRect LineTo SelectPalette GetObjectA GetWindowExtEx GetViewportExtEx RectVisible TextOutA PtVisible Escape PatBlt ExtTextOutA GetMapMode DPtoLP LPtoDP CreateDIBitmap GetTextExtentPointA RestoreDC SaveDC SelectObject DeleteDC CreateBitmap SetBkColor SetTextColor GetClipBox StretchBlt GetPaletteEntries GetDIBits GetNearestPaletteIndex DeleteObject StretchDIBits PtInRegion Rectangle GetTextColor GetBkColor CreateHalftonePalette OffsetRgn GetDeviceCaps GetTextExtentPoint32A CreateRectRgn CombineRgn CreateCompatibleBitmap BitBlt RealizePalette CreateCompatibleDC CreateFontA CreatePen CreateSolidBrush GetDIBColorTable CreatePalette
+
+[KERNEL32.DLL] HeapDestroy HeapCreate VirtualFree VirtualAlloc GetVersionExA GetEnvironmentVariableA IsBadWritePtr GetStdHandle GetFileType UnhandledExceptionFilter FreeEnvironmentStringsA FreeEnvironmentStringsW SetHandleCount GetEnvironmentStringsW GetEnvironmentStrings SetUnhandledExceptionFilter GetStringTypeA GetStringTypeW Sleep IsBadCodePtr SetStdHandle GetTickCount MulDiv GetACP HeapSize HeapReAlloc TerminateProcess ExitProcess GetCommandLineA GetStartupInfoA CreateDirectoryA GetDriveTypeA GetLocalTime GetSystemTime GetTimeZoneInformation GetSystemTimeAsFileTime HeapAlloc HeapFree SetCurrentDirectoryA SetEnvironmentVariableA IsBadReadPtr RaiseException RtlUnwind LCMapStringW LCMapStringA GetFileTime lstrcmpiA GlobalAddAtomA GlobalFindAtomA GlobalDeleteAtom lstrcpyA GetProcAddress GlobalLock GlobalUnlock GlobalFree LockResource FindResourceA LoadResource WinExec GetModuleHandleA CloseHandle WriteFile ReadFile SetFilePointer GetFileSize SetLastError CreateFileA GetLastError FormatMessageA LocalFree GetFileAttributesA InterlockedExchange GetProfileStringA DeleteFileA GetFullPathNameA GetVolumeInformationA UnlockFile SetEndOfFile GetCurrentProcess LockFile FlushFileBuffers GetThreadLocale DuplicateHandle SetErrorMode GetCurrentDirectoryA WritePrivateProfileStringA FileTimeToSystemTime FileTimeToLocalFileTime GetProcessVersion GetOEMCP GetCPInfo TlsSetValue TlsGetValue LocalReAlloc LeaveCriticalSection EnterCriticalSection GlobalReAlloc DeleteCriticalSection TlsFree GlobalHandle LocalAlloc TlsAlloc InitializeCriticalSection SizeofResource GlobalFlags GetModuleFileNameA GetCurrentThread GlobalAlloc lstrcmpA FindClose FindNextFileA FindFirstFileA WideCharToMultiByte lstrcpynA MultiByteToWideChar lstrlenA InterlockedIncrement InterlockedDecrement CompareStringA LoadLibraryA FreeLibrary GetVersion lstrcatA GetCurrentThreadId CompareStringW GlobalGetAtomNameA
+
+[OLE32.DLL] CoFreeUnusedLibraries OleUninitialize OleInitialize CreateILockBytesOnHGlobal StgCreateDocfileOnILockBytes StgOpenStorageOnILockBytes CoGetClassObject CLSIDFromString CLSIDFromProgID CoRegisterMessageFilter CoTaskMemFree CoRevokeClassObject OleFlushClipboard OleIsCurrentClipboard CoTaskMemAlloc
+
+[OLEAUT32.DLL] #7 #6 #150 #2 #9 #4 #185 #10 #12
+
+[OLEDLG.DLL] #8
+
+[OLEPRO32.DLL] #253
+
+[USER32.DLL] MessageBeep GetNextDlgGroupItem SetRect CopyAcceleratorTableA CharNextA GetSysColorBrush GetDesktopWindow GetClassNameA MapDialogRect SetWindowContextHelpId GetMessageA TranslateMessage ValidateRect SetCursor PostQuitMessage DestroyMenu InflateRect LoadStringA GrayStringA TabbedTextOutA EndPaint BeginPaint GetWindowDC GetMenuCheckMarkDimensions GetMenuState ModifyMenuA SetMenuItemBitmaps CheckMenuItem ShowWindow SetWindowTextA IsDialogMessageA SetDlgItemTextA GetDlgItemTextA PostMessageA SendDlgItemMessageA PostThreadMessageA DispatchMessageA GetFocus SetFocus AdjustWindowRectEx IsWindowVisible ShowScrollBar GetTopWindow IsChild GetCapture WinHelpA wsprintfA RegisterClassA GetMenuItemCount GetSubMenu GetMenuItemID GetWindowTextLengthA GetWindowTextA GetDlgCtrlID DefWindowProcA CreateWindowExA SetWindowsHookExA CallNextHookEx GetClassLongA SetPropA UnhookWindowsHookEx GetPropA CallWindowProcA RemovePropA GetMessageTime GetMessagePos GetLastActivePopup GetForegroundWindow SetForegroundWindow SetWindowLongA SetWindowPos RegisterWindowMessageA SystemParametersInfoA GetWindowPlacement GetNextDlgTabItem EndDialog GetActiveWindow SetActiveWindow IsWindow CreateDialogIndirectParamA DestroyWindow GetWindowLongA GetDlgItem IsWindowEnabled RegisterClipboardFormatA CharUpperA MapWindowPoints PeekMessageA GetClassInfoA EnableMenuItem GetMenu FindWindowA ShowWindowAsync IsIconic GetSystemMetrics DrawIcon LoadAcceleratorsA TranslateAcceleratorA DestroyAcceleratorTable LoadIconA LoadCursorA UpdateWindow ReleaseCapture KillTimer SetTimer SetCapture GetKeyState GetCursorPos LoadBitmapA ScreenToClient PtInRect OffsetRect IntersectRect FillRect GetWindow SetWindowRgn CopyRect DrawTextA GetDC GetClientRect ReleaseDC GetParent GetSysColor SendMessageA LoadImageA MessageBoxA EnableWindow InvalidateRect GetWindowRect ClientToScreen RedrawWindow MoveWindow UnregisterClassA HideCaret ShowCaret ExcludeUpdateRgn DrawFocusRect DefDlgProcA IsWindowUnicode
+
+[WINSPOOL.DRV] ClosePrinter DocumentPropertiesA OpenPrinterA

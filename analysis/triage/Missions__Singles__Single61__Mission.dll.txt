@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single61/Mission.dll
+taille       : 73728 octets
+sha256       : e2087523a27d97de0a669c98e5657b91c66efb685ed75c6c32010c5ecc1e957f
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-16 15:37:07 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x1000461b
+sections     :
+   .text    va=0x10001000 vsize=   34714 raw=   36864 entropie=6.34 RX
+   .rdata   va=0x1000a000 vsize=    4206 raw=    8192 entropie=3.31 R
+   .data    va=0x1000c000 vsize=   21996 raw=   16384 entropie=1.15 RW
+   .reloc   va=0x10012000 vsize=    4816 raw=    8192 entropie=3.21 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (51), KERNEL32.DLL (57)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] EnableUnit Trigg SetTrigg StartAI DisableUpgrade ChangeFriends TimerDoneFirst SetLightSpot EnableMission ShowVictory NationIsErased LooseGame RegisterFormation RegisterVar RegisterUnitType RegisterUpgrade RegisterUnits RegisterZone GetDiff SetPlayerName Patrol SelectUnitsInZone ProduceUnitFast PushAllUnitsAway SelectTypeOfUnitsInZone SaveSelectedUnits SelChangeNation RunTimer SendUnitsToTransport GetNInside ClearSelection TimerDone SelSendTo SetResource CheckLeaveAbility GetResource SelDie GetUnitsAmount1 SelectUnits GetUnitsAmount2 ShowPage ShowPageParam AddResource AskMultilineQuestion GetTotalAmount0 RemoveGroup RegisterDynGroup CreateObject0 TakeStone TakeWood TakeFood
+
+[KERNEL32.DLL] GetStdHandle GetFileType InterlockedDecrement GetStringTypeW InterlockedIncrement LCMapStringW LCMapStringA GetStringTypeA SetEndOfFile LoadLibraryA MultiByteToWideChar GetOEMCP GetACP GetProcAddress CreateFileA GetCPInfo SetStdHandle RtlUnwind FlushFileBuffers HeapReAlloc WriteFile VirtualFree VirtualAlloc HeapDestroy GetVersionExA HeapCreate GetModuleHandleA GetEnvironmentStringsW GetEnvironmentVariableA WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA FreeEnvironmentStringsA SetLastError TlsFree GetCommandLineA GetVersion HeapFree EnterCriticalSection LeaveCriticalSection GetLastError CloseHandle ReadFile HeapAlloc SetHandleCount ExitProcess TlsGetValue GetStartupInfoA DeleteCriticalSection SetFilePointer InitializeCriticalSection TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc

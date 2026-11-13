@@ -1,0 +1,16 @@
+fichier      : cew.dll
+taille       : 335872 octets
+sha256       : d2ba4c60b5f3f2e6493b60af662dc88839c8a4f207de4182abcacc488895ed72
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-09-20 07:49:11 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100010e9
+sections     :
+   .text    va=0x10001000 vsize=   10934 raw=   12288 entropie=6.17 RX
+   .rdata   va=0x10004000 vsize=    2014 raw=    4096 entropie=3.22 R
+   .data    va=0x10005000 vsize=  309472 raw=  311296 entropie=0.17 RW
+   .reloc   va=0x10051000 vsize=    1906 raw=    4096 entropie=2.19 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] HeapCreate GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree TlsGetValue SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy GetCommandLineA VirtualFree HeapFree WriteFile InitializeCriticalSection EnterCriticalSection LeaveCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc GetProcAddress LoadLibraryA MultiByteToWideChar LCMapStringA LCMapStringW GetStringTypeA GetStringTypeW RtlUnwind

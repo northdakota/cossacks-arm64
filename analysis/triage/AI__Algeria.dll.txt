@@ -1,0 +1,18 @@
+fichier      : AI/Algeria.dll
+taille       : 57344 octets
+sha256       : 7aa374ce43086d267723dd16c1ce3bac4ed954440d8e392d99ed2627d0e8e916
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-10-19 15:05:57 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10003b2b
+sections     :
+   .text    va=0x10001000 vsize=   28690 raw=   32768 entropie=5.95 RX
+   .rdata   va=0x10009000 vsize=    2906 raw=    4096 entropie=4.21 R
+   .data    va=0x1000a000 vsize=   14336 raw=    8192 entropie=3.79 RW
+   .reloc   va=0x1000e000 vsize=    5426 raw=    8192 entropie=3.87 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (52), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] EnterCriticalSection GetModuleHandleA InterlockedDecrement LeaveCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate VirtualFree HeapFree WriteFile SetFilePointer GetProcAddress InterlockedIncrement InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA SetStdHandle MultiByteToWideChar LCMapStringA LCMapStringW GetStringTypeA GetStringTypeW FlushFileBuffers RtlUnwind CloseHandle
+
+[USER32.DLL] MessageBoxA

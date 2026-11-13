@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single54/Mission.dll
+taille       : 45056 octets
+sha256       : 3dfdf8bc5a80c0dcf826c4d41cc3e309d1f467320bfacc8a5db27df33336c942
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-07 10:56:00 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002019
+sections     :
+   .text    va=0x10001000 vsize=   20106 raw=   20480 entropie=6.53 RX
+   .rdata   va=0x10006000 vsize=    3662 raw=    4096 entropie=4.88 R
+   .data    va=0x10007000 vsize=   14592 raw=   12288 entropie=1.31 RW
+   .reloc   va=0x1000b000 vsize=    3756 raw=    4096 entropie=4.06 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (36), KERNEL32.DLL (50)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] RegisterFormation CreateObject0 RegisterDynGroup SetResource RegisterUnitType Trigg SetTrigg GetDiff RunTimer SelOpenGates StartAI SelectUnits ShowPage ClearSelection SetLightSpot DisableMission InitialUpgrade EnableMission TimerDone GetUnitInfo SetUnitInfo GetUnitsAmount1 GetUnitsByNation SelSendTo SelChangeNation AddResource GetTotalAmount0 ShowVictory GetUnitsAmount0 NationIsErased RegisterZone LooseGame RegisterUnits SetPlayerName RegisterVar ChangeFriends
+
+[KERNEL32.DLL] GetStdHandle GetFileType InterlockedDecrement GetStringTypeW InterlockedIncrement LCMapStringW LCMapStringA GetStringTypeA RtlUnwind LoadLibraryA MultiByteToWideChar HeapReAlloc GetProcAddress GetOEMCP GetACP VirtualAlloc HeapAlloc GetCPInfo LeaveCriticalSection EnterCriticalSection WriteFile HeapFree GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetEnvironmentStrings InitializeCriticalSection GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW GetModuleHandleA GetEnvironmentVariableA GetVersionExA HeapDestroy HeapCreate VirtualFree

@@ -1,0 +1,17 @@
+fichier      : dmln.exe
+taille       : 12992 octets
+sha256       : 9c400f99803ba475f9b4819d4779a1bad281a1d118ff2c5ff280edd95cd09976
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2010-04-12 12:13:50 UTC, éditeur de liens 8.0
+image base   : 0x400000, point d'entrée 0x401000
+sections     :
+   .text    va=0x00401000 vsize=     258 raw=     512 entropie=3.31 RX
+   .rdata   va=0x00402000 vsize=     208 raw=     512 entropie=1.84 R
+   .rsrc    va=0x00403000 vsize=    6116 raw=    6144 entropie=4.48 RW
+données après le PE : 4800 octets
+imports      : KERNEL32.DLL (3), SHELL32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] ExitProcess GetModuleFileNameA CreateProcessA
+
+[SHELL32.DLL] SHFileOperationA

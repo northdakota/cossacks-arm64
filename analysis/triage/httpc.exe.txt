@@ -1,0 +1,34 @@
+fichier      : httpc.exe
+taille       : 376512 octets
+sha256       : 583de4dd133f4c80d48462824e86f7d012ebf2d305cb4b91c96e71ea7f672f43
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 1992-06-19 22:22:17 UTC, éditeur de liens 2.25
+image base   : 0x400000, point d'entrée 0x448ff0
+sections     :
+   CODE     va=0x00401000 vsize=  298004 raw=  298496 entropie=6.52 RX
+   DATA     va=0x0044a000 vsize=    6620 raw=    6656 entropie=4.10 RW
+   BSS      va=0x0044c000 vsize=    2321 raw=       0 entropie=0.00 RW
+   .idata   va=0x0044d000 vsize=    8248 raw=    8704 entropie=4.88 RW
+   .tls     va=0x00450000 vsize=      16 raw=       0 entropie=0.00 RW
+   .rdata   va=0x00451000 vsize=      24 raw=     512 entropie=0.16 R
+   .reloc   va=0x00452000 vsize=   21424 raw=   21504 entropie=6.66 R
+   .rsrc    va=0x00458000 vsize=   34816 raw=   34816 entropie=5.05 R
+données après le PE : 4800 octets
+imports      : ADVAPI32.DLL (9), COMCTL32.DLL (22), GDI32.DLL (54), KERNEL32.DLL (106), OLE32.DLL (3), OLEAUT32.DLL (9), USER32.DLL (154), WSOCK32.DLL (14)
+marqueurs de protection/packer connus : aucun
+
+[ADVAPI32.DLL] RegQueryValueExA RegOpenKeyExA RegCloseKey RegSetValueExA RegQueryValueExA RegOpenKeyExA RegFlushKey RegCreateKeyExA RegCloseKey
+
+[COMCTL32.DLL] ImageList_SetIconSize ImageList_GetIconSize ImageList_Write ImageList_Read ImageList_GetDragImage ImageList_DragShowNolock ImageList_SetDragCursorImage ImageList_DragMove ImageList_DragLeave ImageList_DragEnter ImageList_EndDrag ImageList_BeginDrag ImageList_Remove ImageList_DrawEx ImageList_Draw ImageList_GetBkColor ImageList_SetBkColor ImageList_ReplaceIcon ImageList_Add ImageList_GetImageCount ImageList_Destroy ImageList_Create
+
+[GDI32.DLL] UnrealizeObject StretchBlt SetWindowOrgEx SetViewportOrgEx SetTextColor SetStretchBltMode SetROP2 SetPixel SetDIBColorTable SetBrushOrgEx SetBkMode SetBkColor SelectPalette SelectObject SaveDC RestoreDC RectVisible RealizePalette PatBlt MoveToEx MaskBlt LineTo IntersectClipRect GetWindowOrgEx GetTextMetricsA GetTextExtentPoint32A GetSystemPaletteEntries GetStockObject GetPixel GetPaletteEntries GetObjectA GetDeviceCaps GetDIBits GetDIBColorTable GetDCOrgEx GetCurrentPositionEx GetClipBox GetBrushOrgEx GetBitmapBits ExcludeClipRect DeleteObject DeleteDC CreateSolidBrush CreatePenIndirect CreatePalette CreateHalftonePalette CreateFontIndirectA CreateDIBitmap CreateDIBSection CreateCompatibleDC CreateCompatibleBitmap CreateBrushIndirect CreateBitmap BitBlt
+
+[KERNEL32.DLL] GetCurrentThreadId DeleteCriticalSection LeaveCriticalSection EnterCriticalSection InitializeCriticalSection VirtualFree VirtualAlloc LocalFree LocalAlloc InterlockedDecrement InterlockedIncrement VirtualQuery WideCharToMultiByte MultiByteToWideChar lstrlenA lstrcpynA lstrcpyA LoadLibraryExA GetThreadLocale GetStartupInfoA GetProcAddress GetModuleHandleA GetModuleFileNameA GetLocaleInfoA GetLastError GetCommandLineA FreeLibrary FindFirstFileA FindClose ExitProcess WriteFile UnhandledExceptionFilter SetFilePointer SetEndOfFile RtlUnwind ReadFile RaiseException GetStdHandle GetFileSize GetFileType CreateFileA CloseHandle TlsSetValue TlsGetValue LocalAlloc GetModuleHandleA GetModuleFileNameA lstrcpyA WriteFile WaitForSingleObject VirtualQuery VirtualAlloc Sleep SizeofResource SetThreadPriority SetThreadLocale SetFilePointer SetEvent SetErrorMode SetEndOfFile ReadFile MultiByteToWideChar MulDiv LockResource LoadResource LoadLibraryA LeaveCriticalSection InitializeCriticalSection GlobalUnlock GlobalReAlloc GlobalHandle GlobalLock GlobalFree GlobalDeleteAtom GlobalAlloc GlobalAddAtomA GetVersionExA GetVersion GetTickCount GetThreadLocale GetSystemInfo GetProcAddress GetModuleHandleA GetModuleFileNameA GetLocaleInfoA GetLastError GetFileAttributesA GetDiskFreeSpaceA GetCurrentThreadId GetCurrentThread GetCurrentProcessId GetCPInfo FreeResource FreeLibrary FormatMessageA FindResourceA EnumCalendarInfoA EnterCriticalSection DeleteFileA DeleteCriticalSection CreateThread CreateFileA CreateEventA CreateDirectoryA CompareStringA CloseHandle
+
+[OLE32.DLL] CoUninitialize CoInitialize IsEqualGUID
+
+[OLEAUT32.DLL] VariantChangeTypeEx VariantCopyInd VariantClear SysStringLen SysFreeString SysReAllocStringLen SysAllocStringLen GetErrorInfo SysFreeString
+
+[USER32.DLL] GetKeyboardType LoadStringA MessageBoxA CharNextA WindowFromPoint WinHelpA WaitMessage UpdateWindow UnregisterClassA UnhookWindowsHookEx TranslateMessage TranslateMDISysAccel TrackPopupMenu SystemParametersInfoA ShowWindow ShowScrollBar ShowOwnedPopups ShowCursor SetWindowsHookExA SetWindowTextA SetWindowPos SetWindowPlacement SetWindowLongA SetTimer SetScrollRange SetScrollPos SetScrollInfo SetRect SetPropA SetMenuItemInfoA SetMenu SetForegroundWindow SetFocus SetCursor SetClassLongA SetCapture SetActiveWindow SendMessageA ScrollWindow ScreenToClient RemovePropA RemoveMenu ReleaseDC ReleaseCapture RegisterWindowMessageA RegisterClipboardFormatA RegisterClassA PtInRect PostQuitMessage PostMessageA PeekMessageA OffsetRect OemToCharA MessageBoxA MapWindowPoints MapVirtualKeyA LoadStringA LoadKeyboardLayoutA LoadIconA LoadCursorA LoadBitmapA KillTimer IsZoomed IsWindowVisible IsWindowEnabled IsWindow IsRectEmpty IsIconic IsDialogMessageA IsChild InvalidateRect IntersectRect InsertMenuItemA InsertMenuA InflateRect GetWindowThreadProcessId GetWindowTextA GetWindowRect GetWindowPlacement GetWindowLongA GetWindowDC GetTopWindow GetSystemMetrics GetSystemMenu GetSysColor GetSubMenu GetScrollRange GetScrollPos GetScrollInfo GetPropA GetParent GetWindow GetMenuStringA GetMenuState GetMenuItemInfoA GetMenuItemID GetMenuItemCount GetMenu GetLastActivePopup GetKeyboardState GetKeyboardLayoutList GetKeyboardLayout GetKeyState GetKeyNameTextA GetIconInfo GetForegroundWindow GetFocus GetDesktopWindow GetDCEx GetDC GetCursorPos GetCursor GetClientRect GetClassInfoA GetCapture GetActiveWindow FrameRect FindWindowA FillRect EqualRect EnumWindows EnumThreadWindows EndPaint EnableWindow EnableScrollBar EnableMenuItem DrawTextA DrawMenuBar DrawIconEx DrawIcon DrawFrameControl DrawEdge DispatchMessageA DestroyWindow DestroyMenu DestroyIcon DestroyCursor DeleteMenu DefWindowProcA DefMDIChildProcA DefFrameProcA CreateWindowExA CreatePopupMenu CreateMenu CreateIcon ClientToScreen CheckMenuItem CallWindowProcA CallNextHookEx BeginPaint CharLowerA CharUpperBuffA AdjustWindowRectEx ActivateKeyboardLayout
+
+[WSOCK32.DLL] WSACleanup WSAStartup WSAGetLastError WSAAsyncGetHostByName WSAAsyncSelect socket setsockopt send recv inet_addr htons connect closesocket accept

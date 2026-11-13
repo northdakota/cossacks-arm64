@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single94/Mission.dll
+taille       : 274506 octets
+sha256       : 8c307d72f7395ded80ab0ee029d55fabaefd51b64c7bf514575bf97743434779
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 14:09:54 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10009b30
+sections     :
+   .text    va=0x10001000 vsize=  227280 raw=  229376 entropie=6.11 RX
+   .rdata   va=0x10039000 vsize=    9469 raw=   12288 entropie=3.77 R
+   .data    va=0x1003c000 vsize=   19048 raw=   12288 entropie=2.57 RW
+   .idata   va=0x10041000 vsize=    4362 raw=    8192 entropie=2.99 RW
+   .reloc   va=0x10043000 vsize=    7639 raw=    8192 entropie=5.95 R
+données après le PE : 74 octets
+imports      : DMCR.EXE (57), KERNEL32.DLL (78)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelCloseGates SelAttackGroup RemoveGroup PushAllUnitsAway SelOpenGates CheckLeaveAbility RegisterUnits SendUnitsToTransport GetNInside SetUnitInfo AskMultilineQuestion SelChangeNation SelDie ClearSelection CreateZoneNearGroup Trigg RemoveUnitFromGroup GetUnitsByNation SetResource GetDiff ChangeFriends GetGlobalTime EnableUnit StartAI TimerDoneFirst RunTimer SetTrigg SelErase ShowPage SetLightSpot GetResource ShowPageParam AskQuestion NationIsErased AddResource Patrol CreateObject0 LooseGame ShowVictory RegisterUnitType SetPlayerName RegisterZone GetUnitsAmount0 RegisterFormation RegisterVar SelSendAndKill SelectUnits SetStandGround GetUnitsAmount1 AttackEnemyInZone SelSendTo SelectUnitsInZone UnitsCenter RegisterDynGroup GetUnitInfo SaveSelectedUnits GetTotalAmount0
+
+[KERNEL32.DLL] OutputDebugStringA GetProcAddress CloseHandle GetLocaleInfoW SetEnvironmentVariableA CompareStringW FlushFileBuffers SetStdHandle GetVersionExA CompareStringA EnumSystemLocalesA GetLocaleInfoA GetUserDefaultLCID IsValidLocale SetFilePointer IsValidCodePage LCMapStringA Sleep LCMapStringW GetStringTypeA MultiByteToWideChar GetStringTypeW GetOEMCP GetACP RaiseException UnhandledExceptionFilter IsBadCodePtr GetCPInfo VirtualAlloc HeapReAlloc SetUnhandledExceptionFilter SetConsoleCtrlHandler VirtualFree HeapAlloc HeapCreate HeapDestroy HeapFree GetEnvironmentStrings WideCharToMultiByte GetEnvironmentStringsW FreeEnvironmentStringsA GetStartupInfoA FreeEnvironmentStringsW SetHandleCount GetCurrentProcess GetFileType GetCurrentThread GetLastError TerminateProcess SetLastError TlsFree TlsGetValue TlsSetValue GetCurrentThreadId TlsAlloc IsBadReadPtr IsBadWritePtr RtlUnwind GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement InitializeCriticalSection HeapValidate LoadLibraryA InterlockedIncrement GetModuleFileNameA GetModuleHandleA DeleteCriticalSection EnterCriticalSection LeaveCriticalSection ExitProcess FatalAppExitA

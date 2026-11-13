@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single7/Mission.dll
+taille       : 77824 octets
+sha256       : 502dd2d39f4295583d13dbc488c705c5764071f9ad666d726af500e50f04e376
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-07-03 09:47:33 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100050fb
+sections     :
+   .text    va=0x10001000 vsize=   38682 raw=   40960 entropie=6.24 RX
+   .rdata   va=0x1000b000 vsize=    4254 raw=    8192 entropie=3.33 R
+   .data    va=0x1000d000 vsize=   18876 raw=   16384 entropie=2.60 RW
+   .reloc   va=0x10012000 vsize=    7036 raw=    8192 entropie=5.10 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (55), KERNEL32.DLL (50)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg InitialUpgrade SetTrigg EnableUnit DisableMission SelectUnits GetDiff ShowPage CreateObject0 SetResource ClearSelection SetLightSpot SetStandGround TakeWood AllowAttack SelOpenGates RunTimer TakeStone TakeFood GetUnitsAmount1 ProduceUnitFast TimerDoneFirst GetTotalAmount0 TimerDone AddResource SelAttackGroup RemoveGroup SelSendTo GetUnitInfo SelDie CheckLeaveAbility PushAllUnitsAway SendUnitsToTransport GetNInside ClearLightSpot SelSendAndKill GetKilled GetUnitsAmount0 SelChangeNation EnableMission SelErase Patrol AskQuestion GetResource LooseGame GetUnitsAmount2 RegisterZone ShowVictory RegisterUnits RegisterDynGroup RegisterUnitType RegisterFormation ChangeFriends RegisterVar SetPlayerName
+
+[KERNEL32.DLL] TlsFree SetLastError LCMapStringW GetStringTypeW LCMapStringA MultiByteToWideChar GetStringTypeA LoadLibraryA RtlUnwind VirtualAlloc GetOEMCP HeapReAlloc GetCPInfo InterlockedIncrement GetACP InterlockedDecrement EnterCriticalSection InitializeCriticalSection LeaveCriticalSection WriteFile HeapFree HeapAlloc HeapCreate HeapDestroy VirtualFree GetEnvironmentVariableA GetEnvironmentStringsW GetVersionExA WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetStartupInfoA GetCurrentProcess TerminateProcess SetHandleCount GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc GetModuleHandleA TlsGetValue GetLastError GetProcAddress ExitProcess

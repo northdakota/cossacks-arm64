@@ -1,0 +1,17 @@
+fichier      : goggame-1207662833.dll
+taille       : 294720 octets
+sha256       : 29e3481cc50fef07742c69e4d6a1354e714bd6bec5dd1e0127e9ff9a611895db
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2015-02-12 12:56:38 UTC, éditeur de liens 9.0
+image base   : 0x10000000, point d'entrée 0x1000122b
+sections     :
+   .text    va=0x10001000 vsize=   25412 raw=   25600 entropie=6.58 RX
+   .rdata   va=0x10008000 vsize=    7000 raw=    7168 entropie=5.44 R
+   .data    va=0x1000a000 vsize=    6172 raw=    3584 entropie=2.25 RW
+   .rsrc    va=0x1000c000 vsize=  245088 raw=  245248 entropie=7.91 R
+   .reloc   va=0x10048000 vsize=    3706 raw=    4096 entropie=3.66 R
+données après le PE : 8000 octets
+imports      : KERNEL32.DLL (58)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] GetCurrentThreadId GetCommandLineA GetModuleHandleW GetProcAddress TlsGetValue TlsAlloc TlsSetValue TlsFree InterlockedIncrement SetLastError GetLastError InterlockedDecrement HeapFree Sleep ExitProcess SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA GetEnvironmentStrings FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW HeapCreate HeapDestroy VirtualFree QueryPerformanceCounter GetTickCount GetCurrentProcessId GetSystemTimeAsFileTime LeaveCriticalSection EnterCriticalSection GetCPInfo GetACP GetOEMCP IsValidCodePage HeapAlloc VirtualAlloc HeapReAlloc WriteFile TerminateProcess GetCurrentProcess UnhandledExceptionFilter SetUnhandledExceptionFilter IsDebuggerPresent LoadLibraryA InitializeCriticalSectionAndSpinCount RtlUnwind GetLocaleInfoA GetStringTypeA MultiByteToWideChar GetStringTypeW LCMapStringA LCMapStringW HeapSize

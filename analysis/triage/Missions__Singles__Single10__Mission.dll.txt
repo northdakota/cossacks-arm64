@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single10/Mission.dll
+taille       : 204865 octets
+sha256       : 50ade4c4a0ae9571e717d9fe04fadb92ae62cacd8af48b10114b5012f98c650a
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-18 08:46:26 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001e00
+sections     :
+   .text    va=0x10001000 vsize=  163376 raw=  163840 entropie=5.78 RX
+   .rdata   va=0x10029000 vsize=    8364 raw=   12288 entropie=3.50 R
+   .data    va=0x1002c000 vsize=   16352 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10030000 vsize=    3371 raw=    4096 entropie=4.04 RW
+   .reloc   va=0x10031000 vsize=    5903 raw=    8192 entropie=4.94 R
+données après le PE : 65 octets
+imports      : DMCR.EXE (28), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg GetDiff SetResource StartAI DisableMission TimerDoneFirst GetUnitsAmount0 ShowPage EnableMission SetLightSpot GetResource SelectUnitsInZone SelSendTo AddResource GetTotalAmount1 CreateObject0 SelectUnits SelSendAndKill SetPlayerName SetStandartVictory RegisterUnitType RegisterZone RegisterUnits RegisterFormation RegisterDynGroup RunTimer RegisterVar SetTrigg
+
+[KERNEL32.DLL] SetHandleCount GetCurrentThread SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError HeapReAlloc GetEnvironmentStringsW GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings InitializeCriticalSection HeapDestroy HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler EnterCriticalSection LeaveCriticalSection FatalAppExitA UnhandledExceptionFilter HeapAlloc

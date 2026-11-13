@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single98/Mission.dll
+taille       : 90112 octets
+sha256       : baf01807ddfbe6f5c366c8e4b03799b4fca8f784b0fcc993b14e6275412ee4b0
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-16 14:46:09 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10004afe
+sections     :
+   .text    va=0x10001000 vsize=   47442 raw=   49152 entropie=6.55 RX
+   .rdata   va=0x1000d000 vsize=    4814 raw=    8192 entropie=3.69 R
+   .data    va=0x1000f000 vsize=   26028 raw=   20480 entropie=3.00 RW
+   .reloc   va=0x10016000 vsize=    5856 raw=    8192 entropie=4.15 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (49), KERNEL32.DLL (64)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelectUnitsInZone GetUnitsAmount0 UnitsCenter SelAttackGroup RemoveUnitFromGroup GetTopDst InsertUnitToGroup GetUnitsAmount1 GetZoneCoor SelSendAndKill RunTimer CreateObject0 Trigg SetResource SetTrigg EnableUnit EnableMission StartAI ShowPage TakeWood DisableMission TakeFood ClearSelection TakeStone SaveSelectedUnits GetUnitInfo SelectUnitsType GetTotalAmount0 CheckProduction SetUnitInfo TimerDone TimerDoneFirst ProduceUnit RemoveGroup GetUnitsByNation ShowPageParam NationIsErased SelectUnits ShowVictory LooseGame RegisterFormation RegisterVar RegisterDynGroup RegisterZone RegisterUnitType RegisterUnits GetDiff SetPlayerName ChangeFriends
+
+[KERNEL32.DLL] HeapFree SetEnvironmentVariableA CompareStringA CompareStringW LCMapStringW LCMapStringA GetStringTypeA MultiByteToWideChar GetStringTypeW LoadLibraryA SetFilePointer GetACP GetCPInfo GetOEMCP InterlockedIncrement InterlockedDecrement SetStdHandle IsBadCodePtr FlushFileBuffers SetUnhandledExceptionFilter IsBadWritePtr IsBadReadPtr VirtualAlloc HeapReAlloc WriteFile VirtualFree HeapDestroy GetVersionExA HeapCreate GetEnvironmentStringsW GetEnvironmentStrings GetEnvironmentVariableA FreeEnvironmentStringsW FreeEnvironmentStringsA WideCharToMultiByte DeleteCriticalSection GetStartupInfoA GetTimeZoneInformation GetSystemTime GetLocalTime RtlUnwind GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetProcAddress GetModuleFileNameA HeapAlloc EnterCriticalSection LeaveCriticalSection CloseHandle InitializeCriticalSection GetModuleHandleA ExitProcess TerminateProcess GetCurrentProcess SetHandleCount GetStdHandle GetFileType

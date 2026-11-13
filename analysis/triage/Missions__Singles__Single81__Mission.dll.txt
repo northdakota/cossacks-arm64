@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single81/Mission.dll
+taille       : 53248 octets
+sha256       : 73d2edbf98dca68ff750dee9b47009d92f8a39a9eff5cffe1447de9e8488f864
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-06 15:06:41 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100024a9
+sections     :
+   .text    va=0x10001000 vsize=   21274 raw=   24576 entropie=6.01 RX
+   .rdata   va=0x10007000 vsize=    4062 raw=    4096 entropie=5.29 R
+   .data    va=0x10008000 vsize=   14144 raw=   12288 entropie=1.32 RW
+   .reloc   va=0x1000c000 vsize=    4110 raw=    8192 entropie=2.62 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (52), KERNEL32.DLL (50)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelSendAndKill SelectUnitsType UnitsCenter SelAttackGroup InsertUnitToGroup CreateZoneNearGroup GetTopDst EnableUnit RemoveUnitFromGroup Trigg SetResource EnableMission SetTrigg SelOpenGates SelChangeNation TakeFood GetUnitInfo RunTimer SetDestPoint InitialUpgrade ShowPage DisableMission TimerDone TimerDoneFirst GetTotalAmount0 RemoveGroup CheckProduction ProduceUnit CreateObject0 SaveSelectedUnits ShowPageParam SelectTypeOfUnitsInZone SelSendTo GetUnitsAmount2 AddResource GetUnitsAmount0 StartAI LooseGame NationIsErased ShowVictory RegisterUnitType RegisterVar RegisterUnits RegisterFormation RegisterDynGroup RegisterZone SelErase GetDiff SelectUnits SetPlayerName ClearSelection ChangeFriends
+
+[KERNEL32.DLL] GetCurrentThreadId TlsSetValue InterlockedDecrement GetStringTypeW InterlockedIncrement LCMapStringW LCMapStringA GetStringTypeA RtlUnwind LoadLibraryA MultiByteToWideChar HeapReAlloc GetProcAddress GetOEMCP GetACP VirtualAlloc HeapAlloc GetCPInfo LeaveCriticalSection EnterCriticalSection WriteFile HeapFree InitializeCriticalSection HeapCreate HeapDestroy VirtualFree GetEnvironmentVariableA GetModuleHandleA GetVersionExA GetEnvironmentStrings WideCharToMultiByte GetEnvironmentStringsW FreeEnvironmentStringsA GetModuleFileNameA FreeEnvironmentStringsW GetStartupInfoA GetFileType DeleteCriticalSection SetHandleCount GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetStdHandle TlsAlloc TlsFree SetLastError TlsGetValue GetLastError

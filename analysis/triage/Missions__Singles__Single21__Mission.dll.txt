@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single21/Mission.dll
+taille       : 69632 octets
+sha256       : bb9f8e4957987daf24b76eba239b6865f5a7f394ec1dc3ebbc134b879bb2f042
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 10:01:15 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10004abb
+sections     :
+   .text    va=0x10001000 vsize=   35898 raw=   36864 entropie=6.45 RX
+   .rdata   va=0x1000a000 vsize=    4062 raw=    4096 entropie=5.33 R
+   .data    va=0x1000b000 vsize=   22892 raw=   16384 entropie=1.29 RW
+   .reloc   va=0x10011000 vsize=    5174 raw=    8192 entropie=3.60 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (46), KERNEL32.DLL (57)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg ChangeFriends GetDiff SetTrigg EnableUnit DisableUpgrade StartAI SetLightSpot EnableMission DisableMission GetUnitInfo NationIsErased LooseGame ShowVictory SaveSelectedUnits ClearSelection AskQuestion TimerDoneFirst RegisterFormation RegisterUnitType RegisterVar RegisterZone RegisterUnits RegisterUpgrade SetPlayerName TimerDone SelSendAndKill RunTimer GetResource SetResource GetUnitsAmount1 SelSendTo SelectUnits SelDie ShowPage ShowPageParam GetUnitsAmount2 AskMultilineQuestion GetTotalAmount0 AddResource RegisterDynGroup CreateObject0 RemoveGroup TakeWood TakeFood TakeStone
+
+[KERNEL32.DLL] DeleteCriticalSection GetStartupInfoA InterlockedIncrement InterlockedDecrement GetStringTypeW GetStringTypeA LCMapStringW LCMapStringA MultiByteToWideChar SetEndOfFile LoadLibraryA GetProcAddress GetOEMCP GetACP GetCPInfo CreateFileA FlushFileBuffers SetStdHandle RtlUnwind HeapReAlloc VirtualAlloc WriteFile VirtualFree HeapCreate HeapDestroy GetVersionExA GetEnvironmentVariableA GetModuleHandleA GetEnvironmentStringsW GetEnvironmentStrings WideCharToMultiByte FreeEnvironmentStringsW GetCommandLineA GetVersion HeapFree EnterCriticalSection LeaveCriticalSection GetLastError CloseHandle ReadFile HeapAlloc SetHandleCount GetStdHandle GetFileType FreeEnvironmentStringsA TlsSetValue SetFilePointer InitializeCriticalSection ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsAlloc TlsFree SetLastError TlsGetValue GetModuleFileNameA

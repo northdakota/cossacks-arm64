@@ -1,0 +1,18 @@
+fichier      : UserMissions/CMS_Start.dll
+taille       : 90112 octets
+sha256       : 2f3c889aed854e144ee4fbd527efd067bbb6d7dd62c2677cb3e0534613de7298
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-01-14 10:23:58 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10005d89
+sections     :
+   .text    va=0x10001000 vsize=   50910 raw=   53248 entropie=6.50 RX
+   .rdata   va=0x1000e000 vsize=    6038 raw=    8192 entropie=4.04 R
+   .data    va=0x10010000 vsize=  121696 raw=   16384 entropie=1.30 RW
+   .reloc   va=0x1002e000 vsize=    5364 raw=    8192 entropie=3.23 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (24), KERNEL32.DLL (63)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetNInside StartAI AddResource InitialUpgrade CheckLeaveAbility AskMultilineQuestion ShowPage EnableMission AskQuestion RegisterZone RunTimer RegisterUnits RegisterFormation RegisterUnitType SetPlayerName GetTotalAmount0 ChangeFriends SaveSelectedUnits RegisterVar SelectUnits ClearSelection MissErrorMessage RegisterDynGroup DisableMission
+
+[KERNEL32.DLL] GetCurrentThreadId GetModuleHandleA TlsSetValue TlsAlloc LCMapStringW LCMapStringA SetEndOfFile GetOEMCP GetACP LoadLibraryA GetStringTypeW GetStringTypeA GetCPInfo InterlockedIncrement InterlockedDecrement RtlUnwind RaiseException GetCommandLineA GetVersion HeapFree ExitProcess TerminateProcess GetCurrentProcess HeapReAlloc HeapAlloc HeapSize InitializeCriticalSection DeleteCriticalSection EnterCriticalSection LeaveCriticalSection GetLastError CloseHandle ReadFile SetHandleCount GetStdHandle GetFileType GetStartupInfoA SetFilePointer GetProcAddress GetEnvironmentStringsW MultiByteToWideChar TlsFree SetLastError TlsGetValue SetUnhandledExceptionFilter WriteFile GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings IsBadWritePtr GetEnvironmentVariableA GetVersionExA HeapDestroy HeapCreate VirtualFree VirtualAlloc SetStdHandle FlushFileBuffers CreateFileA IsBadReadPtr IsBadCodePtr

@@ -1,0 +1,19 @@
+fichier      : mdraw.dll
+taille       : 65728 octets
+sha256       : 62d322a5aa97ef6582f26276e6fe7c44af3a02d917fd9c53f8f749f2eaac429e
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2010-09-27 14:00:37 UTC, éditeur de liens 9.0
+image base   : 0x10000000, point d'entrée 0x100033ac
+sections     :
+   .text    va=0x10001000 vsize=   37409 raw=   37888 entropie=6.47 RX
+   .rdata   va=0x1000b000 vsize=   11021 raw=   11264 entropie=5.30 R
+   .data    va=0x1000e000 vsize=    7676 raw=    3584 entropie=2.89 RW
+   .rsrc    va=0x10010000 vsize=    1396 raw=    1536 entropie=4.36 R
+   .reloc   va=0x10011000 vsize=    5248 raw=    5632 entropie=4.01 R
+données après le PE : 4800 octets
+imports      : KERNEL32.DLL (65), USER32.DLL (3)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] ExitProcess LocalFree FormatMessageA GetLastError GetProcAddress LoadLibraryA GetFileAttributesA GetSystemDirectoryA LeaveCriticalSection EnterCriticalSection Sleep CreateThread InitializeCriticalSection DeleteCriticalSection RtlUnwind HeapFree HeapAlloc GetCurrentThreadId GetCommandLineA TerminateProcess GetCurrentProcess UnhandledExceptionFilter SetUnhandledExceptionFilter IsDebuggerPresent RaiseException GetModuleHandleW TlsGetValue TlsAlloc TlsSetValue TlsFree InterlockedIncrement SetLastError InterlockedDecrement HeapCreate HeapDestroy VirtualFree VirtualAlloc HeapReAlloc WriteFile GetStdHandle GetModuleFileNameA SetHandleCount GetFileType GetStartupInfoA FreeEnvironmentStringsA GetEnvironmentStrings FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW QueryPerformanceCounter GetTickCount GetCurrentProcessId GetSystemTimeAsFileTime HeapSize GetCPInfo GetACP GetOEMCP IsValidCodePage InitializeCriticalSectionAndSpinCount GetLocaleInfoA GetStringTypeA MultiByteToWideChar GetStringTypeW LCMapStringA LCMapStringW
+
+[USER32.DLL] wsprintfA MessageBoxA EnumDisplaySettingsA

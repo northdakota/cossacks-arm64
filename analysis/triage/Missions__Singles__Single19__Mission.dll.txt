@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single19/Mission.dll
+taille       : 208968 octets
+sha256       : 90f4e47079b800e0911bca10ddef5210f563cd771e54e62f5498e604b42e0876
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-04-11 12:01:21 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100023c0
+sections     :
+   .text    va=0x10001000 vsize=  164848 raw=  167936 entropie=5.36 RX
+   .rdata   va=0x1002a000 vsize=    8428 raw=   12288 entropie=3.54 R
+   .data    va=0x1002d000 vsize=   16320 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10031000 vsize=    3397 raw=    4096 entropie=4.06 RW
+   .reloc   va=0x10032000 vsize=    6040 raw=    8192 entropie=5.03 R
+données après le PE : 72 octets
+imports      : DMCR.EXE (30), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg GetDiff SetResource EnableUnit ChangeFriends SelectUnits DoNotUseSelInAI StartAI SetTrigg SelOpenGates ShowPage RunTimer TimerDoneFirst SelSendTo GetUnitsAmount1 SetLightSpot FreeTimer AskQuestion GetResource AddResource ClearLightSpot NationIsErased ShowVictory LooseGame GetTotalAmount0 SetPlayerName RegisterVar RegisterUnitType RegisterZone RegisterUnits
+
+[KERNEL32.DLL] GetCurrentThread GetLastError SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc HeapReAlloc HeapAlloc GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue UnhandledExceptionFilter GetEnvironmentStrings SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte VirtualFree GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection LeaveCriticalSection FatalAppExitA

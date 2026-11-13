@@ -1,0 +1,36 @@
+fichier      : HView.exe
+taille       : 205504 octets
+sha256       : 110df5bbd1061063cedd82e645ce2412eb5590b29250496fea8211943dddfbd6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-11-13 10:02:49 UTC, éditeur de liens 6.0
+image base   : 0x400000, point d'entrée 0x4096fe
+sections     :
+   .text    va=0x00401000 vsize=  130987 raw=  131072 entropie=6.59 RX
+   .rdata   va=0x00421000 vsize=   34734 raw=   36864 entropie=4.66 R
+   .data    va=0x0042a000 vsize=   25448 raw=   12288 entropie=3.17 RW
+   .rsrc    va=0x00431000 vsize=   14952 raw=   16384 entropie=3.98 R
+données après le PE : 4800 octets
+imports      : ADVAPI32.DLL (4), COMCTL32.DLL (1), COMDLG32.DLL (1), GDI32.DLL (39), KERNEL32.DLL (113), OLE32.DLL (15), OLEAUT32.DLL (9), OLEDLG.DLL (1), OLEPRO32.DLL (1), USER32.DLL (126), WINSPOOL.DRV (3)
+marqueurs de protection/packer connus : aucun
+
+[ADVAPI32.DLL] RegCloseKey RegCreateKeyExA RegOpenKeyExA RegSetValueExA
+
+[COMCTL32.DLL] #17
+
+[COMDLG32.DLL] GetFileTitleA
+
+[GDI32.DLL] DeleteObject GetViewportExtEx GetWindowExtEx CreateSolidBrush PtVisible RectVisible TextOutA ExtTextOutA Escape DPtoLP LPtoDP GetMapMode PatBlt CreateDIBitmap CreateCompatibleDC BitBlt GetTextExtentPointA IntersectClipRect SetWindowExtEx ScaleWindowExtEx ScaleViewportExtEx SetViewportExtEx SetViewportOrgEx SetMapMode OffsetViewportOrgEx SelectObject SetBkMode SaveDC RestoreDC GetStockObject GetDeviceCaps DeleteDC GetTextColor GetObjectA GetBkColor SetTextColor GetClipBox SetBkColor CreateBitmap
+
+[KERNEL32.DLL] HeapFree TerminateProcess HeapAlloc HeapReAlloc HeapSize GetACP GetTimeZoneInformation RaiseException UnhandledExceptionFilter FreeEnvironmentStringsA FreeEnvironmentStringsW GetEnvironmentStrings GetEnvironmentStringsW SetHandleCount GetStdHandle GetFileType HeapDestroy GetStartupInfoA HeapCreate VirtualAlloc IsBadWritePtr SetUnhandledExceptionFilter GetStringTypeA GetStringTypeW DuplicateHandle GetOEMCP IsBadReadPtr IsBadCodePtr SetStdHandle CompareStringA ExitProcess SetEnvironmentVariableA GetCommandLineA RtlUnwind FormatMessageA GetFileTime FileTimeToLocalFileTime GetFileSize GetFileAttributesA FileTimeToSystemTime FindFirstFileA GetFullPathNameA GetVolumeInformationA FindClose LockFile SetEndOfFile UnlockFile WriteFile FlushFileBuffers SetFilePointer GetCurrentProcess ReadFile CreateFileA VirtualFree SetErrorMode CloseHandle GetModuleFileNameA GlobalLock GlobalAlloc GlobalDeleteAtom lstrcmpA lstrcmpiA GetCurrentThread GetCurrentThreadId GetCurrentDirectoryA LCMapStringA GetCPInfo SizeofResource GetProfileStringA GetProcessVersion GetLastError WritePrivateProfileStringA GlobalFlags lstrcpynA TlsGetValue LocalReAlloc TlsSetValue EnterCriticalSection GlobalReAlloc LeaveCriticalSection TlsFree GlobalHandle DeleteCriticalSection TlsAlloc InitializeCriticalSection LocalFree LocalAlloc MulDiv SetLastError WideCharToMultiByte InterlockedIncrement lstrlenA MultiByteToWideChar GetThreadLocale InterlockedDecrement LoadLibraryA FreeLibrary GetVersion lstrcatA GlobalGetAtomNameA GlobalAddAtomA GlobalFindAtomA lstrcpyA GetModuleHandleA GetProcAddress GlobalUnlock GlobalFree LockResource FindResourceA LoadResource LCMapStringW CompareStringW GetTickCount
+
+[OLE32.DLL] CoFreeUnusedLibraries OleUninitialize OleInitialize CoTaskMemFree CreateILockBytesOnHGlobal StgCreateDocfileOnILockBytes CoGetClassObject CLSIDFromString CLSIDFromProgID StgOpenStorageOnILockBytes CoRegisterMessageFilter CoRevokeClassObject OleFlushClipboard OleIsCurrentClipboard CoTaskMemAlloc
+
+[OLEAUT32.DLL] #7 #150 #12 #10 #2 #185 #9 #4 #6
+
+[OLEDLG.DLL] #8
+
+[OLEPRO32.DLL] #253
+
+[USER32.DLL] GetSysColorBrush SetRect GetNextDlgGroupItem MessageBeep InvalidateRect CharUpperA InflateRect RegisterClipboardFormatA PostThreadMessageA GetClassNameA GetDesktopWindow LoadCursorA GrayStringA DrawTextA TabbedTextOutA EndPaint BeginPaint GetWindowDC ReleaseDC GetDC ClientToScreen DestroyMenu LoadStringA CharNextA ShowWindow MoveWindow SetWindowTextA IsDialogMessageA MapDialogRect SetWindowContextHelpId UpdateWindow SendDlgItemMessageA MapWindowPoints GetSysColor CopyAcceleratorTableA ScreenToClient CopyRect IsChild GetCapture PtInRect wsprintfA GetClassInfoA RegisterClassA GetMenu GetMenuItemCount GetSubMenu GetMenuItemID GetWindowTextLengthA GetWindowTextA GetDlgCtrlID DefWindowProcA CreateWindowExA GetClassLongA SetPropA UnhookWindowsHookEx GetPropA CallWindowProcA RemovePropA GetMessageTime GetMessagePos GetForegroundWindow SetForegroundWindow GetWindow SetWindowLongA SetWindowPos RegisterWindowMessageA OffsetRect IntersectRect SystemParametersInfoA GetWindowPlacement GetWindowRect EndDialog SetActiveWindow IsWindow CreateDialogIndirectParamA DestroyWindow GetDlgItem GetMenuCheckMarkDimensions LoadBitmapA GetMenuState ModifyMenuA AdjustWindowRectEx SetFocus WinHelpA SetMenuItemBitmaps CheckMenuItem EnableMenuItem GetFocus GetNextDlgTabItem GetMessageA TranslateMessage DispatchMessageA GetActiveWindow GetKeyState CallNextHookEx ValidateRect IsWindowVisible PeekMessageA GetCursorPos SetWindowsHookExA GetParent GetLastActivePopup IsWindowEnabled GetWindowLongA MessageBoxA SetCursor PostQuitMessage PostMessageA EnableWindow IsIconic GetSystemMetrics DrawIcon GetSystemMenu AppendMenuA SendMessageA GetClientRect SetTimer LoadIconA GetTopWindow DrawFocusRect UnregisterClassA HideCaret ShowCaret ExcludeUpdateRgn DefDlgProcA IsWindowUnicode
+
+[WINSPOOL.DRV] ClosePrinter DocumentPropertiesA OpenPrinterA

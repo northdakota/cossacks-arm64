@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single41/Mission.dll
+taille       : 208970 octets
+sha256       : 0564ef2c97f4450455eb8efe39e3d85774de94021be97d751c6943f99b6d4661
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-20 13:49:16 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002c90
+sections     :
+   .text    va=0x10001000 vsize=  167104 raw=  167936 entropie=6.24 RX
+   .rdata   va=0x1002a000 vsize=    8509 raw=   12288 entropie=3.55 R
+   .data    va=0x1002d000 vsize=   16768 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10032000 vsize=    3619 raw=    4096 entropie=4.30 RW
+   .reloc   va=0x10033000 vsize=    6323 raw=    8192 entropie=5.22 R
+données après le PE : 74 octets
+imports      : DMCR.EXE (37), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetDiff InitialUpgrade SetResource SetLightSpot StartAI ShowPage ChangeFriends TimerDone RunTimer TimerDoneFirst GetTotalAmount0 AskQuestion SelSendTo GetUnitsAmount1 AttackEnemyInZone CreateObject0 LooseGame SelectUnitsInZone SelErase SetPlayerName NationIsErased ShowVictory RegisterVar RegisterUnitType RegisterFormation SelectUnits SelCloseGates SaveSelectedUnits GetUnitsAmount0 SelOpenGates Trigg RegisterUnits SetTrigg CreateZoneNearGroup GetUnitsByNation RegisterZone RegisterDynGroup
+
+[KERNEL32.DLL] TlsFree SetLastError SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCPInfo VirtualAlloc GetACP HeapAlloc UnhandledExceptionFilter HeapReAlloc LeaveCriticalSection EnterCriticalSection FatalAppExitA SetConsoleCtrlHandler VirtualFree InitializeCriticalSection GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc IsBadReadPtr IsBadWritePtr TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection HeapCreate HeapFree HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy

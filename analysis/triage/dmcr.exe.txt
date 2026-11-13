@@ -1,0 +1,39 @@
+fichier      : dmcr.exe
+taille       : 2249480 octets
+sha256       : b4eea67400bf608d26a610539caf582078b750b0fd51c9c02450a08fcaadf4f1
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-08-20 11:00:56 UTC, éditeur de liens 6.0
+image base   : 0x400000, point d'entrée 0x5a21b8
+sections     :
+   .text    va=0x00401000 vsize= 1879498 raw= 1880064 entropie=6.51 RX
+   .rdata   va=0x005cc000 vsize=   67620 raw=   69632 entropie=4.64 R
+   .data    va=0x005dd000 vsize=35271736 raw=   98304 entropie=5.57 RW
+   .rsrc    va=0x02781000 vsize=    8192 raw=    8192 entropie=4.51 R
+   .reloc   va=0x02783000 vsize=  182266 raw=  184320 entropie=4.36 R
+données après le PE : 4872 octets
+imports      : ADVAPI32.DLL (5), DPLAYX.DLL (1), DSOUND.DLL (1), GDI32.DLL (1), ICHAT.DLL (10), KERNEL32.DLL (97), MDRAW.DLL (1), MINMM.DLL (14), OLE32.DLL (2), SHELL32.DLL (1), USER32.DLL (27), WS2_32.DLL (28)
+marqueurs de protection/packer connus : aucun
+
+[ADVAPI32.DLL] RegQueryValueExA RegOpenKeyExA RegCreateKeyExA RegSetValueExA RegCloseKey
+
+[DPLAYX.DLL] #4
+
+[DSOUND.DLL] DirectSoundCreate
+
+[GDI32.DLL] StretchDIBits
+
+[ICHAT.DLL] ?ReportGSCGame@@YAXHHPAUOnePlayerReport@@@Z ?ReportAliveState@@YAXHPAH@Z ?StartGSCGame@@YAXPAD0HPAHPAPAD11@Z ?ChatProcess@@YAXXZ ?SendPrivateMessage@@YAXPAD0@Z ?Process_GSC_ChatWindow@@YAH_NPAURoomInfo@@@Z ?SendVictoryState@@YAXHE@Z ?GoHomeAnyway@@YAXXZ ?GetGameID@@YAXPAD@Z ?LeaveGSCRoom@@YAXXZ
+
+[KERNEL32.DLL] WriteFile GetTickCount lstrcpyA lstrlenA GetComputerNameA FileTimeToSystemTime GetFileSize SystemTimeToFileTime GetSystemTime CreateProcessA QueryPerformanceFrequency QueryPerformanceCounter WinExec GetDriveTypeA GetLogicalDriveStringsA SetFilePointer Sleep GetProcAddress GetModuleHandleA GetWindowsDirectoryA CreateDirectoryA FindNextFileA FreeLibrary LoadLibraryA MulDiv GlobalFree GlobalUnlock GlobalHandle GlobalLock GlobalAlloc SetFileTime GetFileTime ReadFile FindFirstFileA FindClose UnmapViewOfFile CloseHandle CreateFileA CreateFileMappingA MapViewOfFile GetCurrentDirectoryA SetCurrentDirectoryA SetLastError GetDiskFreeSpaceA GetDiskFreeSpaceExA SetUnhandledExceptionFilter VirtualAlloc VirtualFree WideCharToMultiByte ExitProcess IsBadWritePtr RtlUnwind HeapFree GetModuleFileNameA HeapReAlloc IsBadCodePtr HeapAlloc GetStringTypeW GetCPInfo GetStringTypeA GetOEMCP SetEndOfFile GetACP CompareStringA CompareStringW RaiseException SetConsoleCtrlHandler FileTimeToLocalFileTime TerminateProcess GetCurrentProcess GetCurrentProcessId SetStdHandle IsBadReadPtr GetEnvironmentStringsW GetEnvironmentStrings FreeEnvironmentStringsW FreeEnvironmentStringsA UnhandledExceptionFilter FlushFileBuffers GetFileType GetStdHandle SetHandleCount HeapSize LCMapStringW LCMapStringA DeleteFileA MultiByteToWideChar GetLastError SetEnvironmentVariableA HeapDestroy GetVersion GetCommandLineA HeapCreate MoveFileA GetStartupInfoA GetLocalTime GetTimeZoneInformation
+
+[MDRAW.DLL] DirectDrawCreate
+
+[MINMM.DLL] mixerGetLineControlsA mixerSetControlDetails mixerClose mixerGetNumDevs mixerOpen mixerGetLineInfoA mmioOpenA mmioAscend mmioClose mciSendCommandA mciGetErrorStringA mmioDescend mmioRead mixerGetControlDetailsA
+
+[OLE32.DLL] CoCreateInstance CoInitialize
+
+[SHELL32.DLL] ShellExecuteA
+
+[USER32.DLL] ShowCursor SetCursorPos GetKeyboardState DispatchMessageA TranslateMessage ClipCursor GetWindowDC ReleaseDC GetKeyState wsprintfA MessageBoxA PeekMessageA PostQuitMessage RedrawWindow DefWindowProcA LoadIconA ToAscii GetSystemMetrics LoadCursorA RegisterClassA UpdateWindow CreateWindowExA ShowWindow PostMessageA SetTimer DestroyWindow SetCursor
+
+[WS2_32.DLL] #18 #151 #8 #111 #10 #116 #115 #9 #11 #19 #22 #3 #23 #4 #52 #16 #2 #57 #21 #13 #20 #17 #109 #7 #1 #6 #15 #12

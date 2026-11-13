@@ -1,0 +1,18 @@
+fichier      : AI/Vengria.dll
+taille       : 94208 octets
+sha256       : 463f3203b6d192eaf3d0f4d3f4ab7caa637d9ef907daa8914fde5f6a3a9dbd5c
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-22 12:04:28 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100070b4
+sections     :
+   .text    va=0x10001000 vsize=   51930 raw=   53248 entropie=6.43 RX
+   .rdata   va=0x1000e000 vsize=    3246 raw=    4096 entropie=4.59 R
+   .data    va=0x1000f000 vsize=   36092 raw=   20480 entropie=2.66 RW
+   .reloc   va=0x10018000 vsize=   10714 raw=   12288 entropie=4.47 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (54), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] SetFilePointer GetModuleHandleA LeaveCriticalSection EnterCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetEnvironmentVariableA GetVersionExA HeapDestroy HeapCreate VirtualFree HeapFree WriteFile GetProcAddress InterlockedDecrement InterlockedIncrement InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA SetStdHandle MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW RtlUnwind FlushFileBuffers CloseHandle
+
+[USER32.DLL] MessageBoxA

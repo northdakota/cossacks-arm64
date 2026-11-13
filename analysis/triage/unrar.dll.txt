@@ -1,0 +1,19 @@
+fichier      : unrar.dll
+taille       : 53248 octets
+sha256       : 77245d6ea7f3edd0bbe5a805fe8d3048975a5a66480fc033f7106c09c72f8d2a
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 1996-09-23 06:03:48 UTC, éditeur de liens 2.25
+image base   : 0x400000, point d'entrée 0x401000
+sections     :
+   CODE     va=0x00401000 vsize=   40960 raw=   39424 entropie=6.44 RX
+   DATA     va=0x0040b000 vsize=   20480 raw=    5632 entropie=4.13 RW
+   .idata   va=0x00410000 vsize=    4096 raw=    1536 entropie=4.32 RW
+   .edata   va=0x00411000 vsize=    4096 raw=     512 entropie=3.73 R
+   .reloc   va=0x00412000 vsize=    4096 raw=    1536 entropie=6.24 R
+données après le PE : 3072 octets
+imports      : KERNEL32.DLL (44), USER32.DLL (3)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] GetVersionExA CreateDirectoryA CreateFileA DeleteFileA DosDateTimeToFileTime EnterCriticalSection ExitProcess FreeEnvironmentStringsA GetCommandLineA AreFileApisANSI GetEnvironmentStrings GetFileAttributesA GetFileType GetLastError GetLocalTime GetModuleFileNameA GetModuleHandleA GetProcAddress GetStartupInfoA GetStdHandle GetCurrentThreadId CloseHandle GlobalMemoryStatus InitializeCriticalSection LeaveCriticalSection LocalFileTimeToFileTime RaiseException ReadFile RtlUnwind SetConsoleCtrlHandler SetFileAttributesA SetFilePointer SetFileTime SetHandleCount TlsAlloc TlsFree TlsGetValue TlsSetValue UnhandledExceptionFilter VirtualAlloc VirtualFree VirtualQuery WriteFile GetVersion
+
+[USER32.DLL] OemToCharA MessageBoxA EnumThreadWindows

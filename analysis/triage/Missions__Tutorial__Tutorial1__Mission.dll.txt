@@ -1,0 +1,19 @@
+fichier      : Missions/Tutorial/Tutorial1/Mission.dll
+taille       : 213063 octets
+sha256       : bb83d3a506b51b7aa302240d5972c014917f8746ea0b9bb41c950646ece35ff2
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-09-25 08:30:11 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10003730
+sections     :
+   .text    va=0x10001000 vsize=  169824 raw=  172032 entropie=4.10 RX
+   .rdata   va=0x1002b000 vsize=    8912 raw=   12288 entropie=3.70 R
+   .data    va=0x1002e000 vsize=   16448 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10033000 vsize=    3305 raw=    4096 entropie=3.99 RW
+   .reloc   va=0x10034000 vsize=    6554 raw=    8192 entropie=5.36 R
+données après le PE : 71 octets
+imports      : DMCR.EXE (25), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg EnableUnit SetTrigg DisableUpgrade RunTimer SetResource DisableMission ClearSelection TimerDone ShowPage SelectUnits1 SaveSelectedUnits GetTotalAmount0 GetReadyAmount EnableMission GetTotalAmount1 NationIsErased GetResource GetTotalAmount2 RegisterUnitType ShowVictory RegisterVar ChangeFriends RegisterDynGroup RegisterUpgrade
+
+[KERNEL32.DLL] GetFileType GetStartupInfoA SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount HeapFree HeapCreate DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy GetCPInfo GetACP VirtualFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection LeaveCriticalSection FatalAppExitA UnhandledExceptionFilter HeapAlloc HeapReAlloc VirtualAlloc

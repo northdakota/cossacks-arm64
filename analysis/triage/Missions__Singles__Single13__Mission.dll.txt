@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single13/Mission.dll
+taille       : 208961 octets
+sha256       : 426a25c46bacd3403d6359d074a22026cfc4a32d16045bf8b0178828369a8401
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-18 09:03:02 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100023b0
+sections     :
+   .text    va=0x10001000 vsize=  164848 raw=  167936 entropie=5.86 RX
+   .rdata   va=0x1002a000 vsize=    8540 raw=   12288 entropie=3.58 R
+   .data    va=0x1002d000 vsize=   16480 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10032000 vsize=    3585 raw=    4096 entropie=4.25 RW
+   .reloc   va=0x10033000 vsize=    6178 raw=    8192 entropie=5.12 R
+données après le PE : 65 octets
+imports      : DMCR.EXE (36), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg GetDiff SetResource ChangeFriends StartAI SetTrigg DisableMission InitialUpgrade SelectUnits Patrol RunTimer TimerDoneFirst ShowPage GetUnitsAmount0 AskMultilineQuestion GetResource AddResource CreateObject0 SelSendTo SelectUnitsInZone SelChangeNation NationIsErased ShowVictory LooseGame GetTotalAmount0 EnableMission SelSendAndKill SetPlayerName RegisterVar RegisterZone RegisterUnits SetLightSpot RegisterFormation RegisterUnitType RegisterDynGroup EnableUnit
+
+[KERNEL32.DLL] SetLastError TlsFree SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc HeapReAlloc HeapAlloc UnhandledExceptionFilter FatalAppExitA LeaveCriticalSection EnterCriticalSection InitializeCriticalSection SetConsoleCtrlHandler GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc VirtualFree IsBadReadPtr TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr GetEnvironmentStrings HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree

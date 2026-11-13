@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single11/Mission.dll
+taille       : 32768 octets
+sha256       : ef366c6c8c56b95a24e31bb4896ba4392a2b72e296eb6a19aa318fc6e978691f
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-02-12 12:47:02 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001999
+sections     :
+   .text    va=0x10001000 vsize=   13158 raw=   16384 entropie=5.64 RX
+   .rdata   va=0x10005000 vsize=    2670 raw=    4096 entropie=3.92 R
+   .data    va=0x10006000 vsize=    3296 raw=    4096 entropie=1.89 RW
+   .reloc   va=0x10007000 vsize=    1574 raw=    4096 entropie=2.93 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (23), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg SetTrigg ShowPage SetResource SelectUnits SelSendTo Patrol GetDiff StartAI DisableUpgrade ChangeFriends NationIsErased ShowVictory LooseGame EnableUnit GetUnitsAmount1 AddResource SetLightSpot RegisterUnitType RegisterUnits RegisterUpgrade RegisterZone SetPlayerName
+
+[KERNEL32.DLL] SetHandleCount RtlUnwind GetStringTypeW GetStringTypeA LCMapStringW LCMapStringA MultiByteToWideChar LoadLibraryA GetProcAddress HeapReAlloc VirtualAlloc GetOEMCP GetACP GetCPInfo HeapAlloc LeaveCriticalSection EnterCriticalSection InitializeCriticalSection WriteFile GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree TlsGetValue VirtualFree HeapFree GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate

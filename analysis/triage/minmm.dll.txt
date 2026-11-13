@@ -1,0 +1,23 @@
+fichier      : minmm.dll
+taille       : 320192 octets
+sha256       : fe6fd4531adb06eb13fb951980c4bb79c37faeaabf5f4e0236bf8cb06d911449
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2009-02-26 14:50:54 UTC, éditeur de liens 8.0
+image base   : 0x10000000, point d'entrée 0x10004c4c
+sections     :
+   .text    va=0x10001000 vsize=  173893 raw=  176128 entropie=6.74 RX
+   .rdata   va=0x1002c000 vsize=   47069 raw=   49152 entropie=6.09 R
+   .data    va=0x10038000 vsize=   73896 raw=   69632 entropie=5.98 RW
+   .rsrc    va=0x1004b000 vsize=     176 raw=    4096 entropie=3.06 R
+   .reloc   va=0x1004c000 vsize=    8792 raw=   12288 entropie=3.88 R
+données après le PE : 4800 octets
+imports      : DSOUND.DLL (1), KERNEL32.DLL (83), OLE32.DLL (2), USER32.DLL (5)
+marqueurs de protection/packer connus : aucun
+
+[DSOUND.DLL] #11
+
+[KERNEL32.DLL] CreateEventA CloseHandle CreateThread WaitForSingleObject FreeLibrary SetThreadPriority GetCurrentThread WaitForMultipleObjects SetEvent GetModuleFileNameA GetFileAttributesA GetSystemDirectoryA LoadLibraryA GetProcAddress GetStringTypeW HeapAlloc GetLastError HeapFree GetCurrentThreadId GetCommandLineA GetVersionExA GetProcessHeap HeapReAlloc TerminateProcess GetCurrentProcess UnhandledExceptionFilter SetUnhandledExceptionFilter IsDebuggerPresent SetFilePointer EnterCriticalSection LeaveCriticalSection MultiByteToWideChar ReadFile SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection RtlUnwind VirtualFree VirtualAlloc HeapDestroy HeapCreate GetModuleHandleA ExitProcess WriteFile RaiseException TlsGetValue TlsAlloc TlsSetValue TlsFree InterlockedIncrement SetLastError InterlockedDecrement Sleep FreeEnvironmentStringsA GetEnvironmentStrings FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW QueryPerformanceCounter GetTickCount GetCurrentProcessId GetSystemTimeAsFileTime HeapSize SetStdHandle GetConsoleCP GetConsoleMode FlushFileBuffers InitializeCriticalSection CreateFileA GetCPInfo GetACP GetOEMCP IsValidCodePage WriteConsoleA GetConsoleOutputCP WriteConsoleW SetEndOfFile LCMapStringA LCMapStringW GetLocaleInfoA GetStringTypeA
+
+[OLE32.DLL] CoUninitialize CoInitialize
+
+[USER32.DLL] DefWindowProcA RegisterClassA PostMessageA DestroyWindow CreateWindowExA

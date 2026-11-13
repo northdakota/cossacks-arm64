@@ -1,0 +1,224 @@
+// Processeur x86 32 bits émulé, dans lequel tourne le code d'origine du jeu.
+//
+// Le code émulé ne voit que la mémoire qu'on lui donne et ne peut agir sur la machine qu'à
+// travers les fonctions hôtes enregistrées ici : c'est ce cloisonnement qui autorise à
+// exécuter le code du jeu. Repose sur Unicorn (licence GPL-2.0).
+#pragma once
+
+#include <cstdint>
+#include <functional>
+#include <map>
+#include <memory>
+#include <optional>
+#include <string>
+#include <utility>
+#include <vector>
+
+struct uc_struct;
+struct uc_context;
+
+namespace zeus::win32 {
+
+class Cpu;
+
+// État complet du processeur émulé (registres généraux, indicateurs, x87, segments), copié par
+// Cpu::save_context et remis par Cpu::restore_context.
+class CpuContext {
+public:
+    CpuContext() = default;
+    ~CpuContext();
+    CpuContext(const CpuContext&) = delete;
+    CpuContext& operator=(const CpuContext&) = delete;
+
+private:
+    friend class Cpu;
+    uc_context* context_ = nullptr;
+};
+
+// Fonction hôte appelée à la place d'une fonction importée par le programme émulé.
+// Elle lit ses arguments avec Cpu::arg et renvoie la valeur de EAX. `arg_bytes` est le nombre
+// d'octets d'arguments à dépiler (convention stdcall) ; 0 pour une fonction cdecl.
+struct HostFunction {
+    std::string name;
+    uint32_t arg_bytes = 0;
+    std::function<uint32_t(Cpu&)> call;
+};
+
+class Cpu {
+public:
+    Cpu();
+    ~Cpu();
+    Cpu(const Cpu&) = delete;
+    Cpu& operator=(const Cpu&) = delete;
+
+    // Réserve une zone de mémoire émulée (adresse et taille arrondies à la page). Seules les
+    // zones de code sont à déclarer exécutables : Unicorn fait passer par un chemin lent toute
+    // écriture dans une zone exécutable, pour y surveiller le code modifié.
+    void map(uint32_t address, uint32_t size, bool executable = false);
+    // Places `size` bytes of a host file from `offset` (a multiple of the page) at `address`,
+    // copy-on-write: the program may write there, the file never changes. MapViewOfFile.
+    void map_file(uint32_t address, const std::string& path, uint64_t offset, uint32_t size);
+    // Removes a zone placed by map() or map_file(); its memory reads zero again if mapped later.
+    void unmap(uint32_t address, uint32_t size);
+    void write(uint32_t address, const void* data, size_t size);
+    void read(uint32_t address, void* data, size_t size) const;
+    uint32_t read_u32(uint32_t address) const;
+    void write_u32(uint32_t address, uint32_t value);
+    uint16_t read_u16(uint32_t address) const;
+    void write_u16(uint32_t address, uint16_t value);
+    uint8_t read_u8(uint32_t address) const;
+    void write_u8(uint32_t address, uint8_t value);
+    // Chaîne C terminée par un octet nul (au plus `max` caractères).
+    std::string read_string(uint32_t address, size_t max = 4096) const;
+    void write_string(uint32_t address, const std::string& text);  // avec l'octet nul final
+    void fill(uint32_t address, uint8_t value, size_t size);
+    // Base du segment FS : bloc d'environnement du fil d'exécution (TEB) sous Windows.
+    void set_fs_base(uint32_t address);
+
+    enum class Reg { EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI, EIP };
+    uint32_t reg(Reg r) const;
+    void set_reg(Reg r, uint32_t value);
+
+    // Enregistre une fonction hôte et renvoie l'adresse émulée à placer dans une table d'import.
+    uint32_t add_host_function(HostFunction function);
+    // Profil d'exécution : temps passé et nombre d'exécutions par bloc de code (du début d'un
+    // bloc au début du suivant, appels de fonctions hôtes compris). La mesure elle-même coûte un
+    // temps fixe par exécution, que le rapport retranche. Ralentit nettement l'émulation.
+    void start_profile();
+    struct BlockTime {
+        uint64_t nanoseconds = 0, executions = 0;
+        uint32_t bytes = 0;  // taille du bloc, en octets de code
+    };
+    const std::map<uint32_t, BlockTime>& profile() const { return profile_; }
+    // Appelle `fn` au début de chaque bloc de code exécuté, avec son adresse et sa taille en
+    // octets (arbre d'appels, call_graph.cpp). Ralentit nettement l'émulation.
+    void add_block_hook(std::function<void(Cpu&, uint32_t address, uint32_t size)> fn);
+
+    // Adresse hôte d'un octet de la mémoire émulée : toute la mémoire du programme est un seul
+    // bloc de 4 Go réservé par l'hôte, dont seules les zones déclarées par map() sont utilisables.
+    uint8_t* host(uint32_t address) const { return memory_ + address; }
+
+    // Remplace une fonction du programme par une fonction de l'hôte. Le corps de la fonction
+    // d'origine est remplacé en mémoire par un simple retour, et `fn` est appelée juste avant :
+    // elle lit ses arguments par arg() et renvoie la valeur de retour (EAX). L'émulateur n'est
+    // jamais dérouté, ce qui rend l'appel peu coûteux. À faire avant le début de l'exécution.
+    // `arg_bytes` : octets d'arguments dépilés par la fonction d'origine (0 en cdecl).
+    void replace_function(uint32_t address, uint32_t arg_bytes, std::function<uint32_t(Cpu&)> fn);
+
+    // Chemin rapide de l'hôte devant une fonction du programme, dont le code d'origine reste
+    // disponible : `fn` s'exécute à l'entrée de la fonction et renvoie la valeur de retour quand
+    // elle a traité l'appel, ou rien pour laisser faire le code d'origine. Les `displaced`
+    // premiers octets de la fonction (instructions entières, sans adresse relative, au moins 5)
+    // sont recopiés dans un tremplin, et un saut vers celui-ci prend leur place. Le tremplin teste
+    // le résultat de `fn` : il revient à l'appelant (`ret arg_bytes`) ou exécute les octets
+    // déplacés puis retourne dans la fonction. À faire avant le début de l'exécution.
+    void add_fast_path(uint32_t address, uint32_t arg_bytes, uint32_t displaced,
+                       std::function<std::optional<uint32_t>(Cpu&)> fn);
+
+    // Appelle `fn` chaque fois que l'exécution atteint `address`, avant l'instruction. Une
+    // adresse déjà interceptée garde sa fonction, appelée d'abord, puis `fn` (sauf si la première
+    // a appelé jump() : l'instruction n'est alors pas exécutée).
+    void add_code_hook(uint32_t address, std::function<void(Cpu&)> fn);
+    // Diagnostics: calls `fn` (address, size, value) before every write of the program into
+    // [begin, end[. Slows down only the code that writes there.
+    void add_write_hook(uint32_t begin, uint32_t end, std::function<void(Cpu&, uint32_t, int, uint32_t)> fn);
+
+    // Remplacements natifs (replace_function, add_fast_path, add_code_jump, add_native_hook,
+    // patch_code) : tous actifs par défaut. Coupés, le code d'origine s'exécute comme sous
+    // --no-native : octets d'origine remis en place, chemins rapides et aiguillages qui laissent
+    // faire l'original. Le banc d'équivalence (equivalence.cpp) s'en sert pour exécuter une même
+    // fonction des deux façons. Après un changement, poursuivre par jump() : le code déjà traduit
+    // de la fonction en cours peut être celui de l'autre mode.
+    void set_native(bool enabled);
+    bool native() const { return native_; }
+    // Comme add_code_hook, mais `fn` n'est appelée que quand les remplacements natifs sont actifs.
+    void add_native_hook(uint32_t address, std::function<void(Cpu&)> fn);
+    // Écrit `size` octets dans le code du programme pour un remplacement natif ; set_native(false)
+    // remet ceux d'origine.
+    void patch_code(uint32_t address, const void* bytes, size_t size);
+
+    // Depuis une fonction hôte ou une interception : arrête l'émulateur et reprend à `address`,
+    // avec les registres tels qu'ils sont alors (la fonction hôte ne fixe pas EAX).
+    void jump(uint32_t address);
+    void save_context(CpuContext& context);
+    void restore_context(const CpuContext& context);
+    // Nombre d'appels de fonctions hôtes depuis le début (imports, fonctions de l'hôte).
+    uint64_t host_calls() const { return host_calls_; }
+    // Zones réservées par map() sans droit d'exécution : [début, fin[.
+    const std::vector<std::pair<uint32_t, uint32_t>>& data_ranges() const { return data_ranges_; }
+
+    // Aiguillage de l'hôte dans le code du programme : chaque fois que l'exécution atteint
+    // `address`, `fn` s'exécute et renvoie l'adresse où poursuivre, ou 0 pour exécuter le code
+    // d'origine. Les `displaced` premiers octets (instructions entières, sans adresse relative, au
+    // moins 6, sur lesquels aucun saut n'arrive) sont recopiés dans un tremplin qui revient
+    // ensuite à `address + displaced`, et remplacés par « jmp [case] » : la case reçoit l'adresse
+    // choisie, sans arrêter l'émulateur. À faire avant le début de l'exécution.
+    void add_code_jump(uint32_t address, uint32_t displaced, std::function<uint32_t(Cpu&)> fn);
+    // n-ième argument (à partir de 0) de la fonction hôte en cours d'appel.
+    uint32_t arg(int n) const;
+    // Depuis une fonction hôte : fait appeler une fonction du programme émulé (convention
+    // stdcall) avant de rendre la main. `then` reçoit la valeur renvoyée et fournit le résultat
+    // de la fonction hôte ; elle peut à son tour demander un autre appel.
+    void call_guest(uint32_t address, std::vector<uint32_t> args, std::function<uint32_t(uint32_t)> then);
+
+    // Exécute à partir de `start` jusqu'à atteindre `until`. Lève std::runtime_error sur une
+    // faute (accès hors mémoire, instruction invalide).
+    void run(uint32_t start, uint32_t until);
+    // À appeler depuis une fonction hôte pour arrêter l'exécution après son retour.
+    void request_stop() { stop_requested_ = true; }
+    bool stopped() const { return stop_requested_; }
+    uint64_t instructions_run() const { return instructions_; }
+
+private:
+    void map_region(uint32_t start, size_t size, uint32_t permissions, const char* what);
+    uint8_t* memory_ = nullptr;
+    static void on_block(uc_struct* uc, uint64_t address, uint32_t size, void* user);
+    static void on_block_hook(uc_struct* uc, uint64_t address, uint32_t size, void* user);
+    std::vector<std::function<void(Cpu&, uint32_t, uint32_t)>> block_hooks_;
+    std::map<uint32_t, BlockTime> profile_;  // par adresse de bloc
+    uint32_t profile_block_ = 0, profile_size_ = 0;
+    uint64_t profile_since_ = 0;
+    static void on_code_hook(uc_struct* uc, uint64_t address, uint32_t size, void* user);
+    std::map<uint32_t, std::function<void(Cpu&)>> code_hooks_;
+    static void on_write_hook(uc_struct* uc, int type, uint64_t address, int size, int64_t value, void* user);
+    std::vector<std::unique_ptr<std::function<void(Cpu&, uint32_t, int, uint32_t)>>> write_hooks_;
+    uint32_t trampoline_next_ = 0;  // prochaine place libre dans la zone des tremplins
+    void enable_paging();
+    std::vector<std::pair<uint32_t, uint32_t>> code_ranges_;  // zones exécutables [début, fin[
+    std::vector<std::pair<uint32_t, uint32_t>> data_ranges_;  // autres zones de map() [début, fin[
+    struct Patch {
+        uint32_t address = 0;
+        std::vector<uint8_t> original, patched;
+    };
+    std::vector<Patch> patches_;  // octets écrits par patch_code
+    bool native_ = true;
+    uint64_t host_calls_ = 0;
+    bool paging_ = false;
+    static void on_thunk(uc_struct* uc, uint64_t address, uint32_t size, void* user);
+
+    uc_struct* uc_ = nullptr;
+    std::vector<HostFunction> functions_;
+    struct PendingCall {
+        uint32_t address = 0;
+        std::vector<uint32_t> args;
+        std::function<uint32_t(uint32_t)> then;
+    };
+    struct Continuation {
+        uint32_t return_address = 0, esp = 0, arg_bytes = 0;
+        std::function<uint32_t(uint32_t)> then;
+    };
+    void start_pending_call(uint32_t esp);
+
+    bool has_pending_ = false;
+    PendingCall pending_;
+    std::vector<Continuation> continuations_;
+    bool redirect_ = false;
+    bool stop_requested_ = false;
+    bool gdt_ready_ = false;
+    std::string host_error_;
+    std::string current_;
+    uint32_t redirect_to_ = 0;
+    uint64_t instructions_ = 0;
+};
+
+}  // namespace zeus::win32

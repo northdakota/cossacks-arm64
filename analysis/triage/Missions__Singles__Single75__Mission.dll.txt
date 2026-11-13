@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single75/Mission.dll
+taille       : 53248 octets
+sha256       : a423694732c25524814a8f90ce80085ad94fc1686c189db31578c9c94fad86fe
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-08-13 08:23:07 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100023e9
+sections     :
+   .text    va=0x10001000 vsize=   21082 raw=   24576 entropie=5.97 RX
+   .rdata   va=0x10007000 vsize=    3838 raw=    4096 entropie=5.09 R
+   .data    va=0x10008000 vsize=   14592 raw=   12288 entropie=1.38 RW
+   .reloc   va=0x1000c000 vsize=    4128 raw=    8192 entropie=2.66 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (43), KERNEL32.DLL (50)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetUnitsByNation CreateZoneNearGroup GetUnitsAmount0 SelDie Trigg SetTrigg EnableUnit GetDiff ShowPage GetUnitInfo SetUnitInfo RunTimer InitialUpgrade SelOpenGates TakeFood TakeWood TakeStone ClearSelection SelErase TimerDone SelChangeNation SetResource GetUnitsAmount2 SelectTypeOfUnitsInZone SaveSelectedUnits SelSendAndKill NationIsErased LooseGame ShowVictory RegisterUnits RegisterUnitType RegisterZone RegisterVar EnableMission DisableMission SetPlayerName Patrol GetUnitsAmount1 SelectUnits SelSendTo ProduceUnitFast RegisterDynGroup GetTotalAmount0
+
+[KERNEL32.DLL] GetLastError TlsGetValue InterlockedIncrement InterlockedDecrement GetStringTypeW GetStringTypeA LCMapStringW LCMapStringA MultiByteToWideChar RtlUnwind LoadLibraryA GetProcAddress HeapReAlloc VirtualAlloc GetOEMCP GetACP GetCPInfo HeapAlloc LeaveCriticalSection EnterCriticalSection InitializeCriticalSection WriteFile HeapFree VirtualFree HeapCreate HeapDestroy GetVersionExA GetEnvironmentVariableA GetModuleHandleA GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError GetEnvironmentStrings GetEnvironmentStringsW SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte

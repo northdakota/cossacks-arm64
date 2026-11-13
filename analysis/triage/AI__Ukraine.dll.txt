@@ -1,0 +1,18 @@
+fichier      : AI/Ukraine.dll
+taille       : 53248 octets
+sha256       : 83b8e7ff6b61e2618d58f9f58b5a38f3f6f546d1dabc0b5bcf1b3942b98a6db6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-10-09 12:06:18 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100032bb
+sections     :
+   .text    va=0x10001000 vsize=   26530 raw=   28672 entropie=6.21 RX
+   .rdata   va=0x10008000 vsize=    2930 raw=    4096 entropie=4.24 R
+   .data    va=0x10009000 vsize=   13952 raw=    8192 entropie=3.65 RW
+   .reloc   va=0x1000d000 vsize=    5074 raw=    8192 entropie=3.53 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (52), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] EnterCriticalSection GetModuleHandleA InterlockedDecrement LeaveCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate VirtualFree HeapFree WriteFile SetFilePointer GetProcAddress InterlockedIncrement InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA SetStdHandle MultiByteToWideChar LCMapStringA LCMapStringW GetStringTypeA GetStringTypeW FlushFileBuffers RtlUnwind CloseHandle
+
+[USER32.DLL] MessageBoxA

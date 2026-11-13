@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single18/Mission.dll
+taille       : 65536 octets
+sha256       : 0da519cbc12d139f22ee41aa363ae32d8059263c57063f1ae03421564ff2ed7e
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 09:59:20 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10003c5b
+sections     :
+   .text    va=0x10001000 vsize=   32218 raw=   32768 entropie=6.53 RX
+   .rdata   va=0x10009000 vsize=    3934 raw=    4096 entropie=5.21 R
+   .data    va=0x1000a000 vsize=   21740 raw=   16384 entropie=1.22 RW
+   .reloc   va=0x10010000 vsize=    4596 raw=    8192 entropie=3.06 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (41), KERNEL32.DLL (57)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetDiff Trigg DisableUpgrade SetTrigg EnableUnit EnableMission StartAI SetLightSpot LooseGame DisableMission NationIsErased RegisterUnitType ShowVictory RegisterFormation RegisterUnits RegisterVar RegisterZone SetPlayerName RegisterUpgrade ChangeFriends RunTimer TimerDone SelSendAndKill GetUnitsAmount1 GetResource SetResource SelDie SelSendTo SelectUnits GetUnitsAmount2 ShowPage ShowPageParam AddResource AskMultilineQuestion GetTotalAmount0 RemoveGroup RegisterDynGroup CreateObject0 TakeStone TakeWood TakeFood
+
+[KERNEL32.DLL] InitializeCriticalSection ExitProcess InterlockedDecrement GetStringTypeW InterlockedIncrement LCMapStringW LCMapStringA GetStringTypeA SetEndOfFile LoadLibraryA MultiByteToWideChar GetOEMCP GetACP GetProcAddress CreateFileA GetCPInfo SetStdHandle RtlUnwind FlushFileBuffers HeapReAlloc WriteFile VirtualFree VirtualAlloc HeapDestroy GetVersionExA HeapCreate GetModuleHandleA GetCommandLineA GetVersion HeapFree EnterCriticalSection LeaveCriticalSection GetLastError CloseHandle ReadFile HeapAlloc SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection SetFilePointer GetEnvironmentStringsW GetEnvironmentVariableA TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings

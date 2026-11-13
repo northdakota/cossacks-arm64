@@ -1,0 +1,10 @@
+# Game files from GOG: never commit or publish them.
+original/
+setup_*.exe
+setup_*.bin
+*.asm
+__pycache__/
+build/
+run/
+build-dev/
+drafts/

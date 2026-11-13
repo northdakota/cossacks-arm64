@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single90/Mission.dll
+taille       : 86016 octets
+sha256       : d3b26bc8b1e64fc188eb205bd0485fd9635c8aab2649e272ea00cc8e252ff7a6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-18 09:20:47 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10003f9e
+sections     :
+   .text    va=0x10001000 vsize=   44514 raw=   45056 entropie=6.64 RX
+   .rdata   va=0x1000c000 vsize=    4494 raw=    8192 entropie=3.48 R
+   .data    va=0x1000e000 vsize=   25132 raw=   20480 entropie=2.77 RW
+   .reloc   va=0x10015000 vsize=    5692 raw=    8192 entropie=3.88 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (35), KERNEL32.DLL (64)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelAttackGroup UnitsCenter InsertUnitToGroup RemoveUnitFromGroup GetZoneCoor SelSendAndKill GetUnitsAmount1 TimerDone CreateObject0 Trigg GetDiff SetTrigg SetResource RunTimer ShowPageParam DisableMission EnableMission SaveSelectedUnits ClearSelection SelectUnits SelectUnitsType GetTotalAmount0 GetUnitInfo SetUnitInfo SelectUnits1 ShowPage ShowVictory LooseGame RegisterVar RegisterDynGroup RegisterFormation RegisterUnitType RegisterUnits RegisterZone SetPlayerName
+
+[KERNEL32.DLL] InitializeCriticalSection CloseHandle SetEnvironmentVariableA CompareStringW CompareStringA LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar SetFilePointer LoadLibraryA GetOEMCP GetACP GetCPInfo InterlockedIncrement InterlockedDecrement FlushFileBuffers SetStdHandle IsBadCodePtr IsBadReadPtr SetUnhandledExceptionFilter IsBadWritePtr HeapReAlloc VirtualAlloc WriteFile VirtualFree GetTimeZoneInformation GetSystemTime GetLocalTime RtlUnwind GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError HeapFree HeapAlloc EnterCriticalSection LeaveCriticalSection HeapCreate DeleteCriticalSection GetProcAddress GetModuleHandleA ExitProcess TerminateProcess GetCurrentProcess SetHandleCount GetStdHandle GetFileType GetStartupInfoA GetEnvironmentStrings GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW GetEnvironmentVariableA GetVersionExA HeapDestroy

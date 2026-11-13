@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single55/Mission.dll
+taille       : 36864 octets
+sha256       : a8c211fecfb6b552e40244280fb1a3b6d9ddd42c646cca83d0d439950bf886e3
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-29 15:48:16 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002870
+sections     :
+   .text    va=0x10001000 vsize=   16966 raw=   20480 entropie=5.76 RX
+   .rdata   va=0x10006000 vsize=    3310 raw=    4096 entropie=4.51 R
+   .data    va=0x10007000 vsize=    4672 raw=    4096 entropie=3.51 RW
+   .reloc   va=0x10009000 vsize=    2404 raw=    4096 entropie=4.30 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (48), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] ChangeFriends Trigg GetDiff SetLightSpot AllowAttack InitialUpgrade AttackZoneByArtillery RunTimer TimerDone FreeTimer NationIsErased LooseGame SetPlayerName ShowVictory RegisterVar RegisterDynGroup RegisterZone RegisterUnits SelDie RegisterUnitType RegisterFormation DisableMission SelErase ClearLightSpot SelOpenGates EnableMission SelChangeNation GetTotalAmount1 StartAI ShowPage SetResource CreateZoneNearUnit GetResource CreateZoneNearGroup GetTotalAmount0 ProduceUnitFast SetTrigg GetUnitsAmount0 SaveSelectedUnits CreateObject0 SelectUnits RemoveGroup ClearSelection SelectUnits1 SelectUnitsType GetUnitsByNation SetStandGround SelSendAndKill
+
+[KERNEL32.DLL] GetCommandLineA GetVersion RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetStartupInfoA SetHandleCount TlsFree TlsGetValue TlsSetValue GetCurrentThreadId TerminateProcess ExitProcess TlsAlloc GetCurrentProcess

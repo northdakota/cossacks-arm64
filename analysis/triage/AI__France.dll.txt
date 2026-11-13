@@ -1,0 +1,18 @@
+fichier      : AI/France.dll
+taille       : 94208 octets
+sha256       : 7c61ce5f8c095f15366a8adf20f5e559fb9817d909c6b1a63c3fa278faf850f6
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-22 12:03:46 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10007054
+sections     :
+   .text    va=0x10001000 vsize=   51834 raw=   53248 entropie=6.43 RX
+   .rdata   va=0x1000e000 vsize=    3245 raw=    4096 entropie=4.59 R
+   .data    va=0x1000f000 vsize=   36252 raw=   20480 entropie=2.71 RW
+   .reloc   va=0x10018000 vsize=   10626 raw=   12288 entropie=4.43 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (54), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] SetFilePointer GetModuleHandleA LeaveCriticalSection EnterCriticalSection GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetEnvironmentVariableA GetVersionExA HeapDestroy HeapCreate VirtualFree HeapFree WriteFile GetProcAddress InterlockedDecrement InterlockedIncrement InitializeCriticalSection HeapAlloc GetCPInfo GetACP GetOEMCP VirtualAlloc HeapReAlloc LoadLibraryA SetStdHandle MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW RtlUnwind FlushFileBuffers CloseHandle
+
+[USER32.DLL] MessageBoxA

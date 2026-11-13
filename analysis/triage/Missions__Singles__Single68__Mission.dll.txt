@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single68/Mission.dll
+taille       : 65536 octets
+sha256       : 7986494499c897ff8f4ec29093a9525185478b37138bce4b66f955b58f82b21b
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 10:24:35 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10003664
+sections     :
+   .text    va=0x10001000 vsize=   31094 raw=   32768 entropie=6.35 RX
+   .rdata   va=0x10009000 vsize=    4238 raw=    8192 entropie=3.32 R
+   .data    va=0x1000b000 vsize=   16800 raw=   12288 entropie=1.42 RW
+   .reloc   va=0x10010000 vsize=    4904 raw=    8192 entropie=3.65 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (50), KERNEL32.DLL (56)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelDie CreateZoneNearGroup GetDiff CreateObject0 Trigg SetTrigg SelectUnits RunTimer SelErase InitialUpgrade EnableUnit SelOpenGates ClearSelection SetResource TakeFood TakeWood TakeStone ShowPage SetLightSpot EnableMission GetUnitsAmount1 DisableUpgrade GetUnitsAmount2 SelSendTo AddResource SaveSelectedUnits SelectTypeOfUnitsInZone SelChangeNation GetUnitsAmount0 ProduceUnit GetTotalAmount0 CheckProduction SelectUnitsInZone SelSendAndKill TimerDone LooseGame GetUnitsByNation NationIsErased ShowPageParam ShowVictory GetUnitInfo RegisterZone RegisterUpgrade RegisterUnits RegisterDynGroup RegisterFormation RegisterUnitType SetPlayerName RegisterVar ChangeFriends
+
+[KERNEL32.DLL] TlsFree SetLastError SetEnvironmentVariableA CompareStringW InterlockedIncrement CompareStringA GetStringTypeW GetStringTypeA InterlockedDecrement LCMapStringA MultiByteToWideChar LCMapStringW LoadLibraryA GetProcAddress RtlUnwind HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP LeaveCriticalSection InitializeCriticalSection HeapAlloc EnterCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetVersionExA HeapCreate GetModuleHandleA GetEnvironmentStringsW GetEnvironmentVariableA WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc GetStdHandle GetStartupInfoA TlsGetValue GetLastError ExitProcess TerminateProcess GetCurrentProcess SetHandleCount

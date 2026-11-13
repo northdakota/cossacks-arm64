@@ -1,0 +1,19 @@
+fichier      : History_battl/Nerdlingen/nerdlingen.dll
+taille       : 204887 octets
+sha256       : f682a8096447b1d1ead6101913877364126b13651288f48b7f9f18fcf7179e3a
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-07-14 09:47:02 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001c90
+sections     :
+   .text    va=0x10001000 vsize=  162976 raw=  163840 entropie=4.39 RX
+   .rdata   va=0x10029000 vsize=    8308 raw=   12288 entropie=3.47 R
+   .data    va=0x1002c000 vsize=   16352 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10030000 vsize=    3075 raw=    4096 entropie=3.74 RW
+   .reloc   va=0x10031000 vsize=    5844 raw=    8192 entropie=4.90 R
+données après le PE : 87 octets
+imports      : DMCR.EXE (17), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetTotalAmount0 GetTotalAmount1 SetTrigg Trigg RunTimer GetGlobalTime TimerDone GetUnitsAmount0 RegisterUnits RegisterVisibleZone RegisterUnitType ShowCentralText ChangeFriends SetResource LooseGame GetMyNation ShowVictory
+
+[KERNEL32.DLL] IsBadReadPtr HeapValidate SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr SetFilePointer SetStdHandle FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection LeaveCriticalSection FatalAppExitA UnhandledExceptionFilter HeapAlloc HeapReAlloc VirtualAlloc GetCPInfo GetACP GetOEMCP MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW

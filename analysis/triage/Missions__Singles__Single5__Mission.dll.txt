@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single5/Mission.dll
+taille       : 73728 octets
+sha256       : 51f96348f343d4ca2e9fe2215b6509a918b3e6e50073115b506cf525aa191366
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-06 15:47:31 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100028c1
+sections     :
+   .text    va=0x10001000 vsize=   36432 raw=   36864 entropie=6.63 RX
+   .rdata   va=0x1000a000 vsize=    4654 raw=    8192 entropie=3.60 R
+   .data    va=0x1000c000 vsize=   19436 raw=   16384 entropie=1.35 RW
+   .reloc   va=0x10011000 vsize=    5830 raw=    8192 entropie=3.17 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (49), KERNEL32.DLL (62)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] RemoveGroup CreateObject0 AddResource SelErase GetZoneCoor InsertUnitToGroup RemoveUnitFromGroup ShowPageParam GetUnitInfo SelSendAndKill SelectUnits Trigg RunTimer SetResource SetTrigg ChangeFriends ShowPage GetDiff StartAI SelSendTo DisableMission SelOpenGates SetLightSpot SetDestPoint TimerDoneFirst TimerDone EnableMission SaveSelectedUnits ProduceUnit GetUnitsAmount0 CheckProduction SendUnitsToTransport GetTotalAmount0 ClearSelection PushAllUnitsAway GetNInside CheckLeaveAbility NationIsErased SelChangeNation GetUnitsAmount1 RegisterVar ShowVictory LooseGame RegisterZone RegisterDynGroup RegisterUnits SetPlayerName RegisterFormation RegisterUnitType
+
+[KERNEL32.DLL] TlsGetValue GetLastError SetEnvironmentVariableA CompareStringA CompareStringW LCMapStringW LCMapStringA SetFilePointer GetStringTypeW GetStringTypeA LoadLibraryA MultiByteToWideChar GetACP GetCPInfo GetOEMCP FlushFileBuffers SetStdHandle InterlockedDecrement IsBadCodePtr InterlockedIncrement SetUnhandledExceptionFilter VirtualAlloc HeapReAlloc WriteFile VirtualFree HeapDestroy GetVersionExA HeapCreate GetEnvironmentStringsW GetEnvironmentStrings GetEnvironmentVariableA FreeEnvironmentStringsW FreeEnvironmentStringsA WideCharToMultiByte DeleteCriticalSection GetStartupInfoA GetModuleFileNameA GetStdHandle SetHandleCount GetFileType GetTimeZoneInformation GetSystemTime GetLocalTime RtlUnwind GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError EnterCriticalSection GetModuleHandleA HeapFree HeapAlloc GetProcAddress TerminateProcess GetCurrentProcess LeaveCriticalSection CloseHandle InitializeCriticalSection ExitProcess

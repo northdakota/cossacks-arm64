@@ -1,0 +1,19 @@
+fichier      : History_battl/Gangut/History2.dll
+taille       : 208977 octets
+sha256       : 0ca533211f051cfb56a75e5a08bfc3e9dc1ae3ed87fa242e2b36d1be4e9ac96e
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-07-04 08:43:09 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002bb0
+sections     :
+   .text    va=0x10001000 vsize=  166528 raw=  167936 entropie=6.78 RX
+   .rdata   va=0x1002a000 vsize=   10354 raw=   12288 entropie=4.10 R
+   .data    va=0x1002d000 vsize=   16864 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10032000 vsize=    2685 raw=    4096 entropie=3.31 RW
+   .reloc   va=0x10033000 vsize=    6187 raw=    8192 entropie=5.14 R
+données après le PE : 81 octets
+imports      : KERNEL32.DLL (73), USER32.DLL (1)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] HeapDestroy GetModuleHandleA HeapCreate HeapFree GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetProcAddress MultiByteToWideChar GetStringTypeA VirtualFree SetConsoleCtrlHandler SetFilePointer EnterCriticalSection LeaveCriticalSection InitializeCriticalSection FatalAppExitA UnhandledExceptionFilter HeapAlloc HeapReAlloc VirtualAlloc GetCPInfo GetACP GetOEMCP SetStdHandle Sleep EnumSystemLocalesA GetUserDefaultLCID GetStringTypeW LCMapStringA LCMapStringW FlushFileBuffers IsValidLocale IsValidCodePage GetLocaleInfoA GetTimeZoneInformation GetVersionExA RtlUnwind CloseHandle CompareStringW GetLocaleInfoW CompareStringA SetEnvironmentVariableA
+
+[USER32.DLL] MessageBoxA

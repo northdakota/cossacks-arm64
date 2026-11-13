@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single53/Mission.dll
+taille       : 94208 octets
+sha256       : 41219cc3ff3e0df392d6a5cd350252c89d3e4ece1903075b76b611f001696650
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-05-20 14:02:02 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10004a90
+sections     :
+   .text    va=0x10001000 vsize=   55204 raw=   57344 entropie=6.58 RX
+   .rdata   va=0x1000f000 vsize=    6570 raw=    8192 entropie=4.54 R
+   .data    va=0x10011000 vsize=  105308 raw=   16384 entropie=2.04 RW
+   .reloc   va=0x1002b000 vsize=    6776 raw=    8192 entropie=4.30 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (60), KERNEL32.DLL (67)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg DisableMission SetTrigg StartAI RunTimer TimerDone EnableMission NationIsErased LooseGame ShowVictory AskMultilineQuestion RefreshScreen AskQuestion SelErase ChangeFriends SetPlayerName RegisterUpgrade DisableUpgrade SetResource SetDestPoint GetTotalAmount1 ShowPageParam GetReadyAmount SelectUnitsType EnableUnit GetResource AddResource CreateObject0 ShowPage RegisterVar ClearLightSpot SetLightSpot GetUnitsAmount0 SelectUnits1 SelAttackGroup GetTotalAmount0 GetGlobalTime CheckProduction GetUnitsByNation ProduceUnitFast GetDiff RegisterUnitType RegisterZone RemoveGroup SetUnitInfo SelDie SelChangeNation RegisterUnits RegisterDynGroup SaveSelectedUnits ClearSelection RegisterFormation SelSendAndKill UnitsCenter GetZoneCoor SelectUnits SelSendTo GetNUnits GetUnitsAmount1 GetUnitInfo
+
+[KERNEL32.DLL] ExitProcess GetModuleHandleA IsBadCodePtr IsBadReadPtr SetUnhandledExceptionFilter ReadFile SetEnvironmentVariableA CompareStringW CompareStringA CloseHandle FlushFileBuffers RaiseException SetStdHandle LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar LoadLibraryA GetOEMCP GetACP GetCPInfo SetFilePointer RtlUnwind IsBadWritePtr VirtualAlloc LeaveCriticalSection EnterCriticalSection InitializeCriticalSection InterlockedIncrement InterlockedDecrement WriteFile HeapFree VirtualFree HeapCreate HeapDestroy GetVersionExA GetEnvironmentVariableA GetEnvironmentStringsW GetEnvironmentStrings WideCharToMultiByte FreeEnvironmentStringsW FreeEnvironmentStringsA GetModuleFileNameA DeleteCriticalSection GetStartupInfoA GetFileType GetStdHandle SetHandleCount GetLastError TlsGetValue SetLastError TlsFree GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetProcAddress TlsAlloc TerminateProcess GetCurrentProcess HeapReAlloc HeapAlloc HeapSize GetCurrentThreadId TlsSetValue

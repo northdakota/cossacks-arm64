@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single83/Mission.dll
+taille       : 53248 octets
+sha256       : d3d69e1f01e41696f737ce84eaeafff4bf94c41c88b76991ac9df89cade1a883
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 09:17:53 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001d34
+sections     :
+   .text    va=0x10001000 vsize=   24646 raw=   28672 entropie=6.08 RX
+   .rdata   va=0x10008000 vsize=    4062 raw=    4096 entropie=5.31 R
+   .data    va=0x10009000 vsize=   13792 raw=   12288 entropie=1.12 RW
+   .reloc   va=0x1000d000 vsize=    3668 raw=    4096 entropie=4.37 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (42), KERNEL32.DLL (56)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] ClearLightSpot GetUnitsAmount0 SetLightSpot ClearSelection UnitsCenter SelAttackGroup CreateZoneNearGroup SelectUnitsType SaveSelectedUnits InsertUnitToGroup GetUnitInfo GetTopDst RemoveUnitFromGroup CheckProduction ProduceUnit SetTrigg Trigg GetDiff StartAI SetResource InitialUpgrade RemoveGroup RunTimer ShowPage SelectUnits GetTotalAmount0 TimerDone NationIsErased SelSendAndKill CreateObject0 RegisterVar LooseGame ShowVictory RegisterUnits RegisterDynGroup RegisterUnitType ChangeFriends RegisterZone RegisterFormation DisableMission SetPlayerName EnableMission
+
+[KERNEL32.DLL] ExitProcess SetEnvironmentVariableA CompareStringW InterlockedIncrement CompareStringA GetStringTypeW GetStringTypeA InterlockedDecrement LCMapStringA MultiByteToWideChar LCMapStringW LoadLibraryA GetProcAddress RtlUnwind HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP LeaveCriticalSection InitializeCriticalSection HeapAlloc EnterCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetVersionExA HeapCreate GetModuleHandleA GetEnvironmentStringsW GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetStartupInfoA GetEnvironmentVariableA TerminateProcess GetCurrentProcess SetHandleCount GetStdHandle GetFileType DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings

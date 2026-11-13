@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single4/Mission.dll
+taille       : 45056 octets
+sha256       : f02f5fd7f4940206a69bff59a1e4c242b137a4196d9a42d761b3803a4de0b06b
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-13 15:51:33 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001fe4
+sections     :
+   .text    va=0x10001000 vsize=   27138 raw=   28672 entropie=6.50 RX
+   .rdata   va=0x10008000 vsize=    3822 raw=    4096 entropie=5.12 R
+   .data    va=0x10009000 vsize=    5820 raw=    4096 entropie=3.85 RW
+   .reloc   va=0x1000b000 vsize=    3640 raw=    4096 entropie=4.36 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (36), KERNEL32.DLL (54)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] ShowPage Trigg SetTrigg SetResource RunTimer ChangeFriends NationIsErased StartAI TimerDone CreateObject0 ShowVictory LooseGame SetStartPoint SelSendTo GetUnitsAmount1 AddResource RemoveGroup SelErase RegisterUnits AttackBuildingsInZone GetUnitsAmount0 RegisterFormation RegisterZone RegisterUnitType RegisterVar SetPlayerName RegisterDynGroup SaveSelectedUnits ClearSelection SelectUnits SelSendAndKill GetUnitInfo InsertUnitToGroup GetDiff GetTotalAmount0 RemoveUnitFromGroup
+
+[KERNEL32.DLL] GetProcAddress GetModuleHandleA SetEnvironmentVariableA CompareStringA CompareStringW RtlUnwind LCMapStringA LCMapStringW GetStringTypeA MultiByteToWideChar GetStringTypeW LoadLibraryA GetOEMCP GetCPInfo InterlockedIncrement GetACP InterlockedDecrement VirtualAlloc HeapReAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection VirtualFree HeapCreate GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion HeapFree HeapAlloc GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetStartupInfoA WriteFile ExitProcess TerminateProcess GetCurrentProcess SetHandleCount GetStdHandle GetFileType FreeEnvironmentStringsW DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy

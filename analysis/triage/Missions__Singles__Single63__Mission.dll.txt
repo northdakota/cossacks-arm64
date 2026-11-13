@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single63/Mission.dll
+taille       : 53248 octets
+sha256       : d989a3de502971893f10ec5382f18c5dbf6193612c598e8ba8a16538a47c2747
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-20 10:52:12 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100026e4
+sections     :
+   .text    va=0x10001000 vsize=   27126 raw=   28672 entropie=6.40 RX
+   .rdata   va=0x10008000 vsize=    3966 raw=    4096 entropie=5.21 R
+   .data    va=0x10009000 vsize=   14336 raw=   12288 entropie=1.30 RW
+   .reloc   va=0x1000d000 vsize=    4090 raw=    4096 entropie=5.08 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (39), KERNEL32.DLL (56)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg DisableMission SetTrigg SelErase ChangeFriends SetResource StartAI EnableUnit EnableMission ShowPage SaveSelectedUnits SelChangeNation AddResource AskQuestion SelAttackGroup GetUnitsAmount0 ShowVictory NationIsErased LooseGame RegisterUnits RegisterZone RegisterUnitType RegisterFormation RegisterVar SetPlayerName Patrol GetUnitsAmount1 SelSendTo GetDiff ProduceUnitFast RegisterDynGroup TimerDone GetTotalAmount0 SelectUnits SelSendAndKill ClearSelection CreateObject0 RemoveGroup RunTimer
+
+[KERNEL32.DLL] TerminateProcess ExitProcess SetEnvironmentVariableA CompareStringW CompareStringA InterlockedIncrement InterlockedDecrement GetStringTypeW GetStringTypeA LCMapStringW LCMapStringA MultiByteToWideChar RtlUnwind LoadLibraryA GetProcAddress HeapReAlloc VirtualAlloc GetOEMCP GetACP GetCPInfo LeaveCriticalSection EnterCriticalSection InitializeCriticalSection HeapAlloc WriteFile HeapFree VirtualFree HeapCreate HeapDestroy GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetEnvironmentVariableA GetVersionExA GetCurrentProcess SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW GetModuleHandleA

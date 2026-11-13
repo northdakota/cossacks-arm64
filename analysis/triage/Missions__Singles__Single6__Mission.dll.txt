@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single6/Mission.dll
+taille       : 36864 octets
+sha256       : c3e02a1977e0c82a10703ac327f699c50d429f00c420686cb508cb5df11010f8
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-04-11 09:53:01 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100035d2
+sections     :
+   .text    va=0x10001000 vsize=   20390 raw=   20480 entropie=6.37 RX
+   .rdata   va=0x10006000 vsize=    3294 raw=    4096 entropie=4.50 R
+   .data    va=0x10007000 vsize=    4256 raw=    4096 entropie=2.40 RW
+   .reloc   va=0x10009000 vsize=    2982 raw=    4096 entropie=5.21 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (48), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] TimerDone Trigg AttackEnemyInZone FreeTimer ClearSelection SelDie RunTimer SelSendTo SetTrigg SendUnitsToTransport GetNInside CheckLeaveAbility GetDiff PushAllUnitsAway EnableUnit StartAI ChangeFriends InitialUpgrade GetTotalAmount1 SetLightSpot ShowPage GetUnitsAmount1 SelCenter ClearLightSpot LooseGame SelErase NationIsErased SetPlayerName ShowVictory RegisterVar RegisterDynGroup RegisterZone RegisterUnits GetTotalAmount0 RegisterFormation RegisterUnitType RemoveGroup ProduceUnitFast CreateObject0 SelSendAndKill SelectUnits SetStandGround GetUnitsByNation GetUnitsAmount2 GetUnitsAmount0 AddResource SetResource GetResource
+
+[KERNEL32.DLL] GetCommandLineA GetVersion RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetStartupInfoA SetHandleCount TlsFree TlsGetValue TlsSetValue GetCurrentThreadId TerminateProcess ExitProcess TlsAlloc GetCurrentProcess

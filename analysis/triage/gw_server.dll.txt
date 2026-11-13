@@ -1,0 +1,21 @@
+fichier      : gw_server.dll
+taille       : 98304 octets
+sha256       : 482f3e86613d001c509a6c5325a66a4629b6474e67bc5bc193307caa46d774ea
+machine      : 0x14c (i386), PE32, sous-système 3
+compilé le   : 2002-06-12 09:00:18 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100088de
+sections     :
+   .text    va=0x10001000 vsize=   49442 raw=   53248 entropie=6.44 RX
+   .rdata   va=0x1000e000 vsize=    7941 raw=    8192 entropie=5.67 R
+   .data    va=0x10010000 vsize=   22776 raw=   20480 entropie=1.46 RW
+   .rsrc    va=0x10016000 vsize=    2488 raw=    4096 entropie=2.27 R
+   .reloc   va=0x10017000 vsize=    4352 raw=    8192 entropie=2.64 R
+données après le PE : 0 octets
+imports      : KERNEL32.DLL (58), USER32.DLL (1), WS2_32.DLL (12)
+marqueurs de protection/packer connus : aucun
+
+[KERNEL32.DLL] GetModuleHandleA GetModuleFileNameA GetVersionExA TlsAlloc LCMapStringW LCMapStringA SetEndOfFile HeapAlloc HeapFree ExitProcess TerminateProcess GetCurrentProcess EnterCriticalSection LeaveCriticalSection RtlUnwind HeapReAlloc GetCommandLineA GetVersion SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetLastError SetFilePointer InitializeCriticalSection GetCurrentThreadId TlsSetValue TlsFree SetLastError TlsGetValue GetTickCount GetEnvironmentVariableA GetEnvironmentStrings HeapDestroy HeapCreate VirtualFree VirtualAlloc WriteFile ReadFile CloseHandle FlushFileBuffers FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte MultiByteToWideChar GetEnvironmentStringsW SetStdHandle InterlockedDecrement InterlockedIncrement CreateFileA GetStringTypeA GetStringTypeW GetCPInfo GetACP GetOEMCP GetProcAddress LoadLibraryA
+
+[USER32.DLL] MessageBoxA
+
+[WS2_32.DLL] #23 #16 #19 #115 #52 #9 #116 #10 #2 #4 #111 #3

@@ -1,0 +1,19 @@
+fichier      : History_battl/Poltava/poltava.dll
+taille       : 208963 octets
+sha256       : de06f316671e39273806ae9f4066ea7c281a6d900376a7e9d3a635a97ba5db2e
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2000-10-27 13:55:31 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002840
+sections     :
+   .text    va=0x10001000 vsize=  165984 raw=  167936 entropie=5.75 RX
+   .rdata   va=0x1002a000 vsize=   10464 raw=   12288 entropie=4.23 R
+   .data    va=0x1002d000 vsize=   16352 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10031000 vsize=    2997 raw=    4096 entropie=3.66 RW
+   .reloc   va=0x10032000 vsize=    6493 raw=    8192 entropie=5.33 R
+données après le PE : 67 octets
+imports      : DMCR.EXE (14), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetTotalAmount0 GetUnitsAmount0 Trigg GetGlobalTime SetTrigg ShowCentralText RegisterVisibleZone RegisterUnits ChangeFriends InitialUpgrade SetLightSpot GetMyNation ShowVictory LooseGame
+
+[KERNEL32.DLL] FreeEnvironmentStringsA HeapValidate SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr FlushFileBuffers HeapAlloc FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection LeaveCriticalSection FatalAppExitA UnhandledExceptionFilter GetStringTypeA HeapReAlloc VirtualAlloc GetCPInfo GetACP GetOEMCP MultiByteToWideChar GetStringTypeW LCMapStringA LCMapStringW SetFilePointer RtlUnwind SetStdHandle Sleep

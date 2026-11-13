@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single91/Mission.dll
+taille       : 32768 octets
+sha256       : e6c0671151ae2ff53edccad8141fa02856686595cce9cf58f0a058b0b205c978
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-22 14:23:45 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001f29
+sections     :
+   .text    va=0x10001000 vsize=   14582 raw=   16384 entropie=5.99 RX
+   .rdata   va=0x10005000 vsize=    2990 raw=    4096 entropie=4.26 R
+   .data    va=0x10006000 vsize=    3392 raw=    4096 entropie=1.82 RW
+   .reloc   va=0x10007000 vsize=    1816 raw=    4096 entropie=3.35 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (36), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] RunTimer Trigg SetTrigg ChangeFriends ShowPage DisableMission EnableUnit SetResource StartAI SelChangeNation SelectUnits GetResource EnableMission SelSendTo AddResource NationIsErased GetUnitsAmount1 ShowVictory SetLightSpot LooseGame TimerDone GetTotalAmount0 Patrol ClearSelection CreateObject0 SelSendAndKill GetUnitsAmount0 RegisterZone RemoveGroup RegisterUnits SetPlayerName RegisterUnitType RegisterFormation GetDiff RegisterDynGroup RegisterVar
+
+[KERNEL32.DLL] TlsSetValue TlsAlloc RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetCommandLineA GetVersion ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId GetStartupInfoA TlsFree TlsGetValue SetHandleCount

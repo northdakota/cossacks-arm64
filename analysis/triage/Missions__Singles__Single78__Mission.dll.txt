@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single78/Mission.dll
+taille       : 274506 octets
+sha256       : 56a97bcdbfb2a240e0b26f80f8c0447819151c53d48da3444b67c0e66258197c
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-04-11 13:01:30 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10009e30
+sections     :
+   .text    va=0x10001000 vsize=  227392 raw=  229376 entropie=6.06 RX
+   .rdata   va=0x10039000 vsize=   10013 raw=   12288 entropie=3.98 R
+   .data    va=0x1003c000 vsize=   20392 raw=   12288 entropie=2.58 RW
+   .idata   va=0x10041000 vsize=    4163 raw=    8192 entropie=2.86 RW
+   .reloc   va=0x10043000 vsize=    8020 raw=    8192 entropie=6.15 R
+données après le PE : 74 octets
+imports      : DMCR.EXE (51), KERNEL32.DLL (76)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelOpenGates RemoveGroup SelCloseGates SendUnitsToTransport CheckLeaveAbility PushAllUnitsAway AddResource GetNInside ShowPageParam SetUnitInfo Patrol SelChangeNation SelDie CreateObject0 CreateZoneNearGroup Trigg RemoveUnitFromGroup GetUnitsByNation SetLightSpot GetDiff InitialUpgrade SetTrigg ChangeFriends RunTimer ClearSelection TimerDoneFirst ShowPage ShowVictory SelCenter GetAmountOfWarriors GetZoneCoor LooseGame AskMultilineQuestion RegisterUnits SetPlayerName RegisterZone GetUnitsAmount0 RegisterUnitType RegisterVar SelSendAndKill SelectUnits SetStandGround GetUnitsAmount1 AttackEnemyInZone SelSendTo SelectUnitsInZone UnitsCenter RegisterDynGroup GetUnitInfo SaveSelectedUnits GetTotalAmount0
+
+[KERNEL32.DLL] GetModuleHandleA InitializeCriticalSection SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA FlushFileBuffers GetVersionExA CloseHandle EnumSystemLocalesA GetLocaleInfoA GetUserDefaultLCID IsValidLocale SetStdHandle IsValidCodePage LCMapStringA Sleep LCMapStringW GetStringTypeA MultiByteToWideChar GetStringTypeW GetOEMCP GetACP RaiseException SetFilePointer UnhandledExceptionFilter GetCPInfo SetUnhandledExceptionFilter VirtualAlloc IsBadCodePtr HeapAlloc SetConsoleCtrlHandler HeapReAlloc HeapFree HeapCreate VirtualFree GetEnvironmentStringsW GetEnvironmentStrings HeapDestroy FreeEnvironmentStringsW FreeEnvironmentStringsA WideCharToMultiByte GetFileType SetHandleCount GetStartupInfoA TerminateProcess GetCurrentThread GetCurrentProcess TlsGetValue SetLastError RtlUnwind GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA IsBadWritePtr GetLastError DeleteCriticalSection EnterCriticalSection LeaveCriticalSection ExitProcess FatalAppExitA IsBadReadPtr HeapValidate GetCurrentThreadId TlsSetValue TlsAlloc TlsFree

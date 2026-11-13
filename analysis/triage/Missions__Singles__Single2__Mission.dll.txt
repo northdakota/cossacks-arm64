@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single2/Mission.dll
+taille       : 282698 octets
+sha256       : 960944b812adeef78afa805cbba3c837100e29229ecf01516bc38bd33cd6608c
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-08-01 09:44:34 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x1000b190
+sections     :
+   .text    va=0x10001000 vsize=  234288 raw=  237568 entropie=6.17 RX
+   .rdata   va=0x1003b000 vsize=    9581 raw=   12288 entropie=3.82 R
+   .data    va=0x1003e000 vsize=   20296 raw=   12288 entropie=2.58 RW
+   .idata   va=0x10043000 vsize=    4539 raw=    8192 entropie=3.10 RW
+   .reloc   va=0x10045000 vsize=    8097 raw=    8192 entropie=6.18 R
+données après le PE : 74 octets
+imports      : DMCR.EXE (63), KERNEL32.DLL (78)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelOpenGates SelAttackGroup SelCloseGates SendUnitsToTransport CheckLeaveAbility PushAllUnitsAway AskMultilineQuestion GetNInside ShowPageParam CreateZoneNearGroup Patrol SetUnitInfo Trigg SelDie RemoveUnitFromGroup ChangeFriends GetDiff SetResource DisableMission EnableUnit DisableUpgrade TimerDoneFirst RunTimer SetTrigg SelErase ShowPage EnableMission RemoveGroup SetLightSpot GetGlobalTime NationIsErased ClearLightSpot StartAI ClearSelection ShowVictory LooseGame GetUnitsByNation SelectTypeOfUnitsInZone TakeWood AddResource SelCenter SelChangeNation RegisterZone CreateObject0 SetPlayerName RegisterVar RegisterUnits RegisterFormation GetUnitsAmount0 RegisterUpgrade RegisterUnitType SelSendAndKill SelectUnits SetStandGround GetUnitsAmount1 AttackEnemyInZone SelSendTo SelectUnitsInZone UnitsCenter RegisterDynGroup GetUnitInfo SaveSelectedUnits GetTotalAmount0
+
+[KERNEL32.DLL] GetStdHandle WriteFile CloseHandle GetLocaleInfoW SetEnvironmentVariableA CompareStringW FlushFileBuffers SetStdHandle GetVersionExA CompareStringA EnumSystemLocalesA GetLocaleInfoA GetUserDefaultLCID IsValidLocale SetFilePointer IsValidCodePage LCMapStringA Sleep LCMapStringW GetStringTypeA MultiByteToWideChar GetStringTypeW GetOEMCP GetACP RaiseException UnhandledExceptionFilter IsBadCodePtr GetCPInfo VirtualAlloc HeapReAlloc SetUnhandledExceptionFilter SetConsoleCtrlHandler VirtualFree HeapAlloc HeapCreate HeapDestroy HeapFree GetEnvironmentStrings WideCharToMultiByte GetEnvironmentStringsW FreeEnvironmentStringsA GetStartupInfoA FreeEnvironmentStringsW SetHandleCount GetCurrentProcess GetFileType GetCurrentThread GetLastError TerminateProcess SetLastError TlsFree TlsGetValue TlsSetValue GetCurrentThreadId TlsAlloc IsBadReadPtr IsBadWritePtr HeapValidate ExitProcess LeaveCriticalSection FatalAppExitA DeleteCriticalSection InitializeCriticalSection RtlUnwind GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion DebugBreak GetProcAddress EnterCriticalSection InterlockedDecrement OutputDebugStringA LoadLibraryA InterlockedIncrement GetModuleFileNameA GetModuleHandleA

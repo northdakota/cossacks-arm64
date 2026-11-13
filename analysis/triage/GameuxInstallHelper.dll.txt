@@ -1,0 +1,28 @@
+fichier      : GameuxInstallHelper.dll
+taille       : 96264 octets
+sha256       : b07ffcd0af80f6b9fba09abe816ba2f0ff0d336639f1768fc317291bc635ece6
+machine      : 0x14c (i386), PE32, sous-système 3
+compilé le   : 2008-03-05 23:51:21 UTC, éditeur de liens 8.0
+image base   : 0x400000, point d'entrée 0x406bfe
+sections     :
+   .text    va=0x00401000 vsize=   75650 raw=   75776 entropie=6.46 RX
+   .data    va=0x00414000 vsize=   11332 raw=    4608 entropie=2.06 RW
+   .rsrc    va=0x00417000 vsize=    1024 raw=    1024 entropie=3.24 R
+   .reloc   va=0x00418000 vsize=    4464 raw=    4608 entropie=4.96 R
+données après le PE : 9224 octets
+imports      : ADVAPI32.DLL (5), KERNEL32.DLL (87), MSI.DLL (3), OLE32.DLL (7), OLEAUT32.DLL (3), SHELL32.DLL (4), SHLWAPI.DLL (2)
+marqueurs de protection/packer connus : aucun
+
+[ADVAPI32.DLL] RegQueryValueExW RegCreateKeyExW RegEnumKeyW RegSetValueExW RegCloseKey
+
+[KERNEL32.DLL] GetFileAttributesW GetWindowsDirectoryW MultiByteToWideChar DeleteFileW GlobalFree GlobalUnlock GlobalLock GlobalAlloc SizeofResource LockResource LoadResource FindResourceW LoadLibraryW GetCommandLineA GetVersionExA GetProcAddress GetModuleHandleA ExitProcess TlsGetValue TlsAlloc TlsSetValue TlsFree InterlockedIncrement SetLastError GetLastError InterlockedDecrement GetCurrentThreadId HeapFree HeapAlloc SetHandleCount GetStdHandle GetFileType GetStartupInfoA DeleteCriticalSection GetModuleFileNameA FreeEnvironmentStringsA GetEnvironmentStrings FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStringsW HeapDestroy HeapCreate VirtualFree QueryPerformanceCounter GetTickCount GetSystemTimeAsFileTime OutputDebugStringA CreateFileW GetCurrentProcess UnhandledExceptionFilter SetUnhandledExceptionFilter LeaveCriticalSection EnterCriticalSection LoadLibraryA InitializeCriticalSection GetModuleHandleW GetCPInfo GetACP GetOEMCP Sleep VirtualAlloc HeapReAlloc RtlUnwind SetFilePointer GetConsoleCP GetConsoleMode GetLocaleInfoA GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW SetStdHandle WriteConsoleA GetConsoleOutputCP WriteConsoleW VirtualProtect GetSystemInfo VirtualQuery CreateFileA FlushFileBuffers ReadFile CloseHandle GetCurrentProcessId GetFullPathNameW GetVersionExW TerminateProcess WriteFile
+
+[MSI.DLL] #74 #145 #70
+
+[OLE32.DLL] CoSetProxyBlanket StringFromGUID2 CoInitialize CoCreateInstance CoUninitialize CoCreateGuid CreateStreamOnHGlobal
+
+[OLEAUT32.DLL] #9 #2 #6
+
+[SHELL32.DLL] ShellExecuteW SHGetFolderPathW SHCreateDirectoryExW SHFileOperationW
+
+[SHLWAPI.DLL] SHDeleteKeyW PathAddBackslashW

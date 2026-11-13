@@ -1,0 +1,19 @@
+fichier      : Missions/Tutorial/Tutorial2/Mission.dll
+taille       : 221255 octets
+sha256       : f04c0b88f182111b210fd0c533ab08a25f8bdba6340cdf53d457101ba7bf9519
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-09-26 13:31:32 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10005260
+sections     :
+   .text    va=0x10001000 vsize=  176784 raw=  180224 entropie=4.17 RX
+   .rdata   va=0x1002d000 vsize=   10080 raw=   12288 entropie=4.07 R
+   .data    va=0x10030000 vsize=   17184 raw=   12288 entropie=1.83 RW
+   .idata   va=0x10035000 vsize=    3513 raw=    4096 entropie=4.15 RW
+   .reloc   va=0x10036000 vsize=    7701 raw=    8192 entropie=6.05 R
+données après le PE : 71 octets
+imports      : DMCR.EXE (33), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] EnableUnit Trigg SetTrigg DisableUpgrade SetResource InitialUpgrade TakeStone TakeWood TakeFood TimerDone RunTimer DisableMission GetReadyAmount ClearSelection ShowPage SaveSelectedUnits EnableMission GetTotalAmount1 SelSendAndKill CreateObject0 SelectUnits1 ShowVictory GetTotalAmount0 SetStartPoint RegisterZone NationIsErased RegisterFormation RegisterDynGroup RegisterUnits RegisterUnitType ChangeFriends RegisterVar RegisterUpgrade
+
+[KERNEL32.DLL] TlsGetValue GetLastError SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCPInfo VirtualAlloc GetACP HeapAlloc UnhandledExceptionFilter HeapReAlloc LeaveCriticalSection EnterCriticalSection GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError FreeEnvironmentStringsA FatalAppExitA GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate HeapDestroy FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler InitializeCriticalSection

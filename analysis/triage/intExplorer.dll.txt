@@ -1,0 +1,28 @@
+fichier      : intExplorer.dll
+taille       : 278597 octets
+sha256       : 57cd5c8406b213a741b67f334ae21475d9e6e6a3a02d7cbd6986345cf6fde042
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-08-19 06:46:45 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10025330
+sections     :
+   .text    va=0x10001000 vsize=  230842 raw=  233472 entropie=6.29 RX
+   .rdata   va=0x1003a000 vsize=   17682 raw=   20480 entropie=5.27 R
+   .data    va=0x1003f000 vsize=   88036 raw=    8192 entropie=2.65 RW
+   .reloc   va=0x10055000 vsize=    9432 raw=   12288 entropie=5.63 R
+données après le PE : 69 octets
+imports      : DMCR.EXE (86), ICHAT.DLL (2), KERNEL32.DLL (98), SHELL32.DLL (1), USER32.DLL (1), WS2_32.DLL (1), WSOCK32.DLL (5)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] ?WindY@@3HA ?ScreenPtr@@3PAXA ?GetPalColor@@YAXEPAE00@Z ?ScrWidth@@3HA ?SetGPIndex@RLCFont@@QAEXH@Z ?SetColorTable@RLCFont@@QAEXH@Z ?SetStdShadow@RLCFont@@QAEXXZ ?SetShadowGP@RLCFont@@QAEXHHH@Z ?Clear@ComboBox@@QAEXXZ ?addTextViewer@DialogsSystem@@QAEPAVTextViewer@@PAVSimpleDialog@@HHHHPADPAVRLCFont@@@Z ?addCustomBox@DialogsSystem@@QAEPAVCustomBox@@HHHHP6AXHHHHHEH@Z@Z ?CheckGP_Inside@@YA_NHHHH@Z ?ShowCharUNICODE@@YAXHHPAEPAVRLCFont@@@Z ?GetRLCStrWidth@@YAHPADPAVRLCFont@@@Z ?GetPaletteColor@@YAEHHH@Z ?AddCanvas@DialogsSystem@@QAEPAVCanvas@@HHHH@Z ?AddLine@Canvas@@QAEXHHHHE@Z ?addGP_CheckBox@DialogsSystem@@QAEPAVCheckBox@@PAVSimpleDialog@@HHPADPAVRLCFont@@2H_NHHHH@Z ?addGPPicture@DialogsSystem@@QAEPAVGPPicture@@PAVSimpleDialog@@HHHH@Z ?addGP_TextButton@DialogsSystem@@QAEPAVGP_TextButton@@PAVSimpleDialog@@HHPADHHPAVRLCFont@@2@Z ?addStdGP_TextButton@DialogsSystem@@QAEPAVGP_TextButton@@HHHPADHHPAVRLCFont@@1@Z ?GetGPHeight@GP_System@@QAEHHH@Z ?addGP_TextButtonLimited@DialogsSystem@@QAEPAVGP_TextButton@@PAVSimpleDialog@@HHPADHHHHPAVRLCFont@@2@Z ?addGP_ComboBoxDLX@DialogsSystem@@QAEPAVComboBox@@PAVSimpleDialog@@HHHHHHHPAVRLCFont@@1PAD@Z ?AssignScroll@ComboBox@@QAEXPAVDialogsSystem@@PAPAVVScrollBar@@HHH@Z ?AddLine@ComboBox@@QAEXPAD@Z ?addInputBox@DialogsSystem@@QAEPAVInputBox@@PAVSimpleDialog@@HHPADHHHPAVRLCFont@@2@Z ?GetRLCHeight@@YAHPAUxRLCTable@@E@Z ?GetRLCWidthUNICODE@@YAHPAUxRLCTable@@PAEPAH@Z ?LoadGP@GP_System@@QAE_NH@Z ?GetGPWidth@GP_System@@QAEHHH@Z ?addTextButton@DialogsSystem@@QAEPAVTextButton@@PAVSimpleDialog@@HHPADPAVRLCFont@@22E@Z ?addGP_Button@DialogsSystem@@QAEPAVGP_Button@@PAVSimpleDialog@@HHHHH@Z ?_ExMalloc@@YAPAXH@Z ?_ExFree@@YAXPAX@Z ?CurPalette@@3HA ?GameInProgress@@3_NA ?ProcessMessages@@YA_NXZ ?ProcessDialogs@DialogsSystem@@QAEXXZ ?WindX@@3HA ?WindX1@@3HA ?ShowString@@YAXHHPBDPAVRLCFont@@@Z ?WindY1@@3HA ?WindLx@@3HA ?WindLy@@3HA ?GPS@@3VGP_System@@A ?PreLoadGPImage@GP_System@@QAEHPAD@Z ?CloseDialogs@DialogsSystem@@QAEXXZ ??1DialogsSystem@@QAE@XZ ??0DialogsSystem@@QAE@XZ ?addCustomBorder@DialogsSystem@@QAEPAVCustomBorder@@HHHHHPAH0HH@Z ?RealLy@@3HA ?RealLx@@3HA ?addClipper@DialogsSystem@@QAEPAVSimpleDialog@@HHHH@Z ?addNewGP_VScrollBar@DialogsSystem@@QAEPAVVScrollBar@@PAVSimpleDialog@@HHHHHHH@Z ?fn10@@3VRLCFont@@A ?fn8@@3VRLCFont@@A ?WhiteFont@@3VRLCFont@@A ?YellowFont@@3VRLCFont@@A ?RedFont@@3VRLCFont@@A ?BlackFont@@3VRLCFont@@A ?SmallWhiteFont@@3VRLCFont@@A ?SmallYellowFont@@3VRLCFont@@A ?SmallRedFont@@3VRLCFont@@A ?SmallBlackFont@@3VRLCFont@@A ?BigWhiteFont@@3VRLCFont@@A ?BigYellowFont@@3VRLCFont@@A ?BigRedFont@@3VRLCFont@@A ?BigBlackFont@@3VRLCFont@@A ?SpecialWhiteFont@@3VRLCFont@@A ?SpecialYellowFont@@3VRLCFont@@A ?SpecialRedFont@@3VRLCFont@@A ?SpecialBlackFont@@3VRLCFont@@A ?PlayRecfile@@YAXPAD@Z ?SetExComm@@YAXPADH@Z ?SetCurPtr@@YAXH@Z ?RFileSize@@YAKPAX@Z ?RReset@@YAPAXPBD@Z ?RBlockRead@@YAKPAX0K@Z ?RSeek@@YAKPAXH@Z ?RRewrite@@YAPAXPBD@Z ?RBlockWrite@@YAKPAX0K@Z ?RClose@@YAXPAX@Z ?DrawFilledRect3@@YAXHHHHPAUCorners@@HHH@Z ?ShowGP@GP_System@@QAEXHHHHE@Z ?addComplexBox@DialogsSystem@@QAEPAVComplexBox@@HHHHP6AXHHHHHEH@ZHH@Z
+
+[ICHAT.DLL] ?SetChatWState@@YAXHH@Z ?SetGameID@@YAXPAD@Z
+
+[KERNEL32.DLL] CompareStringA GetVersionExA GetFullPathNameA GetLocaleInfoW GetLocalTime CompareStringW IsBadWritePtr SetEnvironmentVariableA GetSystemTime FreeLibrary GetProcAddress LoadLibraryA GetTickCount FindClose FindNextFileA DeleteFileA FindFirstFileA ExitProcess CreateDirectoryA GetCurrentDirectoryA GetLogicalDriveStringsA GetCurrentProcessId TlsFree TlsGetValue LocalFileTimeToFileTime SetLastError EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale Sleep LCMapStringW LCMapStringA GetOEMCP GetACP GetCPInfo ReadFile SetEndOfFile UnhandledExceptionFilter IsBadCodePtr SetUnhandledExceptionFilter SetFilePointer FlushFileBuffers GetStringTypeW GetStringTypeA MultiByteToWideChar SetConsoleCtrlHandler GetEnvironmentStringsW GetEnvironmentStrings WideCharToMultiByte FreeEnvironmentStringsW FreeEnvironmentStringsA GetStartupInfoA SetHandleCount SetCurrentDirectoryA IsBadReadPtr HeapValidate GetTimeZoneInformation SetStdHandle CreateFileA GetFileType GetCurrentThread DeleteCriticalSection InitializeCriticalSection SetFileTime TlsAlloc TlsSetValue GetCurrentThreadId CloseHandle VirtualAlloc GetCurrentProcess TerminateProcess VirtualFree HeapCreate HeapDestroy HeapFree HeapReAlloc HeapAlloc FatalAppExitA LeaveCriticalSection EnterCriticalSection RtlUnwind SystemTimeToFileTime GetModuleFileNameA InterlockedIncrement OutputDebugStringA InterlockedDecrement WriteFile GetStdHandle DebugBreak GetVersion GetCommandLineA GetDriveTypeA FileTimeToLocalFileTime FileTimeToSystemTime MoveFileA GetLastError GetUserDefaultLCID
+
+[SHELL32.DLL] ShellExecuteA
+
+[USER32.DLL] GetCursorPos
+
+[WS2_32.DLL] WSASocketA
+
+[WSOCK32.DLL] #115 #12 #20 #17 #21

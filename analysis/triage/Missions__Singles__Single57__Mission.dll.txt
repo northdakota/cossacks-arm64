@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single57/Mission.dll
+taille       : 229427 octets
+sha256       : 314a06afa59ebc10334c551c77b32b8f393891e2799906d75a7899d8af449cb7
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-26 12:29:26 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x100065e0
+sections     :
+   .text    va=0x10001000 vsize=  181808 raw=  184320 entropie=4.23 RX
+   .rdata   va=0x1002e000 vsize=   11804 raw=   12288 entropie=4.61 R
+   .data    va=0x10031000 vsize=   17344 raw=   12288 entropie=1.81 RW
+   .idata   va=0x10036000 vsize=    3843 raw=    4096 entropie=4.38 RW
+   .reloc   va=0x10037000 vsize=    8539 raw=   12288 entropie=4.93 R
+données après le PE : 51 octets
+imports      : DMCR.EXE (47), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SetTrigg Trigg TakeFood EnableMission DisableMission SelectUnits TakeStone TakeWood GetDiff SelOpenGates Patrol InitialUpgrade SetResource SelErase StartAI ClearSelection RunTimer ShowPage TimerDoneFirst GetUnitsAmount0 SelSendTo GetUnitsAmount1 GetTotalAmount0 FreeTimer ShowPageParam AddResource GetResource SetLightSpot NationIsErased CheckProduction LooseGame ProduceUnitFast RemoveGroup TimerDone SelSendAndKill ShowVictory SelectUnitsType SelDie RegisterUnitType RegisterUnits RegisterZone RegisterDynGroup RegisterVar RegisterFormation EnableUnit SetPlayerName ChangeFriends
+
+[KERNEL32.DLL] TerminateProcess GetCurrentProcess SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCPInfo VirtualAlloc GetACP HeapAlloc UnhandledExceptionFilter HeapReAlloc LeaveCriticalSection EnterCriticalSection FatalAppExitA SetConsoleCtrlHandler VirtualFree InitializeCriticalSection HeapCreate HeapDestroy HeapFree GetEnvironmentStrings WideCharToMultiByte GetEnvironmentStringsW FreeEnvironmentStringsA HeapValidate FreeEnvironmentStringsW IsBadWritePtr GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess DeleteCriticalSection IsBadReadPtr GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA

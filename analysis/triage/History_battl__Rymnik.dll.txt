@@ -1,0 +1,19 @@
+fichier      : History_battl/Rymnik.dll
+taille       : 143360 octets
+sha256       : 22fb1a5349c382404ba831223308b9773f2d7906a8a501b96b2c093c695f044a
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-08-01 15:33:03 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002b60
+sections     :
+   .text    va=0x10001000 vsize=  101248 raw=  102400 entropie=5.49 RX
+   .rdata   va=0x1001a000 vsize=    8815 raw=   12288 entropie=3.65 R
+   .data    va=0x1001d000 vsize=   16672 raw=   12288 entropie=1.83 RW
+   .idata   va=0x10022000 vsize=    3537 raw=    4096 entropie=4.19 RW
+   .reloc   va=0x10023000 vsize=    6119 raw=    8192 entropie=5.20 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (34), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg SetTrigg TimerDoneFirst HINT ShowAlarm RemoveGroup CreateObject0 RegisterVar RegisterZone RegisterUnitType RegisterFormation RegisterString SetPlayerName ChangeFriends InitialUpgrade SetLightSpot GetTotalAmount0 SelChangeNation RegisterVisibleZone GetUnitsAmount0 GetUnitsAmount1 UnitsCenter SaveSelectedUnits SelectUnitsInZone GetNUnits GetUnitInfo SetUnitInfo SelectUnits1 RegisterUnits RegisterDynGroup GetMyNation ShowVictory LooseGame ShowPage
+
+[KERNEL32.DLL] TlsGetValue SetLastError SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc HeapReAlloc HeapAlloc UnhandledExceptionFilter FatalAppExitA LeaveCriticalSection EnterCriticalSection GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree InitializeCriticalSection FreeEnvironmentStringsA GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr IsBadReadPtr HeapValidate HeapDestroy FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler

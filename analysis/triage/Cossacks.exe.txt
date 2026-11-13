@@ -1,0 +1,31 @@
+fichier      : Cossacks.exe
+taille       : 233472 octets
+sha256       : 375bb5520413fe0e59d0d957d5f49f3f22ecc8975ce5f53c74a4c19927bb59f2
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 1992-06-19 22:22:17 UTC, éditeur de liens 2.25
+image base   : 0x400000, point d'entrée 0x47a450
+sections     :
+   UPX0     va=0x00401000 vsize=  339968 raw=       0 entropie=0.00 RWX
+   UPX1     va=0x00454000 vsize=  159744 raw=  157696 entropie=7.92 RWX
+   .rsrc    va=0x0047b000 vsize=   77824 raw=   74752 entropie=7.49 RW
+données après le PE : 0 octets
+imports      : ADVAPI32.DLL (1), COMCTL32.DLL (1), GDI32.DLL (1), KERNEL32.DLL (6), OLEAUT32.DLL (1), SHELL32.DLL (1), USER32.DLL (1), VERSION.DLL (1), WINMM.DLL (1)
+marqueurs de protection/packer connus : [b'UPX!']
+
+[ADVAPI32.DLL] RegCloseKey
+
+[COMCTL32.DLL] ImageList_Add
+
+[GDI32.DLL] SaveDC
+
+[KERNEL32.DLL] LoadLibraryA GetProcAddress VirtualProtect VirtualAlloc VirtualFree ExitProcess
+
+[OLEAUT32.DLL] VariantCopy
+
+[SHELL32.DLL] ShellExecuteA
+
+[USER32.DLL] GetDC
+
+[VERSION.DLL] VerQueryValueA
+
+[WINMM.DLL] mciSendCommandA

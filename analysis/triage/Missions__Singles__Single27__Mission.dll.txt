@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single27/Mission.dll
+taille       : 208968 octets
+sha256       : 8d0e97775c05b67c63207eff0f1513172bd6765e4e8f1fdd851335378710e46a
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-01-18 10:38:40 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002ba0
+sections     :
+   .text    va=0x10001000 vsize=  166880 raw=  167936 entropie=6.39 RX
+   .rdata   va=0x1002a000 vsize=    8492 raw=   12288 entropie=3.56 R
+   .data    va=0x1002d000 vsize=   16512 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10032000 vsize=    3664 raw=    4096 entropie=4.33 RW
+   .reloc   va=0x10033000 vsize=    6411 raw=    8192 entropie=5.28 R
+données après le PE : 72 octets
+imports      : DMCR.EXE (39), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SetResource Trigg GetDiff ShowPage ChangeFriends StartAI SetTrigg SetLightSpot SelectUnits GetResource GetUnitsAmount1 AskQuestion CreateObject0 AddResource SaveSelectedUnits RunTimer SelSendTo SelSendAndKill SelCloseGates GetUnitsAmount0 SelOpenGates SelChangeNation GetUnitsAmount2 SelectTypeOfUnitsInZone TimerDoneFirst ProduceUnitFast SelErase LooseGame NationIsErased ShowVictory RegisterUnits SetPlayerName RegisterVar RegisterFormation RegisterZone RegisterUnitType EnableUnit RegisterDynGroup SetDestPoint
+
+[KERNEL32.DLL] TlsAlloc TlsFree SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind SetFilePointer SetStdHandle LCMapStringA GetStringTypeW LCMapStringW MultiByteToWideChar GetOEMCP GetStringTypeA GetCPInfo VirtualAlloc GetACP HeapAlloc UnhandledExceptionFilter HeapReAlloc LeaveCriticalSection EnterCriticalSection FatalAppExitA SetConsoleCtrlHandler VirtualFree InitializeCriticalSection HeapCreate HeapDestroy GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue DeleteCriticalSection HeapFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA FreeEnvironmentStringsA IsBadWritePtr IsBadReadPtr HeapValidate FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW

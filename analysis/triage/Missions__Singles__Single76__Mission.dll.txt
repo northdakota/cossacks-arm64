@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single76/Mission.dll
+taille       : 49152 octets
+sha256       : 7a313966ea1c014919af8ae241e6c620e7f38cdb9037122f1952f73ed0c05d81
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-19 14:58:58 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001b04
+sections     :
+   .text    va=0x10001000 vsize=   24070 raw=   24576 entropie=6.60 RX
+   .rdata   va=0x10007000 vsize=    4014 raw=    4096 entropie=5.25 R
+   .data    va=0x10008000 vsize=   13280 raw=   12288 entropie=1.01 RW
+   .reloc   va=0x1000c000 vsize=    3538 raw=    4096 entropie=4.19 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (40), KERNEL32.DLL (56)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] SelSendAndKill SelAttackGroup ClearLightSpot UnitsCenter CreateZoneNearGroup SelectUnitsType SaveSelectedUnits InsertUnitToGroup GetUnitInfo GetTopDst GetDiff RemoveUnitFromGroup Trigg SetTrigg EnableMission DisableMission CreateObject0 SetResource AskMultilineQuestion ClearSelection SelectUnits SelErase RunTimer ChangeFriends StartAI ShowPage GetUnitsAmount0 GetTotalAmount0 NationIsErased SetLightSpot TimerDone RegisterDynGroup ShowVictory LooseGame RegisterUnits RegisterVar RegisterZone SetPlayerName RegisterFormation RegisterUnitType
+
+[KERNEL32.DLL] ExitProcess TerminateProcess SetEnvironmentVariableA CompareStringW InterlockedIncrement CompareStringA GetStringTypeW GetStringTypeA InterlockedDecrement LCMapStringA MultiByteToWideChar LCMapStringW LoadLibraryA GetProcAddress RtlUnwind HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP LeaveCriticalSection InitializeCriticalSection HeapAlloc EnterCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetVersionExA HeapCreate GetTimeZoneInformation GetSystemTime GetLocalTime GetCommandLineA GetVersion GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetModuleFileNameA DeleteCriticalSection GetCurrentProcess SetHandleCount GetStdHandle GetFileType GetStartupInfoA GetModuleHandleA GetEnvironmentVariableA FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW

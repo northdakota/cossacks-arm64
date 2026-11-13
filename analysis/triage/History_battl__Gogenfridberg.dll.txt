@@ -1,0 +1,19 @@
+fichier      : History_battl/Gogenfridberg.dll
+taille       : 139264 octets
+sha256       : 8842579c07572fa1031bc887533696dcaf60463e54b43ff3dd8605f01af95e89
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-07-06 14:52:41 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001bf0
+sections     :
+   .text    va=0x10001000 vsize=   97276 raw=   98304 entropie=5.46 RX
+   .rdata   va=0x10019000 vsize=    8296 raw=   12288 entropie=3.48 R
+   .data    va=0x1001c000 vsize=   16352 raw=   12288 entropie=1.82 RW
+   .idata   va=0x10020000 vsize=    3091 raw=    4096 entropie=3.73 RW
+   .reloc   va=0x10021000 vsize=    5556 raw=    8192 entropie=4.82 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (17), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] RegisterVisibleZone GetTotalAmount0 UnitsCenter GetUnitsAmount0 GetUnitsAmount1 GetNUnits SaveSelectedUnits SelectUnitsInZone SelectUnits1 GetUnitInfo SetUnitInfo GetMyNation RegisterUnits RegisterDynGroup ShowPage ShowVictory LooseGame
+
+[KERNEL32.DLL] IsBadReadPtr HeapValidate SetEnvironmentVariableA CompareStringW GetLocaleInfoW GetTimeZoneInformation CompareStringA GetVersionExA GetUserDefaultLCID CloseHandle GetLocaleInfoA IsValidCodePage EnumSystemLocalesA FlushFileBuffers Sleep IsValidLocale RtlUnwind GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection IsBadWritePtr SetFilePointer SetStdHandle FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection LeaveCriticalSection FatalAppExitA UnhandledExceptionFilter HeapAlloc HeapReAlloc VirtualAlloc GetCPInfo GetACP GetOEMCP MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW

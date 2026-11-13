@@ -1,0 +1,19 @@
+fichier      : Missions/Singles/Single95/Mission.dll
+taille       : 221235 octets
+sha256       : 306bfda18c39f12fd1e4e9b3ecacee7e6ab18ee08556bae9a43f9d6c0b52d793
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-27 10:09:18 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10005dd0
+sections     :
+   .text    va=0x10001000 vsize=  179744 raw=  180224 entropie=4.25 RX
+   .rdata   va=0x1002d000 vsize=    9852 raw=   12288 entropie=4.00 R
+   .data    va=0x10030000 vsize=   17216 raw=   12288 entropie=1.84 RW
+   .idata   va=0x10035000 vsize=    3952 raw=    4096 entropie=4.57 RW
+   .reloc   va=0x10036000 vsize=    8132 raw=    8192 entropie=6.29 R
+données après le PE : 51 octets
+imports      : DMCR.EXE (50), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg SetTrigg EnableMission DisableMission TakeWood SetDestPoint GetDiff SetResource SelectUnits SelErase ClearSelection InitialUpgrade RunTimer StartAI TimerDoneFirst ShowPage SetLightSpot GetUnitsAmount0 GetUnitsAmount1 GetTotalAmount0 SelSendTo Patrol ShowPageParam AddResource ProduceUnitFast CheckProduction TimerDone FreeTimer RemoveGroup SetStandGround AttackBuildingsInZone CreateObject0 SelSendAndKill SaveSelectedUnits SelectUnitsType SelectUnits1 SelDie NationIsErased ShowVictory GetResource LooseGame RegisterUnits RegisterZone RegisterUnitType RegisterVar RegisterFormation RegisterDynGroup SetPlayerName ChangeFriends EnableUnit
+
+[KERNEL32.DLL] ExitProcess GetModuleFileNameA SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc HeapReAlloc HeapAlloc UnhandledExceptionFilter FatalAppExitA LeaveCriticalSection EnterCriticalSection InitializeCriticalSection SetConsoleCtrlHandler VirtualFree HeapFree HeapCreate HeapDestroy GetEnvironmentStringsW GetEnvironmentStrings WideCharToMultiByte FreeEnvironmentStringsW FreeEnvironmentStringsA HeapValidate IsBadReadPtr IsBadWritePtr DeleteCriticalSection GetStartupInfoA GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetFileType TlsFree TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount

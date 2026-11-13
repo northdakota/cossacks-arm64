@@ -1,0 +1,18 @@
+fichier      : Missions/Singles/Single36/Mission.dll
+taille       : 32768 octets
+sha256       : b8db95e352f9f74ffd93f9ee3fa0d4648be150f286a1c8d977bbf76cc56c72ed
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2002-03-29 15:43:38 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10002373
+sections     :
+   .text    va=0x10001000 vsize=   15686 raw=   16384 entropie=6.30 RX
+   .rdata   va=0x10005000 vsize=    3262 raw=    4096 entropie=4.56 R
+   .data    va=0x10006000 vsize=    3904 raw=    4096 entropie=2.70 RW
+   .reloc   va=0x10007000 vsize=    2204 raw=    4096 entropie=3.98 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (46), KERNEL32.DLL (43)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetDiff SetResource TakeFood ChangeFriends SetLightSpot GetResource DoNotUseSelInAI RunTimer EnableMission DisableMission GetTotalAmount0 SetTrigg TimerDone ClearLightSpot AttackEnemyInZone SelectUnits1 GetKilled SelChangeNation StartAI LooseGame ShowPageParam NationIsErased RegisterVar FreeTimer ShowVictory RegisterUnits SetPlayerName RegisterZone RegisterFormation RegisterDynGroup RegisterUnitType SaveSelectedUnits GetUnitsAmount0 RemoveGroup CreateZoneNearGroup ClearSelection SelectUnitsInZone SelSendAndKill CreateObject0 SelectUnits ShowPage GetUnitsByNation Trigg DisableUpgrade InitialUpgrade RegisterUpgrade
+
+[KERNEL32.DLL] GetVersion ExitProcess RtlUnwind GetStringTypeW LCMapStringW LCMapStringA GetStringTypeA LoadLibraryA GetProcAddress MultiByteToWideChar HeapReAlloc VirtualAlloc GetACP GetCPInfo GetOEMCP HeapAlloc EnterCriticalSection InitializeCriticalSection LeaveCriticalSection HeapFree VirtualFree WriteFile HeapDestroy GetEnvironmentStringsW HeapCreate WideCharToMultiByte FreeEnvironmentStringsW GetEnvironmentStrings GetModuleFileNameA DeleteCriticalSection FreeEnvironmentStringsA GetFileType GetStdHandle GetStartupInfoA SetHandleCount TlsFree TlsGetValue GetCurrentProcess TerminateProcess GetCommandLineA TlsSetValue TlsAlloc GetCurrentThreadId

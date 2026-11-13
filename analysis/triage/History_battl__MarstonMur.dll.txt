@@ -1,0 +1,19 @@
+fichier      : History_battl/MarstonMur.dll
+taille       : 135168 octets
+sha256       : 573b7d8e5f01cee48cd2e6638c380f5d3a1a19fa40ab947da1e1d9e7928d2932
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-07-06 14:56:41 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10001ab0
+sections     :
+   .text    va=0x10001000 vsize=   96927 raw=   98304 entropie=5.47 RX
+   .rdata   va=0x10019000 vsize=    8180 raw=    8192 entropie=4.57 R
+   .data    va=0x1001b000 vsize=   16512 raw=   12288 entropie=1.91 RW
+   .idata   va=0x10020000 vsize=    3119 raw=    4096 entropie=3.76 RW
+   .reloc   va=0x10021000 vsize=    5571 raw=    8192 entropie=4.84 R
+données après le PE : 0 octets
+imports      : DMCR.EXE (18), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] GetTotalAmount0 InitialUpgrade RegisterVisibleZone GetUnitsAmount0 GetUnitsAmount1 UnitsCenter SaveSelectedUnits SelectUnitsInZone GetNUnits GetUnitInfo SetUnitInfo SelectUnits1 RegisterUnits RegisterDynGroup GetMyNation ShowVictory LooseGame ShowPage
+
+[KERNEL32.DLL] IsBadReadPtr IsBadWritePtr SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue TlsAlloc TlsFree SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection SetFilePointer LeaveCriticalSection HeapValidate FreeEnvironmentStringsA FreeEnvironmentStringsW WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy HeapCreate HeapFree VirtualFree SetConsoleCtrlHandler InitializeCriticalSection EnterCriticalSection GetACP FatalAppExitA UnhandledExceptionFilter HeapAlloc HeapReAlloc VirtualAlloc GetCPInfo GetOEMCP MultiByteToWideChar GetStringTypeA GetStringTypeW LCMapStringA LCMapStringW

@@ -1,0 +1,19 @@
+fichier      : Missions/Tutorial/Tutorial4/Mission.dll
+taille       : 229447 octets
+sha256       : 91706450e97dd9d6ee5c1b6e6296347d1e119522700aad79e31d2f151ecd30de
+machine      : 0x14c (i386), PE32, sous-système 2
+compilé le   : 2001-10-10 07:33:59 UTC, éditeur de liens 6.0
+image base   : 0x10000000, point d'entrée 0x10006690
+sections     :
+   .text    va=0x10001000 vsize=  181968 raw=  184320 entropie=4.23 RX
+   .rdata   va=0x1002e000 vsize=   10368 raw=   12288 entropie=4.17 R
+   .data    va=0x10031000 vsize=   17344 raw=   12288 entropie=1.83 RW
+   .idata   va=0x10036000 vsize=    3645 raw=    4096 entropie=4.22 RW
+   .reloc   va=0x10037000 vsize=    8275 raw=   12288 entropie=4.80 R
+données après le PE : 71 octets
+imports      : DMCR.EXE (38), KERNEL32.DLL (72)
+marqueurs de protection/packer connus : aucun
+
+[DMCR.EXE] Trigg SetTrigg DisableUpgrade EnableUnit SetResource TakeWood TakeFood TakeStone RunTimer DisableMission TimerDone ShowPage SaveSelectedUnits GetTotalAmount2 EnableUpgrade EnableMission IsUpgradeDone ClearSelection CreateObject0 SelectUnits1 SelSendAndKill GetTotalAmount0 AddResource SetStartPoint GetTotalAmount1 SelSendTo GetUnitsAmount1 SelChangeNation ShowVictory NationIsErased RegisterZone RegisterUnits RegisterUnitType RegisterFormation RegisterUpgrade RegisterDynGroup RegisterVar ChangeFriends
+
+[KERNEL32.DLL] TlsFree TlsAlloc SetEnvironmentVariableA CompareStringW CompareStringA GetLocaleInfoW GetTimeZoneInformation CloseHandle GetVersionExA GetUserDefaultLCID EnumSystemLocalesA GetLocaleInfoA IsValidCodePage IsValidLocale FlushFileBuffers Sleep SetStdHandle RtlUnwind SetFilePointer LCMapStringW LCMapStringA GetStringTypeW GetStringTypeA MultiByteToWideChar GetOEMCP GetACP GetCPInfo VirtualAlloc HeapReAlloc HeapAlloc UnhandledExceptionFilter FatalAppExitA LeaveCriticalSection EnterCriticalSection InitializeCriticalSection SetConsoleCtrlHandler VirtualFree HeapFree GetCommandLineA GetVersion DebugBreak GetStdHandle WriteFile InterlockedDecrement OutputDebugStringA GetProcAddress LoadLibraryA InterlockedIncrement GetModuleFileNameA ExitProcess TerminateProcess GetCurrentProcess GetCurrentThreadId TlsSetValue HeapCreate IsBadWritePtr SetLastError TlsGetValue GetLastError GetCurrentThread SetHandleCount GetFileType GetStartupInfoA DeleteCriticalSection FreeEnvironmentStringsW IsBadReadPtr HeapValidate FreeEnvironmentStringsA WideCharToMultiByte GetEnvironmentStrings GetEnvironmentStringsW HeapDestroy
