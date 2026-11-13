@@ -90,6 +90,11 @@ public:
         uint32_t bytes = 0;  // taille du bloc, en octets de code
     };
     const std::map<uint32_t, BlockTime>& profile() const { return profile_; }
+    // Forgets what the profile measured so far (to measure only a part of a run).
+    void clear_profile() {
+        profile_.clear();
+        profile_block_ = 0;
+    }
     // Appelle `fn` au début de chaque bloc de code exécuté, avec son adresse et sa taille en
     // octets (arbre d'appels, call_graph.cpp). Ralentit nettement l'émulation.
     void add_block_hook(std::function<void(Cpu&, uint32_t address, uint32_t size)> fn);

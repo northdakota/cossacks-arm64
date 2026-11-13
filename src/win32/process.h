@@ -207,6 +207,8 @@ void install_ddraw(Process& process);    // DirectDrawCreate, also as MDRAW.DLL 
 void install_dsound(Process& process);   // DirectSoundCreate
 void install_winmm(Process& process);    // WINMM, also as MINMM.DLL (GOG's wrapper): time, mmio, mixer, MCI
 void install_system(Process& process);   // ADVAPI32 registry, network refusals, ICHAT.DLL, MSVCRT
+// Functions of the engine rewritten for the host (native.cpp); to call after load().
+void install_native_functions(Process& process);
 
 // printf-style formatting of a format string of the program, its arguments from `args` on
 // (wsprintfA, sprintf).

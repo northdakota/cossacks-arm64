@@ -7,6 +7,7 @@
 //     --trace-only PREFIX      traces only the functions whose name starts so (ddraw, kernel32.dll!Create…)
 //     --break-on FUNCTION      stops the program when it calls this function (dll!name)
 //     --deterministic          fixed clock and no sound: reproducible runs
+//     --no-native              leaves to the emulator the engine's functions rewritten for the host
 //     --counts                 prints at the end the number of calls and time spent per function
 //     --headless               hidden window, no sound
 //     --mute                   no sound
@@ -16,6 +17,7 @@
 //     --window-shot OUT.bmp    saves the window contents, scaling included
 //     --script "T:ACTION; …"   plays actions at T seconds: click X,Y ; rclick X,Y ; move X,Y ;
 //                              down X,Y ; up X,Y ; wheel N ; key CODE ; char CODE ; shot OUT.bmp
+//     --profile-from S         the profile counts only from S seconds on (program clock)
 //     --frame-log OUT.txt      one line per presented frame: number, size, hash of its pixels
 //     --profile OUT.tsv        execution profile of the game code, per block (much slower)
 //     --frame-args ADDR        at each pass on ADDR (hexadecimal, inside a function with a
@@ -45,7 +47,8 @@ namespace {
 
 struct Options {
     std::string exe, write_dir = "run/cossacks", trace_only, break_on, screenshot, window_shot, script, profile, watch_pixel, frame_args, frame_log;
-    bool trace = false, headless = false, counts = false, mute = false, fullscreen = false, deterministic = false;
+    double profile_from = 0;
+    bool trace = false, headless = false, counts = false, mute = false, fullscreen = false, deterministic = false, native = true;
     int frames = 0;
     double seconds = 0;
 };
@@ -79,6 +82,7 @@ int run(const Options& o) {
     install_winmm(process);
     install_system(process);
     process.load(o.exe);
+    if (o.native) install_native_functions(process);
     // DLLs the engine loads itself: the AI players and unrar.dll (missions come later).
     const fs::path game = fs::path(o.exe).parent_path();
     std::error_code ignored;
@@ -125,7 +129,16 @@ int run(const Options& o) {
             else
                 std::fprintf(stderr, "[hôte] fin d'image %#x : octets inattendus\n", e.address);
     }
-    if (!o.profile.empty()) process.cpu().start_profile();
+    if (!o.profile.empty()) {
+        process.cpu().start_profile();
+        if (o.profile_from > 0)
+            process.on_poll.push_back([&process, from = o.profile_from, done = std::make_shared<bool>(false)] {
+                if (*done || process.peek_ticks() - 100000 < from * 1000) return;
+                *done = true;
+                process.cpu().clear_profile();
+                std::fprintf(stderr, "[profile] counting from now on\n");
+            });
+    }
     auto frame_args = std::make_shared<std::map<std::array<uint32_t, 6>, uint64_t>>();
     if (!o.frame_args.empty())
         process.cpu().add_code_hook(static_cast<uint32_t>(std::stoul(o.frame_args, nullptr, 16)), [frame_args](Cpu& c) {
@@ -334,8 +347,10 @@ int main(int argc, char** argv) {
             else if (a == "--mute") o.mute = true;
             else if (a == "--fullscreen") o.fullscreen = true;
             else if (a == "--deterministic") o.deterministic = true;
+            else if (a == "--no-native") o.native = false;
             else if (a == "--write-dir") o.write_dir = value();
             else if (a == "--profile") o.profile = value();
+            else if (a == "--profile-from") o.profile_from = std::stod(value());
             else if (a == "--watch-pixel") o.watch_pixel = value();
             else if (a == "--frame-args") o.frame_args = value();
             else if (a == "--frame-log") o.frame_log = value();

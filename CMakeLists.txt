@@ -28,6 +28,7 @@ add_library(cossacks_win32 STATIC
     src/win32/kernel32_files.cpp
     src/win32/kernel32_memory.cpp
     src/win32/modules.cpp
+    src/win32/native.cpp
     src/win32/pe_image.cpp
     src/win32/process.cpp
     src/win32/system.cpp
