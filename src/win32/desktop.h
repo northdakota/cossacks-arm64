@@ -109,6 +109,24 @@ public:
     // Cursors of the program: add_cursor keeps an image and returns its number; set_cursor shows it
     // at the scale of the game's picture (kSystemCursor: the system's arrow).
     static constexpr int kSystemCursor = -1;
+    // Pacing figures since the last reset (Process::report_pace): presents, time they took (and
+    // the part spent waiting for the screen in SDL_RenderPresent), longest time between two
+    // presents, time spent waiting in wait().
+    struct Pace {
+        int presents = 0;
+        double present_ms = 0, present_ms_max = 0, vsync_ms_max = 0, gap_ms_max = 0, idle_ms = 0;
+    };
+    Pace pace;
+    // Technical overlay (⌘I): lines of text drawn over the picture, set by the host.
+    bool overlay = false;
+    std::string overlay_text;
+
+    // The system's cursor over the window, shown or hidden (ShowCursor's counter): Cossacks draws
+    // its own cursor into the picture and hides the system's.
+    void show_system_cursor(bool shown);
+    // Moves the system's cursor to a point of the game's picture (SetCursorPos), so that it does
+    // not part from the game's own cursor.
+    void warp_mouse(int x, int y);
     int add_cursor(CursorImage image);
     void set_cursor(int index);
 
@@ -127,12 +145,15 @@ private:
     std::vector<CursorImage> cursor_images_;
     std::vector<SDL_Cursor*> cursors_;  // one per image, null until built
     int cursor_ = kSystemCursor;
+    bool system_cursor_shown_ = true;
     double cursor_scale_ = 0, cursor_density_ = 0;  // 0: no frame shown yet, scale unknown
     void apply_cursor();
     SDL_Cursor* make_cursor(const CursorImage& image) const;
     bool texture_565_ = false;
     // Common end of every present: `fill` writes row y of the picture in ARGB8888.
     void present_rows(int width, int height, const std::function<void(int, uint32_t*)>& fill);
+    void draw_overlay(int width, int height);  // overlay_text into frame_
+    uint64_t last_present_counter_ = 0;
     std::vector<uint32_t> frame_;  // the last picture, ARGB8888
     // Couleur ARGB8888 de chaque pixel 16 bits du jeu (555 ou 565) : la texture se remplit en un
     // passage au format du rendu, sans la conversion générale de SDL à chaque image.
@@ -145,6 +166,7 @@ private:
     std::vector<uint8_t> last_frame_;  // RGB24 de la dernière image, pour la capture
     std::vector<bool> keys_;
     bool wasd_arrow_[4] = {};  // W A S D: arrow chosen when the key goes down, kept until it is released
+    bool p_pause_ = false;     // P sent as Pause (on the map), until it is released
     // Arrows (and W A S D) held on the city screens: the game takes one scrolling step per
     // WM_KEYDOWN, and the system's repeat starts only after a long delay (a step, a pause, then the
     // scrolling). The host therefore repeats these keys itself, after 120 ms and then every 50 ms

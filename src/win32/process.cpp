@@ -2,8 +2,10 @@
 
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 #include <cstdio>
 #include <stdexcept>
+#include <thread>
 
 namespace zeus::win32 {
 namespace {
@@ -240,6 +242,42 @@ void Process::send_messages(std::vector<Message> messages, uint32_t result) {
 void Process::add_file_patch(FilePatch patch) {
     if (patch.from.size() != patch.to.size()) throw std::runtime_error("correctif de fichier de longueur variable");
     file_patches_.push_back(std::move(patch));
+}
+
+void Process::frame_wait() {
+    // No frame limiter here: the second clock read in a row happens several times per frame in a
+    // battle, and sleeping there costs most of its frames (measured: 12 instead of 60 a second).
+    show_ready_frame();
+}
+
+void Process::report_pace() {
+    static auto since = std::chrono::steady_clock::now();
+    const auto now = std::chrono::steady_clock::now();
+    const double elapsed = std::chrono::duration<double, std::milli>(now - since).count();
+    if (elapsed < 1000 || !desktop_) return;
+    Desktop::Pace& d = desktop_->pace;
+    const double s = elapsed / 1000.0;
+    const double idle = std::min(100.0, 100.0 * (d.idle_ms + pace_sleep_ms) / elapsed);
+    const double present = std::min(100.0, 100.0 * d.present_ms / elapsed);
+    char text[512];
+    std::snprintf(text, sizeof text,
+                  "GAME %.1f FPS  SHOWN %.1f/S (WAIT %d, FRAME %d, TIMER %d)\n"
+                  "PRESENT AVG %.1f MAX %.1f MS, VSYNC MAX %.1f MS, LONGEST GAP %.0f MS\n"
+                  "EMULATION %.0f%%  PRESENT %.0f%%  IDLE %.0f%%",
+                  pace_frames / s, d.presents / s, pace_shown_on_wait, pace_shown_on_frame, pace_shown_on_timer,
+                  d.presents ? d.present_ms / d.presents : 0.0, d.present_ms_max, d.vsync_ms_max, d.gap_ms_max,
+                  std::max(0.0, 100.0 - idle - present), present, idle);
+    desktop_->overlay_text = text;
+    if (pace_log) {
+        std::string line = text;
+        for (char& c : line)
+            if (c == '\n') c = ' ';
+        std::fprintf(stderr, "[pace] %s\n", line.c_str());
+    }
+    d = Desktop::Pace{};
+    pace_frames = pace_shown_on_wait = pace_shown_on_frame = pace_shown_on_timer = 0;
+    pace_sleep_ms = 0;
+    since = now;
 }
 
 void Process::exit(int code) {

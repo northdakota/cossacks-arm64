@@ -350,6 +350,8 @@ void install_user32(Process& p) {
     });
     def("ShowCursor", 1, [&p, st] {
         st->cursor_count += p.arg(0) ? 1 : -1;
+        if (p.trace) std::fprintf(stderr, "    ShowCursor(%u) -> %d\n", p.arg(0), st->cursor_count);
+        p.desktop().show_system_cursor(st->cursor_count >= 0);  // Windows: shown while the counter is >= 0
         return static_cast<uint32_t>(st->cursor_count);
     });
     def("GetCursorPos", 1, [&p, &cpu] {
@@ -386,8 +388,7 @@ void install_user32(Process& p) {
     });
     def("ClipCursor", 1, [] { return 1u; });
     def("SetCursorPos", 2, [&p] {
-        p.desktop().mouse_x = static_cast<int32_t>(p.arg(0));
-        p.desktop().mouse_y = static_cast<int32_t>(p.arg(1));
+        p.desktop().warp_mouse(static_cast<int32_t>(p.arg(0)), static_cast<int32_t>(p.arg(1)));
         return 1u;
     });
     def("DestroyWindow", 1, [&p, &cpu] {
@@ -430,6 +431,10 @@ void install_user32(Process& p) {
         // TODO(cossacks): measure the engine's own pacing and adjust this.
         constexpr uint32_t kIdle = 4;  // milliseconds
         if (p.fixed_clock) return 0u;
+        // A game whose frames the host knows paces itself with its clock (GetTickCount), where the
+        // host gives the processor back: waiting here too would cost it frames (Cossacks calls
+        // PeekMessageA some 200 times a second, several times per frame).
+        if (p.knows_frames && !std::getenv("COSSACKS_PEEK_IDLE")) return 0u;
         const uint32_t now = p.ticks();
         if (now - st->last_idle_poll < kIdle) d.wait(static_cast<int>(kIdle - (now - st->last_idle_poll)));
         st->last_idle_poll = p.ticks();

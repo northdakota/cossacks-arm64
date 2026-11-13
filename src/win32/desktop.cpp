@@ -10,6 +10,7 @@
 #endif
 
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <cmath>
 #include <cstring>
@@ -217,6 +218,7 @@ void Desktop::create_window(const std::string& title, int width, int height) {
     if (!window_) throw std::runtime_error(SDL_GetError());
     renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer_) throw std::runtime_error(SDL_GetError());
+    if (!system_cursor_shown_ && !headless) SDL_ShowCursor(SDL_DISABLE);
 }
 
 void Desktop::set_mode(int width, int height) {
@@ -286,12 +288,19 @@ void Desktop::present_rows(int width, int height, const std::function<void(int, 
     // The picture in ARGB, kept for the frame log and the screenshots.
     frame_.resize(static_cast<size_t>(width) * height);
     for (int y = 0; y < height; ++y) fill(y, &frame_[static_cast<size_t>(y) * width]);
+    if (last_present_counter_)
+        pace.gap_ms_max = std::max(pace.gap_ms_max, 1000.0 * static_cast<double>(started - last_present_counter_) /
+                                                        static_cast<double>(SDL_GetPerformanceFrequency()));
+    last_present_counter_ = started;
+    ++pace.presents;
+    if (overlay && !overlay_text.empty()) draw_overlay(width, height);
     if (!frame_log_path.empty()) {
         if (!frame_log_) frame_log_ = std::fopen(frame_log_path.c_str(), "w");
         uint32_t hash = 2166136261u;  // FNV-1a des pixels
         for (uint32_t c : frame_)
             for (int k = 0; k < 3; ++k) hash = (hash ^ ((c >> (8 * k)) & 0xFF)) * 16777619u;
-        if (frame_log_) std::fprintf(frame_log_, "%d %dx%d %08x\n", presents_, width, height, hash);
+        if (frame_log_) std::fprintf(frame_log_, "%d %dx%d %08x %llu\n", presents_, width, height, hash,
+                                     static_cast<unsigned long long>(SDL_GetTicks64()));
     }
     // Fenêtre cachée sans capture de son contenu : rien à dessiner.
     if (!headless || !window_shot_path.empty()) {
@@ -350,7 +359,10 @@ void Desktop::present_rows(int width, int height, const std::function<void(int, 
                 SDL_FreeSurface(shot);
             }
         }
+        const uint64_t before_vsync = SDL_GetPerformanceCounter();
         SDL_RenderPresent(renderer_);
+        pace.vsync_ms_max = std::max(pace.vsync_ms_max, 1000.0 * static_cast<double>(SDL_GetPerformanceCounter() - before_vsync) /
+                                                            static_cast<double>(SDL_GetPerformanceFrequency()));
     }
     ++presents_;
 
@@ -363,6 +375,78 @@ void Desktop::present_rows(int width, int height, const std::function<void(int, 
         }
     }
     if (max_presents && presents_ >= max_presents) stop_ = true;
+    const double took = 1000.0 * static_cast<double>(SDL_GetPerformanceCounter() - started) / static_cast<double>(SDL_GetPerformanceFrequency());
+    pace.present_ms += took;
+    pace.present_ms_max = std::max(pace.present_ms_max, took);
+}
+
+namespace {
+
+// A 5 x 7 font for the overlay: digits, capitals and a few signs, one string of 35 cells each.
+struct Glyph {
+    char c;
+    const char* rows;
+};
+constexpr Glyph kGlyphs[] = {
+    {'A', " ### #   ##   #######   ##   ##   #"}, {'B', "#### #   ##   ##### #   ##   ##### "},
+    {'C', " ### #   ##    #    #    #   # ### "}, {'D', "#### #   ##   ##   ##   ##   ##### "},
+    {'E', "######    #    #### #    #    #####"}, {'F', "######    #    #### #    #    #    "},
+    {'G', " ### #   ##    # ####   ##   # ####"}, {'H', "#   ##   ##   #######   ##   ##   #"},
+    {'I', " ###   #    #    #    #    #   ### "}, {'J', "  ###   #    #    #    # #  #  ##  "},
+    {'K', "#   ##  # # #  ##   # #  #  # #   #"}, {'L', "#    #    #    #    #    #    #####"},
+    {'M', "#   ### ### # ## # ##   ##   ##   #"}, {'N', "#   ###  ## # ##  ###   ##   ##   #"},
+    {'O', " ### #   ##   ##   ##   ##   # ### "}, {'P', "#### #   ##   ##### #    #    #    "},
+    {'Q', " ### #   ##   ##   ## # ##  #  ## #"}, {'R', "#### #   ##   ##### # #  #  # #   #"},
+    {'S', " #####    #     ###     #    ##### "}, {'T', "#####  #    #    #    #    #    #  "},
+    {'U', "#   ##   ##   ##   ##   ##   # ### "}, {'V', "#   ##   ##   ##   ##   # # #   #  "},
+    {'W', "#   ##   ##   ## # ## # ## # # # # "}, {'X', "#   ##   # # #   #   # # #   ##   #"},
+    {'Y', "#   ##   # # #   #    #    #    #  "}, {'Z', "#####    #   #   #   #   #    #####"},
+    {'0', " ### #   ##  ### # ###  ##   # ### "}, {'1', "  #   ##    #    #    #    #   ### "},
+    {'2', " ### #   #    #   #   #   #   #####"}, {'3', "#####   #   #     #     ##   # ### "},
+    {'4', "   #   ##  # # #  # #####   #    # "}, {'5', "######    ####     #    ##   # ### "},
+    {'6', "  ##  #   #    #### #   ##   # ### "}, {'7', "#####    #   #   #   #    #    #   "},
+    {'8', " ### #   ##   # ### #   ##   # ### "}, {'9', " ### #   ##   # ####    #   #  ##  "},
+    {'.', "                          ##   ##  "}, {':', "      ##   ##        ##   ##       "},
+    {'%', "##   ##  #   #   #   #   #  ##   ##"}, {'/', "         #   #   #   #   #         "},
+    {'(', "   #   #   #    #    #     #     # "}, {')', " #     #     #    #    #   #   #   "},
+    {'-', "               #####               "}, {'|', "  #    #    #    #    #    #    #  "},
+    {',', "                     ##    #   #   "}, {'=', "          #####     #####          "},
+};
+
+}  // namespace
+
+void Desktop::draw_overlay(int width, int height) {
+    constexpr int kScale = 2, kCell = 6 * kScale, kLine = 9 * kScale, kMargin = 8;
+    std::vector<std::string> lines(1);
+    for (char c : overlay_text) {
+        if (c == '\n') lines.emplace_back();
+        else lines.back().push_back(static_cast<char>(std::toupper(static_cast<unsigned char>(c))));
+    }
+    size_t longest = 0;
+    for (const auto& l : lines) longest = std::max(longest, l.size());
+    const int box_w = static_cast<int>(longest) * kCell + 2 * kMargin, box_h = static_cast<int>(lines.size()) * kLine + 2 * kMargin;
+    for (int y = 0; y < std::min(box_h, height); ++y)
+        for (int x = 0; x < std::min(box_w, width); ++x) {
+            uint32_t& p = frame_[static_cast<size_t>(y) * width + x];
+            p = 0xFF000000u | ((p >> 2) & 0x3F3F3F);  // darkened
+        }
+    for (size_t l = 0; l < lines.size(); ++l)
+        for (size_t i = 0; i < lines[l].size(); ++i) {
+            const Glyph* g = nullptr;
+            for (const Glyph& candidate : kGlyphs)
+                if (candidate.c == lines[l][i]) g = &candidate;
+            if (!g) continue;
+            for (int row = 0; row < 7; ++row)
+                for (int col = 0; col < 5; ++col) {
+                    if (g->rows[row * 5 + col] != '#') continue;
+                    for (int dy = 0; dy < kScale; ++dy)
+                        for (int dx = 0; dx < kScale; ++dx) {
+                            const int x = kMargin + static_cast<int>(i) * kCell + col * kScale + dx;
+                            const int y = kMargin + static_cast<int>(l) * kLine + row * kScale + dy;
+                            if (x < width && y < height) frame_[static_cast<size_t>(y) * width + x] = 0xFF7CFC00u;
+                        }
+                }
+        }
 }
 
 int Desktop::add_cursor(CursorImage image) {
@@ -429,6 +513,19 @@ SDL_Cursor* Desktop::make_cursor(const CursorImage& image) const {
 }
 
 // Position de la souris dans l'image du jeu, à partir de sa position dans la fenêtre.
+void Desktop::show_system_cursor(bool shown) {
+    system_cursor_shown_ = shown;
+    if (!headless) SDL_ShowCursor(shown ? SDL_ENABLE : SDL_DISABLE);
+}
+
+void Desktop::warp_mouse(int x, int y) {
+    mouse_x = x;
+    mouse_y = y;
+    if (headless || !window_ || view_scale_ <= 0) return;
+    SDL_WarpMouseInWindow(window_, static_cast<int>(view_x_ + (x + 0.5) * view_scale_),
+                          static_cast<int>(view_y_ + (y + 0.5) * view_scale_));
+}
+
 void Desktop::to_game(int window_x, int window_y) {
     const int x = static_cast<int>((window_x - view_x_) / view_scale_), y = static_cast<int>((window_y - view_y_) / view_scale_);
     mouse_x = std::clamp(x, 0, std::max(texture_w_ - 1, 0));
@@ -529,7 +626,10 @@ bool Desktop::key_down(int virtual_key) const {
     return virtual_key >= 0 && virtual_key < 256 && keys_[static_cast<size_t>(virtual_key)];
 }
 
-void Desktop::wait(int milliseconds) { SDL_Delay(static_cast<Uint32>(milliseconds)); }
+void Desktop::wait(int milliseconds) {
+    SDL_Delay(static_cast<Uint32>(milliseconds));
+    pace.idle_ms += milliseconds;
+}
 
 // Secondes écoulées depuis le lancement, sur l'horloge réelle ou sur celle du programme.
 double Desktop::elapsed(uint32_t now) {
@@ -659,6 +759,7 @@ bool Desktop::pump(uint32_t now) {
                 if (e.key.keysym.mod & KMOD_GUI) {
                     const SDL_Keycode key = e.key.keysym.sym;
                     if (e.type == SDL_KEYDOWN && !e.key.repeat && (key == SDLK_f || key == SDLK_RETURN)) toggle_fullscreen();
+                    if (e.type == SDL_KEYDOWN && !e.key.repeat && e.key.keysym.scancode == SDL_SCANCODE_I) overlay = !overlay;
                     break;
                 }
                 int vk = virtual_key(e.key.keysym.sym);
@@ -682,6 +783,13 @@ bool Desktop::pump(uint32_t now) {
                     std::fprintf(stderr, "[hôte] touche %s scancode %d sym %#x mod %#x repeat %d carte %d -> vk %#x\n",
                                  down ? "down" : "up", static_cast<int>(scan), static_cast<unsigned>(e.key.keysym.sym),
                                  static_cast<unsigned>(e.key.keysym.mod), e.key.repeat, city_screen && city_screen() ? 1 : 0, vk);
+                // P on the map: the game's pause key, Pause (VK_PAUSE), which a Mac keyboard lacks.
+                if (scan == SDL_SCANCODE_P) {
+                    if (down && !e.key.repeat)
+                        p_pause_ = city_screen && city_screen() && !(e.key.keysym.mod & (KMOD_CTRL | KMOD_ALT | KMOD_SHIFT));
+                    if (p_pause_) vk = 0x13;
+                    if (!down) p_pause_ = false;
+                }
                 if (!vk) break;
                 if (vk >= 0x25 && vk <= 0x28) {  // arrows: repeated by the host on the city screens
                     HeldScroll& held = held_scroll_[vk - 0x25];
@@ -707,6 +815,7 @@ bool Desktop::pump(uint32_t now) {
                     static const char kWasd[] = "wasdWASD";
                     const char* found = std::strchr(kWasd, e.text.text[0]);
                     if (found && wasd_arrow_[(found - kWasd) % 4]) break;
+                    if ((e.text.text[0] == 'p' || e.text.text[0] == 'P') && p_pause_) break;
                 }
                 for (const char* c = e.text.text; *c;) {
                     const unsigned char lead = static_cast<unsigned char>(*c);

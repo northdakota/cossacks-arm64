@@ -110,7 +110,12 @@ void install_kernel32(Process& p) {
         const uint64_t calls = cpu.host_calls();
         streak = calls == last_call + 1 ? streak + 1 : 0;
         last_call = calls;
-        if (streak > 64 && !p.fixed_clock) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        if (streak == 2) p.frame_wait();  // the game waits for its next frame
+        if (streak > 64 && !p.fixed_clock) {
+            const auto before = std::chrono::steady_clock::now();
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            p.pace_sleep_ms += std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - before).count();
+        }
         p.maybe_refresh();
         if (p.cpu().stopped()) return ticks();
         return ticks();
@@ -134,7 +139,9 @@ void install_kernel32(Process& p) {
             p.advance_clock(p.arg(0));
             return 0u;
         }
+        const auto before = std::chrono::steady_clock::now();
         std::this_thread::sleep_for(std::chrono::milliseconds(std::min<uint32_t>(p.arg(0), 100)));
+        p.pace_sleep_ms += std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - before).count();
         return 0u;
     });
     auto system_time = [&p, &cpu](bool local) {

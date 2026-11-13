@@ -16,6 +16,7 @@
 //     --window-shot OUT.bmp    saves the window contents, scaling included
 //     --script "T:ACTION; …"   plays actions at T seconds: click X,Y ; rclick X,Y ; move X,Y ;
 //                              down X,Y ; up X,Y ; wheel N ; key CODE ; char CODE ; shot OUT.bmp
+//     --frame-log OUT.txt      one line per presented frame: number, size, hash of its pixels
 //     --profile OUT.tsv        execution profile of the game code, per block (much slower)
 //     --frame-args ADDR        at each pass on ADDR (hexadecimal, inside a function with a
 //                              frame), counts the 6 arguments [ebp+8…] of the function
@@ -23,6 +24,8 @@
 //                              pixel (X,Y) in the engine's drawing buffer (ScreenPtr), and what
 
 #include <array>
+#include <chrono>
+#include <algorithm>
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
@@ -32,6 +35,7 @@
 #include <map>
 #include <memory>
 #include <tuple>
+#include <vector>
 #include <stdexcept>
 #include <string>
 
@@ -40,7 +44,7 @@
 namespace {
 
 struct Options {
-    std::string exe, write_dir = "run/cossacks", trace_only, break_on, screenshot, window_shot, script, profile, watch_pixel, frame_args;
+    std::string exe, write_dir = "run/cossacks", trace_only, break_on, screenshot, window_shot, script, profile, watch_pixel, frame_args, frame_log;
     bool trace = false, headless = false, counts = false, mute = false, fullscreen = false, deterministic = false;
     int frames = 0;
     double seconds = 0;
@@ -61,10 +65,13 @@ int run(const Options& o) {
     process.fixed_clock = o.deterministic;
     desktop.screenshot_path = o.screenshot;
     desktop.window_shot_path = o.window_shot;
+    desktop.frame_log_path = o.frame_log;
     desktop.max_presents = o.frames;
     desktop.max_seconds = o.seconds;
     desktop.add_script(o.script);
     process.mute = o.mute || o.headless;
+    process.pace_log = std::getenv("COSSACKS_PACE") != nullptr;  // pacing figures every second
+    desktop.overlay = std::getenv("COSSACKS_OVERLAY") != nullptr;  // the technical overlay from the start (⌘I)
     install_kernel32(process);
     install_user32(process);
     install_ddraw(process);
@@ -100,6 +107,24 @@ int run(const Options& o) {
             std::fprintf(stderr, "[hôte] dmcr.exe inconnu : pas de W A S D\n");
         }
     }
+    // Ends of the engine's frames, for the pacing of the screen (Process::frame_done): after the copy
+    // of the whole screen to the primary surface (DialogsSystem::RefreshView, 0x4720d2; every frame
+    // of a battle, 26 to 32 per second), after the copy of the changed rectangles (0x4c5a06) and at
+    // the end of FlipPages. Each address is checked against its expected bytes.
+    {
+        struct End {
+            uint32_t address;
+            std::vector<uint8_t> bytes;
+        };
+        const End ends[] = {{0x4720d7, {0x83, 0xC4, 0x10, 0xE8}},                       // add esp, 0x10; call
+                            {0x4c5a0b, {0xC6, 0x05, 0x1C, 0xCD, 0x71, 0x00, 0x00}},     // mov byte [0x71cd1c], 0
+                            {0x45fb27, {0x5F, 0x5E, 0x5B, 0x8B, 0xE5}}};                 // pop edi; pop esi; pop ebx; mov esp, ebp
+        for (const End& e : ends)
+            if (std::memcmp(process.cpu().host(e.address), e.bytes.data(), e.bytes.size()) == 0)
+                process.cpu().add_code_hook(e.address, [&process](Cpu&) { process.frame_done(); });
+            else
+                std::fprintf(stderr, "[hôte] fin d'image %#x : octets inattendus\n", e.address);
+    }
     if (!o.profile.empty()) process.cpu().start_profile();
     auto frame_args = std::make_shared<std::map<std::array<uint32_t, 6>, uint64_t>>();
     if (!o.frame_args.empty())
@@ -108,6 +133,42 @@ int run(const Options& o) {
             for (uint32_t i = 0; i < 6; ++i) a[i] = c.read_u32(c.reg(Cpu::Reg::EBP) + 8 + 4 * i);
             ++(*frame_args)[a];
         });
+    // Diagnostics: game frames (calls of FlipPages) and presented frames, per second of real time.
+    if (std::getenv("COSSACKS_FPS")) {
+        struct Fps {
+            uint64_t flips = 0, presents_at_start = 0;
+            std::chrono::steady_clock::time_point since = std::chrono::steady_clock::now();
+            double longest_ms = 0;
+            std::chrono::steady_clock::time_point last_flip;
+        };
+        auto fps = std::make_shared<Fps>();
+        auto on_frame = [&process, fps](Cpu&) {
+            const auto now = std::chrono::steady_clock::now();
+            if (fps->flips) fps->longest_ms = std::max(fps->longest_ms, std::chrono::duration<double, std::milli>(now - fps->last_flip).count());
+            fps->last_flip = now;
+            ++fps->flips;
+            const double elapsed = std::chrono::duration<double>(now - fps->since).count();
+            if (elapsed >= 1.0) {
+                const int presents = process.desktop().presents();
+                std::fprintf(stderr, "[fps] %.1f game frames/s, %.1f presented/s, longest gap %.1f ms\n", fps->flips / elapsed,
+                             (presents - fps->presents_at_start) / elapsed, fps->longest_ms);
+                fps->flips = 0;
+                fps->presents_at_start = static_cast<uint64_t>(presents);
+                fps->since = now;
+                fps->longest_ms = 0;
+            }
+        };
+        if (const char* list = std::getenv("COSSACKS_FPS_AT")) {  // hexadecimal addresses, comma-separated
+            for (const char* at = list; *at;) {
+                char* end = nullptr;
+                process.cpu().add_code_hook(static_cast<uint32_t>(std::strtoul(at, &end, 16)), on_frame);
+                at = *end ? end + 1 : end;
+            }
+        } else {
+            process.cpu().add_code_hook(0x45f964, on_frame);  // FlipPages: whole screen
+            process.cpu().add_code_hook(0x4c5a0b, on_frame);  // after the copy of the changed rectangles
+        }
+    }
     // Diagnostics: the two pointers ShowGPLayers gives the blitter for a sprite frame, and their bytes.
     if (const char* want = std::getenv("COSSACKS_GP_DUMP")) {
         unsigned gp = 0, frame = 0;
@@ -168,6 +229,12 @@ int run(const Options& o) {
         // « 0xADDRESS »: watched from the start (code already translated by the emulator would
         // not see a watch added later).
         if (std::sscanf(o.watch_pixel.c_str(), "0x%x", &absolute) == 1) {
+            if (const char* len = std::getenv("COSSACKS_WATCH_LEN")) {  // a whole range: instructions only
+                const uint32_t n = static_cast<uint32_t>(std::strtoul(len, nullptr, 0));
+                process.cpu().add_write_hook(absolute, absolute + n, [writers](Cpu& c, uint32_t, int size, uint32_t) {
+                    ++(*writers)[{c.reg(Cpu::Reg::EIP), static_cast<uint32_t>(size) << 16, c.read_u32(c.reg(Cpu::Reg::EBP) + 4)}];
+                });
+            } else
             process.cpu().add_write_hook(absolute - 15, absolute + 1, [writers, absolute](Cpu& c, uint32_t address, int size, uint32_t value) {
                 if (absolute < address || absolute >= address + static_cast<uint32_t>(size)) return;
                 const uint32_t shift = absolute - address;
@@ -271,6 +338,7 @@ int main(int argc, char** argv) {
             else if (a == "--profile") o.profile = value();
             else if (a == "--watch-pixel") o.watch_pixel = value();
             else if (a == "--frame-args") o.frame_args = value();
+            else if (a == "--frame-log") o.frame_log = value();
             else if (a == "--screenshot") o.screenshot = value();
             else if (a == "--window-shot") o.window_shot = value();
             else if (a == "--script") o.script = value();

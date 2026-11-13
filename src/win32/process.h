@@ -116,9 +116,45 @@ public:
     // on their own (CD music) post their notifications from here.
     std::vector<std::function<void()>> on_poll;
     uint32_t last_refresh = 0;
-    void maybe_refresh() {
-        if (refresh_screen && peek_ticks() - last_refresh >= 16) refresh_screen();
+    // Pacing by the game's own frames, when the host knows where they end (frame_done(), called
+    // from a hook of the game): the finished frame is shown once, when the game starts waiting for
+    // the next one (show_ready_frame(), from its clock loop), so that a frame shows whole, each one
+    // for the same time, and the wait for the screen falls in the game's own idle time. The
+    // periodic refresh then only covers what does not go through those frames.
+    bool knows_frames = false, frame_ready = false;
+    // A new frame is finished. If the last one was never shown (the game had no time to wait for
+    // its next frame), the screen is shown now: the game is behind and does not wait.
+    void frame_done() {
+        knows_frames = true;
+        ++pace_frames;
+        // Not faster than a 120 Hz screen: menus finish over a hundred frames a second.
+        if (frame_ready && refresh_screen && peek_ticks() - last_refresh >= 8) {
+            ++pace_shown_on_frame;
+            refresh_screen();
+        }
+        frame_ready = true;
     }
+    // The game starts waiting for its next frame (from its clock loop): the finished frame shows,
+    // at most 120 times a second.
+    void frame_wait();
+    void show_ready_frame() {
+        if (!frame_ready || !refresh_screen || peek_ticks() - last_refresh < 8) return;
+        frame_ready = false;
+        ++pace_shown_on_wait;
+        refresh_screen();
+    }
+    void maybe_refresh() {
+        report_pace();
+        if (refresh_screen && peek_ticks() - last_refresh >= (knows_frames ? 100u : 16u)) {
+            ++pace_shown_on_timer;
+            refresh_screen();
+        }
+    }
+    // Pacing figures, once a second: on the overlay (⌘I), and on the error output if pace_log.
+    bool pace_log = false;
+    int pace_frames = 0, pace_shown_on_wait = 0, pace_shown_on_frame = 0, pace_shown_on_timer = 0;
+    double pace_sleep_ms = 0;  // the host's own sleeps in the game's clock loop
+    void report_pace();
 
     uint32_t last_error = 0;
     bool trace = false;
