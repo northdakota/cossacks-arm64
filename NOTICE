@@ -1,0 +1,22 @@
+Cossacks on Mac
+Licensed under the GNU General Public License, version 2 or (at your option) any later version.
+See LICENSE.
+
+Origin
+------
+The host in src/win32/ and parts of src/tools/ are derived from zeus-poseidon-arm64
+(https://github.com/nic0lasm/zeus-poseidon-arm64), by nic0lasm and its contributors,
+GPL-2.0-or-later, copied from origin/main at commit 9b676e5 on 2026-11-13, and modified since
+for Cossacks: Back to War (the git history of this repository records every change).
+
+Third-party software used, not included in this repository
+-----------------------------------------------------------
+- Unicorn engine, https://www.unicorn-engine.org/ : GPL-2.0
+- SDL2, https://www.libsdl.org/ : zlib licence
+- FFmpeg (libavformat, libavcodec, libswscale, libswresample, libavutil), https://ffmpeg.org/ :
+  LGPL-2.1-or-later, or GPL-2.0-or-later when built with GPL components
+
+The game
+--------
+Cossacks: Back to War is the property of GSC Game World. This repository contains none of its
+files and is not affiliated with or endorsed by GSC Game World or GOG.

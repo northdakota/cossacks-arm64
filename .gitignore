@@ -8,3 +8,7 @@ build/
 run/
 build-dev/
 drafts/
+# Working notes of the author, kept local.
+CONTEXT.md
+assessment.md
+imports.md

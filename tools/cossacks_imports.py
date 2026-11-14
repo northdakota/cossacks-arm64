@@ -26,7 +26,7 @@ import sys
 import tempfile
 import time
 
-# Role of each top-level file, from the evidence gathered in stage 1 (see assessment.md).
+# Role of each top-level file, from the evidence gathered in stage 1 (the feasibility study).
 ROLES = {
     "dmcr.exe": "**гра** (рушій, 2002)",
     "mdraw.dll": "обгортка GOG над DirectDraw (2010) — замінити нативно",
