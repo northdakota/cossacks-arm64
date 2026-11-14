@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 #include <fstream>
 #include <stdexcept>
 
@@ -130,7 +131,15 @@ PeImage load_pe(const std::filesystem::path& path, Cpu& cpu, uint32_t base) {
                 const uint32_t at = image.image_base + page + (entry & 0xFFF);
                 switch (entry >> 12) {
                     case 0: break;  // IMAGE_REL_BASED_ABSOLUTE: padding
-                    case 3: cpu.write_u32(at, cpu.read_u32(at) + delta); break;  // HIGHLOW
+                    case 3: {  // HIGHLOW; through the host's view of the memory: the image is not
+                               // running yet, and a write through Unicorn per entry made the 126
+                               // mission DLLs take 8 s to place
+                        uint32_t value;
+                        std::memcpy(&value, cpu.host(at), 4);
+                        value += delta;
+                        std::memcpy(cpu.host(at), &value, 4);
+                        break;
+                    }
                     default: fail("relocation de type " + std::to_string(entry >> 12) + " inconnue : " + path.string());
                 }
             }

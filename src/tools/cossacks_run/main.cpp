@@ -88,15 +88,28 @@ int run(const Options& o) {
     process.load(o.exe);
     if (o.native) install_native_functions(process);
     if (!o.language.empty()) process.vfs().add_language_pack(o.language);
-    // DLLs the engine loads itself: the AI players and unrar.dll (missions come later).
+    // DLLs the engine loads itself: the AI players, unrar.dll, and the scripts of the missions
+    // (Mission.dll of each mission folder, the historical battles, the user's missions).
     const fs::path game = fs::path(o.exe).parent_path();
     std::error_code ignored;
+    auto is_dll = [](const fs::path& path) {
+        std::string extension = path.extension().string();
+        for (char& c : extension) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        return extension == ".dll";
+    };
     for (const auto& entry : fs::directory_iterator(game, ignored)) {
         std::string name = entry.path().filename().string();
         for (char& c : name) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
         if (name == "ai" && entry.is_directory())
             for (const auto& dll : fs::directory_iterator(entry.path(), ignored))
-                if (dll.path().extension() == ".dll" || dll.path().extension() == ".DLL") process.preload_dll(dll.path());
+                if (is_dll(dll.path())) process.preload_dll(dll.path());
+        if ((name == "missions" || name == "history_battl" || name == "usermissions") && entry.is_directory()) {
+            std::vector<fs::path> dlls;  // in a fixed order, for reproducible addresses
+            for (const auto& dll : fs::recursive_directory_iterator(entry.path(), ignored))
+                if (dll.is_regular_file() && is_dll(dll.path())) dlls.push_back(dll.path());
+            std::sort(dlls.begin(), dlls.end());
+            for (const fs::path& dll : dlls) process.preload_dll(dll);
+        }
         if (name == "unrar.dll") process.preload_dll(entry.path());
     }
     // W A S D scroll like the arrows where the engine scrolls the map with them: on the battle map,
