@@ -77,6 +77,9 @@ public:
 
     enum class Reg { EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI, EIP };
     uint32_t reg(Reg r) const;
+    // The x87 control word (exception masks, precision, rounding) and status word.
+    uint16_t fpu_control() const;
+    uint16_t fpu_status() const;
     void set_reg(Reg r, uint32_t value);
 
     // Enregistre une fonction hôte et renvoie l'adresse émulée à placer dans une table d'import.

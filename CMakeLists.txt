@@ -21,6 +21,7 @@ pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET libavformat libavcodec libswsc
 add_library(cossacks_win32 STATIC
     src/win32/audio.cpp
     src/win32/cpu.cpp
+    src/win32/crash_report.cpp
     src/win32/ddraw.cpp
     src/win32/desktop.cpp
     src/win32/dsound.cpp
@@ -42,5 +43,13 @@ if(APPLE)
     target_link_libraries(cossacks_win32 PUBLIC "-framework CoreFoundation")
 endif()
 
+# The commit the launcher is built from, for crash reports (generated/version.h, COSSACKS_VERSION).
+add_custom_target(cossacks_version
+    COMMAND ${CMAKE_COMMAND} -DSRC=${CMAKE_SOURCE_DIR} -DOUT=${CMAKE_BINARY_DIR}/generated/version.h
+            -P ${CMAKE_SOURCE_DIR}/cmake/version.cmake
+    BYPRODUCTS ${CMAKE_BINARY_DIR}/generated/version.h)
+
 add_executable(cossacks-run src/tools/cossacks_run/main.cpp)
 target_link_libraries(cossacks-run PRIVATE cossacks_win32)
+target_include_directories(cossacks-run PRIVATE ${CMAKE_BINARY_DIR}/generated)
+add_dependencies(cossacks-run cossacks_version)

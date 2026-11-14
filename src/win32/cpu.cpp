@@ -27,6 +27,7 @@ constexpr uint32_t kThunkStride = 4;
 constexpr uint32_t kTrampolineBase = kThunkBase + kThunkSize, kTrampolineSize = 0x1000;
 constexpr uint32_t kPage = 0x1000;
 constexpr size_t kAddressSpace = size_t{1} << 32;
+constexpr uint32_t kTranslationBuffer = 128u << 20;  // Unicorn's buffer of translated code (see Cpu())
 
 void check(uc_err err, const char* what) {
     if (err != UC_ERR_OK) throw std::runtime_error(std::string(what) + " : " + uc_strerror(err));
@@ -55,6 +56,15 @@ CpuContext::~CpuContext() {
 
 Cpu::Cpu() {
     check(uc_open(UC_ARCH_X86, UC_MODE_32, &uc_), "ouverture du processeur émulé");
+    // The translated code goes into one buffer that Unicorn maps at its first use, 1 GB by
+    // default, wherever the kernel finds room. With 1 GB it often did not fit next to the libraries
+    // and landed at 0x400000000, 12 GB from Unicorn's own code (out of reach of a pc-relative
+    // address: every call into Unicorn's helpers then loads a 64-bit constant), and the same
+    // deterministic run took a third more cycles for the same instructions (580 G instructions
+    // both ways, 95 G cycles near, 128 G far; 7 launches out of 10 were far). 128 MB fits next to
+    // the libraries (10 launches out of 10 near and fast); a 120 s battle translates about 8 MB,
+    // and a full buffer is only emptied and filled again.
+    check(uc_ctl_set_tcg_buffer_size(uc_, kTranslationBuffer), "taille du tampon de code traduit");
     // Modèle de processeur 32 bits qui connaît les pages non exécutables (voir enable_paging).
     check(uc_ctl_set_cpu_model(uc_, UC_CPU_X86_N270), "modèle de processeur");
     // Les 4 Go d'adresses du programme, réservés d'un bloc (les pages ne sont réellement
@@ -165,6 +175,10 @@ void Cpu::enable_paging() {
     check(uc_reg_read(uc_, UC_X86_REG_CR4, &cr4), "registre CR4");
     check(uc_reg_read(uc_, UC_X86_REG_CR0, &cr0), "registre CR0");
     cr4 |= 1u << 5;                // PAE
+    // SSE enabled as Windows enables it (OSFXSR, OSXMMEXCPT; no x87 emulation, MP set): the
+    // Steam edition's dmcr.exe copies the screen with movaps/movntps (RefreshView, 0x45d851).
+    cr4 |= 1u << 9 | 1u << 10;
+    cr0 = (cr0 & ~(1u << 2)) | 1u << 1;
     cr0 |= 1u | 1u << 31;          // mode protégé, pagination
     uc_x86_msr efer{};
     efer.rid = 0xC0000080;
@@ -173,6 +187,16 @@ void Cpu::enable_paging() {
     check(uc_reg_write(uc_, UC_X86_REG_CR4, &cr4), "registre CR4");
     check(uc_reg_write(uc_, UC_X86_REG_MSR, &efer), "registre EFER");
     check(uc_reg_write(uc_, UC_X86_REG_CR0, &cr0), "registre CR0");
+    // The floating-point state Windows gives a new process: x87 control word 0x027F (every
+    // exception masked, 53-bit precision, round to nearest) and MXCSR 0x1F80. Unicorn starts the
+    // control word at 0: every exception unmasked, and the C runtime only sets the precision. A math
+    // function given a bad argument then raised STATUS_FLOAT_INVALID_OPERATION through
+    // RaiseException (VC6 _except1 → _raise_exc, 0x5ab00b) where Windows returns a NaN: a crash
+    // after 27 minutes of a battle.
+    const uint16_t fpu_control = 0x027F;
+    const uint32_t mxcsr = 0x1F80;
+    check(uc_reg_write(uc_, UC_X86_REG_FPCW, &fpu_control), "mot de contrôle x87");
+    check(uc_reg_write(uc_, UC_X86_REG_MXCSR, &mxcsr), "registre MXCSR");
     paging_ = true;
 }
 
@@ -282,6 +306,18 @@ void Cpu::set_fs_base(uint32_t address) {
         gdt_ready_ = true;
     }
     check(uc_reg_write(uc_, UC_X86_REG_FS, &fs), "segment FS");
+}
+
+uint16_t Cpu::fpu_control() const {
+    uint16_t value = 0;
+    check(uc_reg_read(uc_, UC_X86_REG_FPCW, &value), "mot de contrôle x87");
+    return value;
+}
+
+uint16_t Cpu::fpu_status() const {
+    uint16_t value = 0;
+    check(uc_reg_read(uc_, UC_X86_REG_FPSW, &value), "mot d'état x87");
+    return value;
 }
 
 uint32_t Cpu::reg(Reg r) const {

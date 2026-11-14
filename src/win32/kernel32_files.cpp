@@ -245,6 +245,35 @@ void install_files(Process& p, const std::shared_ptr<State>& st) {
         if (found != st->files.end() && !found->second->data) found->second->stream.flush();
         return 1u;
     });
+    // FILETIMEs: creation, last access, last write. Only the last write time exists on the host;
+    // it is changed only for files of the write folder (unrar.dll dates the files it extracts).
+    def("GetFileTime", 4, [&p, &cpu, st] {
+        const auto found = st->files.find(p.arg(0));
+        if (found == st->files.end()) return 0u;
+        if (!found->second->data) found->second->stream.flush();
+        std::error_code ec;
+        const uint64_t time = to_filetime(fs::last_write_time(found->second->path, ec));
+        for (int i = 1; i <= 3; ++i)
+            if (const uint32_t out = p.arg(i)) {
+                cpu.write_u32(out, static_cast<uint32_t>(time));
+                cpu.write_u32(out + 4, static_cast<uint32_t>(time >> 32));
+            }
+        return 1u;
+    });
+    def("SetFileTime", 4, [&p, &cpu, st] {
+        const auto found = st->files.find(p.arg(0));
+        if (found == st->files.end()) return 0u;
+        const uint32_t write_time = p.arg(3);
+        if (!write_time || found->second->data) return 1u;
+        const fs::path& path = found->second->path;
+        const fs::path relative = path.lexically_relative(p.write_dir());
+        if (relative.empty() || *relative.begin() == "..") return 1u;  // never the game's own files
+        found->second->stream.flush();
+        const uint64_t time = cpu.read_u32(write_time) | static_cast<uint64_t>(cpu.read_u32(write_time + 4)) << 32;
+        std::error_code ec;
+        fs::last_write_time(path, from_filetime(time), ec);
+        return 1u;
+    });
     def("GetFileInformationByHandle", 2, [&p, &cpu, st] {
         const auto found = st->files.find(p.arg(0));
         if (found == st->files.end()) return 0u;

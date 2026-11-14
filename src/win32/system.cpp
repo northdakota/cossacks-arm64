@@ -286,6 +286,12 @@ void install_ichat(Process& p) {
         });
 }
 
+// BUGTRAP.DLL: the crash reporter of the Steam edition, set up at start (support e-mail, flags);
+// __stdcall. Without effect: the host writes its own crash reports.
+void install_bugtrap(Process& p) {
+    for (const char* name : {"BT_SetSupportEMail", "BT_SetFlags"}) p.def("bugtrap.dll", name, 4, [] { return 0u; });
+}
+
 void install_msvcrt(Process& p) {
     Cpu& cpu = p.cpu();
     p.def("msvcrt.dll", "malloc", 0, [&p] { return p.alloc(p.arg(0), false); });
@@ -537,6 +543,7 @@ void install_system(Process& p) {
     install_registry(p);
     install_network(p);
     install_ichat(p);
+    install_bugtrap(p);
     install_msvcrt(p);
     install_kernel32_misc(p);
 }

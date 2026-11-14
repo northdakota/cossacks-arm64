@@ -1,6 +1,7 @@
 // Processus Windows minimal autour du code d'origine : mémoire, pile, imports, tas, poignées.
 #pragma once
 
+#include <array>
 #include <chrono>
 #include <cstdint>
 #include <filesystem>
@@ -96,6 +97,9 @@ public:
     // Tas du programme émulé.
     uint32_t alloc(uint32_t size, bool zero = true);
     void release(uint32_t address);
+    // HeapReAlloc: grows or shrinks the block in place when it can (in place only: 0 otherwise),
+    // else moves it; with `zero`, the bytes added are zero. 0 if the heap is full.
+    uint32_t realloc(uint32_t address, uint32_t size, bool zero, bool in_place_only = false);
     uint32_t alloc_size(uint32_t address) const;  // 0 si l'adresse n'est pas un bloc alloué
     uint32_t heap_end() const { return heap_next_; }  // fin de la partie du tas déjà distribuée
     // Copie une chaîne dans le tas et renvoie son adresse.
@@ -170,6 +174,20 @@ public:
         return trace && (trace_only.empty() || name.compare(0, trace_only.size(), trace_only) == 0);
     }
     std::map<std::string, uint64_t> call_counts;
+    // The last system calls (function, return address), for the crash report: names are numbered
+    // once, when declared; each call costs one store.
+    struct RecentCall {
+        uint32_t name = 0, caller = 0;
+    };
+    static constexpr size_t kRecentCalls = 64;
+    std::vector<std::string> call_names;
+    std::array<RecentCall, kRecentCalls> recent_calls{};
+    uint64_t recent_calls_total = 0;
+    void note_call(uint32_t name) {
+        recent_calls[recent_calls_total++ % kRecentCalls] = {name, cpu_.read_u32(cpu_.reg(Cpu::Reg::ESP))};
+    }
+    // Silences the sound at once (the crash report path: nothing should keep playing).
+    void stop_media() { mixer_.reset(); }
     // Temps passé dans chaque fonction système, en nanosecondes (mesuré si `time_calls`).
     bool time_calls = false;
     std::map<std::string, uint64_t> call_times;
@@ -190,7 +208,13 @@ private:
     PeImage image_;
     std::map<std::string, HostFunction> functions_;  // clé « dll!fonction », dll en minuscules
     std::map<uint32_t, uint32_t> blocks_;            // adresse -> taille
-    std::multimap<uint32_t, uint32_t> free_blocks_;  // taille -> adresse
+    // Free blocks, by address (to merge neighbours) and by capacity (best fit). Capacities are
+    // sizes rounded up to 16 bytes. Memory below heap_high_ has been used and may not be zero.
+    std::map<uint32_t, uint32_t> free_by_address_;     // adresse -> capacité
+    std::multimap<uint32_t, uint32_t> free_by_size_;   // capacité -> adresse
+    uint32_t heap_high_ = 0;
+    void add_free(uint32_t address, uint32_t capacity);
+    void remove_free(uint32_t address, uint32_t capacity);
     uint32_t heap_next_ = 0;
     std::unique_ptr<Desktop> desktop_;
     std::unique_ptr<Mixer> mixer_;

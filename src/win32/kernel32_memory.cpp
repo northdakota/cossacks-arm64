@@ -49,18 +49,8 @@ void install_memory(Process& p, const std::shared_ptr<State>& st) {
         return 1u;
     });
     def("HeapSize", 3, [&p] { return p.alloc_size(p.arg(2)); });
-    def("HeapReAlloc", 4, [&p, &cpu] {
-        const uint32_t old = p.arg(2), size = p.arg(3), old_size = p.alloc_size(old);
-        const uint32_t fresh = p.alloc(size, (p.arg(1) & 8) != 0);
-        if (!fresh) return 0u;
-        std::vector<uint8_t> copy(std::min(old_size, size));
-        if (!copy.empty()) {
-            cpu.read(old, copy.data(), copy.size());
-            cpu.write(fresh, copy.data(), copy.size());
-        }
-        p.release(old);
-        return fresh;
-    });
+    // Flags: HEAP_ZERO_MEMORY (8), HEAP_REALLOC_IN_PLACE_ONLY (0x10).
+    def("HeapReAlloc", 4, [&p] { return p.realloc(p.arg(2), p.arg(3), (p.arg(1) & 8) != 0, (p.arg(1) & 0x10) != 0); });
     def("VirtualAlloc", 4, [&p, &cpu, st] {
         const uint32_t address = p.arg(0), size = (p.arg(1) + 0xFFF) & ~0xFFFu;
         if (address) {

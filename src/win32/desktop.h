@@ -130,6 +130,11 @@ public:
     int add_cursor(CursorImage image);
     void set_cursor(int index);
 
+    // After the program stopped on an error: leaves full screen, gives the cursor back and shows
+    // `message` with three buttons: Close, Copy report (puts `report` on the clipboard) and Show in
+    // Finder (`file`). Nothing in headless mode.
+    void show_crash_dialog(const std::string& message, const std::string& report, const std::string& file);
+
 private:
     SDL_Window* window_ = nullptr;
     SDL_Renderer* renderer_ = nullptr;
@@ -167,6 +172,7 @@ private:
     std::vector<bool> keys_;
     bool wasd_arrow_[4] = {};  // W A S D: arrow chosen when the key goes down, kept until it is released
     bool p_pause_ = false;     // P sent as Pause (on the map), until it is released
+    bool back_delete_ = false; // Backspace (a Mac's delete key) sent as Delete (on the map), until released
     // Arrows (and W A S D) held on the city screens: the game takes one scrolling step per
     // WM_KEYDOWN, and the system's repeat starts only after a long delay (a step, a pause, then the
     // scrolling). The host therefore repeats these keys itself, after 120 ms and then every 50 ms

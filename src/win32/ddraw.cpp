@@ -557,7 +557,8 @@ void install_ddraw(Process& p) {
         {"WaitForVerticalBlank", 3, [] { return DD_OK; }},
     });
 
-    for (const char* dll : {"ddraw.dll", "mdraw.dll"})
+    // MDRAW.DLL: GSC's wrapper in the GOG edition; CSEMU.DLL: the Steam edition's.
+    for (const char* dll : {"ddraw.dll", "mdraw.dll", "csemu.dll"})
         p.def(dll, "DirectDrawCreate", 12, [&p, &cpu, ddraw_vtable] {
             cpu.write_u32(p.arg(1), make_object(p, ddraw_vtable));
             return DD_OK;

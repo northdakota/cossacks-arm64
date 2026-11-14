@@ -4,15 +4,19 @@
 //
 // MCI "CDAudio" plays the tracks of the CD from Tracks\Track_NN.ogg (as GOG's MINMM.DLL does),
 // decoded by FFmpeg, and tells the game when a track ends (MM_MCINOTIFY): the game then starts the
-// next one. The mixer (CD volume) and the other MCI devices refuse for now.
-// TODO(cossacks): "AVIVideo" (Cinepak) through FFmpeg; the CD volume through the mixer functions.
+// next one. The mixer has the CD line (the music's volume) and the wave line, its volumes kept in
+// the write folder (mixer.txt). The other MCI devices refuse for now.
+// TODO(cossacks): "AVIVideo" (Cinepak) through FFmpeg.
 
+#include <algorithm>
 #include <cctype>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <map>
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "win32/process.h"
@@ -72,6 +76,32 @@ struct State {
     bool playing = false;
 };
 
+// The mixer's volumes outlive the program on Windows (the system keeps them), and the engine relies
+// on it: its music volume is the CD line's, read from the mixer when the Options screen opens
+// (0x5748b9: volume × 100 / 65536) and saved nowhere else. They are kept in the write folder.
+const std::pair<uint32_t, const char*> kSavedLines[] = {{4, "speakers"}, {kLineCd, "cd"}, {kLineWave, "wave"}};
+
+void load_volumes(State& st, const std::filesystem::path& file) {
+    std::ifstream in(file);
+    std::string line;
+    while (std::getline(in, line)) {
+        const size_t eq = line.find('=');
+        if (eq == std::string::npos) continue;
+        for (const auto& [type, name] : kSavedLines)
+            if (line.compare(0, eq, name) == 0) {
+                char* end = nullptr;
+                const unsigned long value = std::strtoul(line.c_str() + eq + 1, &end, 10);
+                if (end != line.c_str() + eq + 1) st.volumes[type] = static_cast<uint32_t>(std::min(value, 65535ul));
+            }
+    }
+}
+
+void save_volumes(const State& st, const std::filesystem::path& file) {
+    std::ofstream out(file);
+    for (const auto& [type, name] : kSavedLines)
+        if (const auto found = st.volumes.find(type); found != st.volumes.end()) out << name << '=' << found->second << '\n';
+}
+
 int cd_volume(const State& st) {
     const auto found = st.volumes.find(kLineCd);
     return found == st.volumes.end() ? 96 : static_cast<int>(found->second * 127 / 65535);
@@ -82,6 +112,8 @@ int cd_volume(const State& st) {
 void install_winmm(Process& p) {
     auto st = std::make_shared<State>();
     Cpu& cpu = p.cpu();
+    const std::filesystem::path volumes_file = p.write_dir() / "mixer.txt";
+    load_volumes(*st, volumes_file);
     // End of a CD track: the window that asked for it is told (MM_MCINOTIFY, MCI_NOTIFY_SUCCESSFUL).
     p.on_poll.push_back([&p, st] {
         if (!st->playing) return;
@@ -93,7 +125,8 @@ void install_winmm(Process& p) {
             st->notify_window = 0;
         }
     });
-    for (const char* dll : {"winmm.dll", "minmm.dll"}) {
+    // MINMM.DLL: GOG's wrapper; CSEMU.DLL: the Steam edition's (mci, mmio and mixer functions).
+    for (const char* dll : {"winmm.dll", "minmm.dll", "csemu.dll"}) {
         auto def = [&](const char* name, uint32_t args, std::function<uint32_t()> fn) {
             p.def(dll, name, args * 4, std::move(fn));
         };
@@ -230,11 +263,19 @@ void install_winmm(Process& p) {
             for (uint32_t c = 0; c < channels && c < 8; ++c) cpu.write_u32(cpu.read_u32(d + 20) + 4 * c, found->second);
             return MMSYSERR_NOERROR;
         });
-        def("mixerSetControlDetails", 3, [&p, &cpu, st] {
+        def("mixerSetControlDetails", 3, [&p, &cpu, st, volumes_file] {
             const uint32_t d = p.arg(1);
             const auto found = st->volumes.find(cpu.read_u32(d + 4) >> 4);
             if (found == st->volumes.end()) return kMixerInvalidControl;
-            found->second = std::min<uint32_t>(cpu.read_u32(cpu.read_u32(d + 20)), 65535);
+            // Kept in whole hundredths, each stored as the smallest value that reads back as the same
+            // hundredth: the engine writes percent × 65535 / 100 and reads volume × 100 / 65536, so
+            // with the exact value every visit to the Options screen lowered the music by 1 %.
+            const uint32_t asked = std::min<uint32_t>(cpu.read_u32(cpu.read_u32(d + 20)), 65535);
+            const uint32_t percent = (asked * 100 + 32768) / 65536;
+            const uint32_t volume = std::min<uint32_t>((percent * 65536 + 99) / 100, 65535);
+            if (volume == found->second) return MMSYSERR_NOERROR;  // the Options screen sets it every frame
+            found->second = volume;
+            save_volumes(*st, volumes_file);
             if (p.trace) std::fprintf(stderr, "    mixeur : ligne %#x volume %u\n", found->first, found->second);
             if (found->first == kLineCd && st->voice)
                 if (Mixer* m = p.mixer()) m->set_volume(st->voice, cd_volume(*st));

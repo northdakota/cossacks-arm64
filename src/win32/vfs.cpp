@@ -74,6 +74,13 @@ uint64_t to_filetime(fs::file_time_type time) {
     return static_cast<uint64_t>(unix_100ns + 116444736000000000LL);
 }
 
+fs::file_time_type from_filetime(uint64_t filetime) {
+    using namespace std::chrono;
+    const auto unix_time = system_clock::time_point(
+        duration_cast<system_clock::duration>(nanoseconds((static_cast<int64_t>(filetime) - 116444736000000000LL) * 100)));
+    return time_point_cast<fs::file_time_type::duration>(unix_time - system_clock::now() + fs::file_time_type::clock::now());
+}
+
 Vfs::Vfs(fs::path game_dir, fs::path write_dir, std::string guest_dir)
     : game_dir_(std::move(game_dir)), write_dir_(std::move(write_dir)),
       guest_dir_(std::move(guest_dir)), cwd_(guest_dir_) {

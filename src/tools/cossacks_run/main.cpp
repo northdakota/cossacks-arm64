@@ -3,6 +3,8 @@
 //   cossacks-run PATH/dmcr.exe [options]
 //     --write-dir DIR          receives everything the game writes (default: run/cossacks); the
 //                              installation is never modified
+//     --language DIR           a language pack: files that replace the installation's (ALL.GSC…),
+//                              and codage.txt, the code page of its texts (1251 for Cyrillic)
 //     --trace                  prints every system call
 //     --trace-only PREFIX      traces only the functions whose name starts so (ddraw, kernel32.dll!Create…)
 //     --break-on FUNCTION      stops the program when it calls this function (dll!name)
@@ -41,12 +43,14 @@
 #include <stdexcept>
 #include <string>
 
+#include "version.h"
+#include "win32/crash_report.h"
 #include "win32/process.h"
 
 namespace {
 
 struct Options {
-    std::string exe, write_dir = "run/cossacks", trace_only, break_on, screenshot, window_shot, script, profile, watch_pixel, frame_args, frame_log;
+    std::string exe, write_dir = "run/cossacks", language, trace_only, break_on, screenshot, window_shot, script, profile, watch_pixel, frame_args, frame_log;
     double profile_from = 0;
     bool trace = false, headless = false, counts = false, mute = false, fullscreen = false, deterministic = false, native = true;
     int frames = 0;
@@ -83,6 +87,7 @@ int run(const Options& o) {
     install_system(process);
     process.load(o.exe);
     if (o.native) install_native_functions(process);
+    if (!o.language.empty()) process.vfs().add_language_pack(o.language);
     // DLLs the engine loads itself: the AI players and unrar.dll (missions come later).
     const fs::path game = fs::path(o.exe).parent_path();
     std::error_code ignored;
@@ -129,6 +134,13 @@ int run(const Options& o) {
             else
                 std::fprintf(stderr, "[hôte] fin d'image %#x : octets inattendus\n", e.address);
     }
+    if (std::getenv("COSSACKS_HEAP_STATS"))  // the heap handed out, every minute of the program's clock
+        process.on_poll.push_back([&process, next = std::make_shared<uint32_t>(60000)] {
+            if (process.peek_ticks() < *next) return;
+            *next += 60000;
+            std::fprintf(stderr, "[heap] %u s: %.1f MB handed out  [fpu] control %#06x\n", process.peek_ticks() / 1000,
+                         (process.heap_end() - 0x10000000u) / 1048576.0, process.cpu().fpu_control());
+        });
     if (!o.profile.empty()) {
         process.cpu().start_profile();
         if (o.profile_from > 0)
@@ -289,6 +301,19 @@ int run(const Options& o) {
     } catch (const std::exception& e) {
         error = e.what();
     }
+    // Stopped on an error: silence at once, then a report the player can send us.
+    if (!error.empty()) {
+        process.stop_media();
+        const std::string report = crash_report(process, error, COSSACKS_VERSION, desktop.presents());
+        const fs::path file = save_crash_report(fs::path(o.write_dir) / "Crash reports", report);
+        std::fprintf(stderr, "crash report: %s\n", file.empty() ? "(could not be written)" : file.string().c_str());
+        std::string message = "The game stopped on an error the launcher cannot handle yet:\n\n" + error + "\n\n";
+        message += file.empty() ? std::string("The report could not be saved; use Copy report.")
+                                : "A report was saved as " + file.filename().string() + ", in the folder Crash reports of the "
+                                  "game's write folder.";
+        message += "\nPlease send it with a few words on what you were doing.";
+        desktop.show_crash_dialog(message, report, file.string());
+    }
     desktop.save_screenshot();
     if (!o.profile.empty()) {
         std::ofstream out(o.profile);
@@ -310,6 +335,8 @@ int run(const Options& o) {
             std::fprintf(stderr, "%10llu  %8.1f ms  %s\n", static_cast<unsigned long long>(count),
                          time == process.call_times.end() ? 0.0 : time->second / 1e6, name.c_str());
         }
+    if (std::getenv("COSSACKS_HEAP_STATS"))
+        std::fprintf(stderr, "[heap] %.1f MB of the heap handed out\n", (process.heap_end() - 0x10000000u) / 1048576.0);
     std::fprintf(stderr, "%llu system calls to %zu distinct functions, %d frames presented\n",
                  static_cast<unsigned long long>(total), process.call_counts.size(), desktop.presents());
     if (!error.empty()) {
@@ -348,6 +375,7 @@ int main(int argc, char** argv) {
             else if (a == "--fullscreen") o.fullscreen = true;
             else if (a == "--deterministic") o.deterministic = true;
             else if (a == "--no-native") o.native = false;
+            else if (a == "--language") o.language = value();
             else if (a == "--write-dir") o.write_dir = value();
             else if (a == "--profile") o.profile = value();
             else if (a == "--profile-from") o.profile_from = std::stod(value());

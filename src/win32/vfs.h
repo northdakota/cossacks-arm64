@@ -82,5 +82,6 @@ private:
 };
 
 uint64_t to_filetime(std::filesystem::file_time_type time);
+std::filesystem::file_time_type from_filetime(uint64_t filetime);
 
 }  // namespace zeus::win32

@@ -6,7 +6,9 @@
 #ifdef __APPLE__
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
+#include <spawn.h>
 #include <CoreFoundation/CoreFoundation.h>
+extern char** environ;  // the process environment, for posix_spawnp
 #endif
 
 #include <algorithm>
@@ -14,6 +16,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <cstring>
+#include <iterator>
 #include <sstream>
 #include <stdexcept>
 #include <type_traits>
@@ -153,6 +156,34 @@ int virtual_key(SDL_Keycode key) {
         case SDLK_PERIOD: return 0xBE;
         case SDLK_LEFTBRACKET: return 0xDB;
         case SDLK_RIGHTBRACKET: return 0xDD;
+        case SDLK_BACKQUOTE: return 0xC0;  // VK_OEM_3: ~ shows the units' and buildings' health
+        case SDLK_SEMICOLON: return 0xBA;
+        case SDLK_QUOTE: return 0xDE;
+        case SDLK_BACKSLASH: return 0xDC;
+        case SDLK_SLASH: return 0xBF;
+        default: return 0;
+    }
+}
+
+// The key at this position on a US keyboard, for a key whose character has no virtual key of its
+// own: with a Cyrillic layout the letter keys give Cyrillic characters, while Windows still gives
+// them the virtual keys of their US position (VK_A…, VK_OEM_3 for the key left of 1).
+int virtual_key_at(SDL_Scancode scan) {
+    if (scan >= SDL_SCANCODE_A && scan <= SDL_SCANCODE_Z) return 'A' + (scan - SDL_SCANCODE_A);
+    if (scan >= SDL_SCANCODE_1 && scan <= SDL_SCANCODE_9) return '1' + (scan - SDL_SCANCODE_1);
+    switch (scan) {
+        case SDL_SCANCODE_0: return '0';
+        case SDL_SCANCODE_GRAVE: return 0xC0;
+        case SDL_SCANCODE_MINUS: return 0xBD;
+        case SDL_SCANCODE_EQUALS: return 0xBB;
+        case SDL_SCANCODE_LEFTBRACKET: return 0xDB;
+        case SDL_SCANCODE_RIGHTBRACKET: return 0xDD;
+        case SDL_SCANCODE_BACKSLASH: return 0xDC;
+        case SDL_SCANCODE_SEMICOLON: return 0xBA;
+        case SDL_SCANCODE_APOSTROPHE: return 0xDE;
+        case SDL_SCANCODE_COMMA: return 0xBC;
+        case SDL_SCANCODE_PERIOD: return 0xBE;
+        case SDL_SCANCODE_SLASH: return 0xBF;
         default: return 0;
     }
 }
@@ -542,6 +573,34 @@ void Desktop::toggle_fullscreen() {
     }
 }
 
+void Desktop::show_crash_dialog(const std::string& message, const std::string& report, const std::string& file) {
+    if (headless) return;
+    if (window_) {
+        if (fullscreen) toggle_fullscreen();
+        SDL_SetWindowGrab(window_, SDL_FALSE);
+    }
+    SDL_ShowCursor(SDL_ENABLE);
+    const SDL_MessageBoxButtonData buttons[] = {
+        {SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 0, "Close"},
+        {0, 2, "Copy report"},
+        {SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "Show in Finder"},
+    };
+    const SDL_MessageBoxData data{SDL_MESSAGEBOX_ERROR, window_, "Cossacks stopped", message.c_str(),
+                                  static_cast<int>(std::size(buttons)), buttons, nullptr};
+    int pressed = 0;
+    if (SDL_ShowMessageBox(&data, &pressed) != 0) return;
+    if (pressed == 2) SDL_SetClipboardText(report.c_str());
+#ifdef __APPLE__
+    if (pressed == 1 && !file.empty()) {
+        char open_tool[] = "open", reveal[] = "-R";
+        std::string path = file;
+        char* argv[] = {open_tool, reveal, path.data(), nullptr};
+        pid_t pid = 0;
+        posix_spawnp(&pid, "open", nullptr, nullptr, argv, environ);
+    }
+#endif
+}
+
 std::vector<ScriptEvent> parse_script(const std::string& text) {
     using Kind = ScriptEvent::Kind;
     std::vector<ScriptEvent> script;
@@ -763,6 +822,7 @@ bool Desktop::pump(uint32_t now) {
                     break;
                 }
                 int vk = virtual_key(e.key.keysym.sym);
+                if (!vk) vk = virtual_key_at(e.key.keysym.scancode);
                 const bool down = e.type == SDL_KEYDOWN;
                 // W A S D (by key position, whatever the keyboard layout): the arrows on the city
                 // screens. The choice is made when the key goes down and kept until it is released,
@@ -789,6 +849,16 @@ bool Desktop::pump(uint32_t now) {
                         p_pause_ = city_screen && city_screen() && !(e.key.keysym.mod & (KMOD_CTRL | KMOD_ALT | KMOD_SHIFT));
                     if (p_pause_) vk = 0x13;
                     if (!down) p_pause_ = false;
+                }
+                // The delete key of a Mac keyboard (Backspace) on the map: the engine's Delete
+                // (VK_DELETE), which blows up the selected buildings and kills the selected units
+                // (checked); the Mac's own forward delete needs fn. Off the map, and while a text is
+                // typed there (no arrow polling then), it stays Backspace.
+                if (scan == SDL_SCANCODE_BACKSPACE) {
+                    if (down && !e.key.repeat)
+                        back_delete_ = city_screen && city_screen() && !(e.key.keysym.mod & (KMOD_CTRL | KMOD_ALT | KMOD_SHIFT));
+                    if (back_delete_) vk = 0x2E;
+                    if (!down) back_delete_ = false;
                 }
                 if (!vk) break;
                 if (vk >= 0x25 && vk <= 0x28) {  // arrows: repeated by the host on the city screens

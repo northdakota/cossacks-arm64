@@ -4,6 +4,8 @@
 #include <cctype>
 #include <chrono>
 #include <cstdio>
+#include <cstring>
+#include <iterator>
 #include <stdexcept>
 #include <thread>
 
@@ -75,7 +77,10 @@ void Process::def(const std::string& dll, const std::string& name, uint32_t arg_
     HostFunction f;
     f.name = dll + "!" + name;
     f.arg_bytes = arg_bytes;
-    f.call = [this, key = f.name, fn = std::move(fn)](Cpu&) {
+    const uint32_t id = static_cast<uint32_t>(call_names.size());
+    call_names.push_back(f.name);
+    f.call = [this, id, key = f.name, fn = std::move(fn)](Cpu&) {
+        note_call(id);
         ++call_counts[key];
         if (traced(key)) std::fprintf(stderr, "  appel %s depuis %#x\n", key.c_str(), cpu_.read_u32(cpu_.reg(Cpu::Reg::ESP)));
         if (!break_on.empty() && key == break_on) throw std::runtime_error("arrêt demandé");
@@ -93,7 +98,10 @@ uint32_t Process::host_function(const std::string& name, uint32_t arg_bytes, std
     HostFunction f;
     f.name = name;
     f.arg_bytes = arg_bytes;
-    f.call = [this, name, fn = std::move(fn)](Cpu&) {
+    const uint32_t id = static_cast<uint32_t>(call_names.size());
+    call_names.push_back(name);
+    f.call = [this, id, name, fn = std::move(fn)](Cpu&) {
+        note_call(id);
         ++call_counts[name];
         if (traced(name)) std::fprintf(stderr, "  appel %s depuis %#x\n", name.c_str(), cpu_.read_u32(cpu_.reg(Cpu::Reg::ESP)));
         return fn();
@@ -186,18 +194,64 @@ uint32_t Process::import_address(const PeImport& imp) {
     }
 }
 
+namespace {
+uint32_t capacity_of(uint32_t size) { return (std::max<uint32_t>(size, 1) + 15) & ~15u; }
+}  // namespace
+
+// The heap, an allocator of its own (Windows' is not reproduced): best fit among the free blocks,
+// split to the size asked; freed blocks merged with their free neighbours, and given back to the
+// untouched end when they reach it. The first version reused a freed block only for the very same
+// size: a buffer grown by small steps with realloc used up the 256 MB after some minutes of play.
+void Process::add_free(uint32_t address, uint32_t capacity) {
+    auto next = free_by_address_.find(address + capacity);
+    if (next != free_by_address_.end()) {
+        const uint32_t next_capacity = next->second;
+        remove_free(next->first, next_capacity);
+        capacity += next_capacity;
+    }
+    auto after = free_by_address_.lower_bound(address);
+    if (after != free_by_address_.begin()) {
+        auto before = std::prev(after);
+        if (before->first + before->second == address) {
+            const uint32_t before_address = before->first, before_capacity = before->second;
+            remove_free(before_address, before_capacity);
+            address = before_address;
+            capacity += before_capacity;
+        }
+    }
+    if (address + capacity == heap_next_) {
+        heap_next_ = address;
+        return;
+    }
+    free_by_address_[address] = capacity;
+    free_by_size_.emplace(capacity, address);
+}
+
+void Process::remove_free(uint32_t address, uint32_t capacity) {
+    free_by_address_.erase(address);
+    for (auto [it, end] = free_by_size_.equal_range(capacity); it != end; ++it)
+        if (it->second == address) {
+            free_by_size_.erase(it);
+            break;
+        }
+}
+
 uint32_t Process::alloc(uint32_t size, bool zero) {
-    const uint32_t rounded = (std::max<uint32_t>(size, 1) + 15) & ~15u;
+    const uint32_t capacity = capacity_of(size);
     uint32_t address = 0;
-    auto reuse = free_blocks_.find(rounded);
-    if (reuse != free_blocks_.end()) {
-        address = reuse->second;
-        free_blocks_.erase(reuse);
-        if (zero) cpu_.fill(address, 0, rounded);
+    auto fit = free_by_size_.lower_bound(capacity);
+    if (fit != free_by_size_.end()) {
+        address = fit->second;
+        const uint32_t found = fit->first;
+        remove_free(address, found);
+        if (found > capacity) add_free(address + capacity, found - capacity);
+        if (zero) cpu_.fill(address, 0, capacity);
     } else {
-        if (heap_next_ + rounded > kHeapBase + kHeapSize || heap_next_ + rounded < heap_next_) return 0;
-        address = heap_next_;  // mémoire jamais utilisée : déjà à zéro
-        heap_next_ += rounded;
+        if (heap_next_ + capacity > kHeapBase + kHeapSize || heap_next_ + capacity < heap_next_) return 0;
+        address = heap_next_;
+        heap_next_ += capacity;
+        if (zero && address < heap_high_) cpu_.fill(address, 0, std::min(capacity, heap_high_ - address));
+        heap_high_ = std::max(heap_high_, heap_next_);
     }
     blocks_[address] = size;
     return address;
@@ -206,8 +260,48 @@ uint32_t Process::alloc(uint32_t size, bool zero) {
 void Process::release(uint32_t address) {
     auto found = blocks_.find(address);
     if (found == blocks_.end()) return;
-    free_blocks_.emplace((std::max<uint32_t>(found->second, 1) + 15) & ~15u, address);
+    const uint32_t capacity = capacity_of(found->second);
     blocks_.erase(found);
+    add_free(address, capacity);
+}
+
+uint32_t Process::realloc(uint32_t address, uint32_t size, bool zero, bool in_place_only) {
+    auto block = blocks_.find(address);
+    if (block == blocks_.end()) return in_place_only ? 0 : alloc(size, zero);
+    const uint32_t old_size = block->second, old_capacity = capacity_of(old_size), capacity = capacity_of(size);
+    auto zero_tail = [&](uint32_t at) {
+        if (zero && size > old_size) cpu_.fill(at + old_size, 0, size - old_size);
+    };
+    if (capacity <= old_capacity) {  // shrinks, or grows within its rounding
+        block->second = size;
+        if (capacity < old_capacity) add_free(address + capacity, old_capacity - capacity);
+        zero_tail(address);
+        return address;
+    }
+    const uint32_t more = capacity - old_capacity;
+    if (address + old_capacity == heap_next_ && heap_next_ + more <= kHeapBase + kHeapSize) {  // the last block
+        heap_next_ += more;
+        heap_high_ = std::max(heap_high_, heap_next_);
+        block->second = size;
+        zero_tail(address);
+        return address;
+    }
+    auto next = free_by_address_.find(address + old_capacity);
+    if (next != free_by_address_.end() && next->second >= more) {  // a free neighbour large enough
+        const uint32_t next_capacity = next->second;
+        remove_free(address + old_capacity, next_capacity);
+        if (next_capacity > more) add_free(address + capacity, next_capacity - more);
+        block->second = size;
+        zero_tail(address);
+        return address;
+    }
+    if (in_place_only) return 0;
+    const uint32_t fresh = alloc(size, false);
+    if (!fresh) return 0;
+    std::memmove(cpu_.host(fresh), cpu_.host(address), std::min(old_size, size));
+    release(address);
+    zero_tail(fresh);
+    return fresh;
 }
 
 uint32_t Process::alloc_size(uint32_t address) const {
