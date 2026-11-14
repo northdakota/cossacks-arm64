@@ -43,6 +43,7 @@
 #include <stdexcept>
 #include <string>
 
+#include "tools/cossacks_run/app_mode.h"
 #include "version.h"
 #include "win32/crash_report.h"
 #include "win32/process.h"
@@ -366,12 +367,19 @@ int run(const Options& o) {
 }  // namespace
 
 int main(int argc, char** argv) {
+    // Double-clicked as an app: no arguments (older macOS add -psn_…), the game found or asked for.
+    const bool app = cossacks::in_app_bundle() && (argc < 2 || std::strncmp(argv[1], "-psn_", 5) == 0);
     try {
+        Options o;
+        if (app) {
+            if (!cossacks::app_mode_paths(o.exe, o.write_dir)) return 0;
+            o.fullscreen = true;
+            return run(o);
+        }
         if (argc < 2 || argv[1][0] == '-') {
             std::fprintf(stderr, "usage: cossacks-run PATH/dmcr.exe [options]\n");
             return 2;
         }
-        Options o;
         o.exe = argv[1];
         for (int i = 2; i < argc; ++i) {
             const std::string a = argv[i];
@@ -405,6 +413,7 @@ int main(int argc, char** argv) {
         return run(o);
     } catch (const std::exception& e) {
         std::fprintf(stderr, "cossacks-run: %s\n", e.what());
+        if (app) cossacks::app_error(std::string("Cossacks could not start: ") + e.what());
         return 1;
     }
 }
