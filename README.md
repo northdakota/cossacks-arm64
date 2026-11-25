@@ -7,6 +7,15 @@ natively on a Mac with Apple Silicon. The unmodified game code runs in a small x
 Built on [zeus-poseidon-arm64](https://github.com/nic0lasm/zeus-poseidon-arm64), the launcher
 that brings *Zeus: Master of Olympus* to the Mac the same way (see [Thanks](#thanks)).
 
+<p align="center">
+  <img src="docs/images/battle-wide.jpg" width="100%" alt="A large army and a village on the battle map in wide mode, 1664 × 1080">
+</p>
+<p align="center">
+  <img src="docs/images/main-menu.jpg" width="49%" alt="The main menu">
+  <img src="docs/images/tutorial.jpg" width="49%" alt="The first lesson of the tutorial, run by its mission script">
+</p>
+<p align="center"><sub>A large battle in wide mode (1664 × 1080), the main menu, and the tutorial's first lesson: the original game, from your own copy, on a Mac with Apple Silicon.</sub></p>
+
 ## Status
 
 Playable: random-map battles against the computer, the single missions and the tutorial, with
@@ -108,6 +117,6 @@ and the documentation. The commits do not carry it as a co-author; this note is 
 
 An independent, non-commercial fan project, not affiliated with or endorsed by GSC Game World,
 GOG or the authors of zeus-poseidon-arm64. The repository contains no executable, artwork, sound,
-text or data from the game, and circumvents no copy protection: it only runs the DRM-free GOG
-edition, from files you provide. Game files (`original/`, the installer) are kept out of git.
+text or data from the game (apart from the three screenshots of it running, in `docs/images`), and
+circumvents no copy protection: it only runs the DRM-free GOG edition, from files you provide. Game files (`original/`, the installer) are kept out of git.
 *Cossacks* is a trademark of its owners.
