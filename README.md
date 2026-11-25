@@ -33,7 +33,7 @@ listed with `tools/cossacks_imports.py`.
 ## Download
 
 A ready app for Macs with Apple Silicon (macOS 11 or later) is attached to each
-[release](https://github.com/northdakota/cossacks-arm/releases). You need your own copy of the
+[release](https://github.com/northdakota/cossacks-arm64/releases). You need your own copy of the
 game, GOG edition: installed with GOG Galaxy in CrossOver (found by itself), or its installer
 unpacked with `innoextract` (the app asks for the folder with `dmcr.exe`).
 

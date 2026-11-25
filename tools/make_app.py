@@ -39,10 +39,10 @@ THIRD_PARTY = """Libraries in this app, and where their sources are
 - SDL 2.32.10 (zlib licence): https://github.com/libsdl-org/SDL/releases/tag/release-2.32.10
 - Unicorn 2.1.4, x86 only (GPL-2.0): https://pypi.org/project/unicorn/2.1.4/ (sdist), https://github.com/unicorn-engine/unicorn
 - FFmpeg 9.0.2, reduced (LGPL-2.1-or-later), linked statically: https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz,
-  configured as in tools/build_ffmpeg.py of https://github.com/northdakota/cossacks-arm
+  configured as in tools/build_ffmpeg.py of https://github.com/northdakota/cossacks-arm64
   (the launcher's source, which lets you rebuild and relink it).
 
-The launcher itself: GPL-2.0-or-later, https://github.com/northdakota/cossacks-arm, derived from
+The launcher itself: GPL-2.0-or-later, https://github.com/northdakota/cossacks-arm64, derived from
 zeus-poseidon-arm64 by nic0lasm, https://github.com/nic0lasm/zeus-poseidon-arm64.
 """
 
