@@ -102,22 +102,35 @@ void install_kernel32(Process& p) {
     kernel32::install_modules(p);
 
     // --- temps -------------------------------------------------------------------------
-    // The engine waits for its next frame by reading the clock in a tight loop: after many reads
-    // with no other system call in between, each read gives the processor back for a millisecond.
+    // The engine may wait by reading the clock in a tight loop: one call site, nothing else in
+    // between. After 64 such reads each further one gives the processor back for a millisecond.
+    // The engine also reads the clock around work, without other system calls in between: the
+    // path finding of each unit is timed (0x53c1b2: before and after the search at 0x53c240), and
+    // with hundreds of units the first version of this rule (any 64 reads in a row) slept a
+    // millisecond per search: the game froze. Reads from changing call sites, or with more than a
+    // few microseconds of the program's own work between them, are not a wait.
     // The screen is refreshed from here too (see Process::refresh_screen).
     def("GetTickCount", 0, [&p, &cpu, ticks] {
-        static uint64_t last_call = 0, streak = 0;
+        static uint64_t last_call = 0, streak = 0, tight = 0;
+        static uint32_t last_caller = 0;
+        static auto last_return = std::chrono::steady_clock::now();
+        const auto entry = std::chrono::steady_clock::now();
+        const uint32_t caller = cpu.read_u32(cpu.reg(Cpu::Reg::ESP));
         const uint64_t calls = cpu.host_calls();
-        streak = calls == last_call + 1 ? streak + 1 : 0;
+        const bool in_a_row = calls == last_call + 1;
+        streak = in_a_row ? streak + 1 : 0;
+        const bool waiting = in_a_row && caller == last_caller && entry - last_return < std::chrono::microseconds(5);
+        tight = waiting ? tight + 1 : 0;
         last_call = calls;
+        last_caller = caller;
         if (streak == 2) p.frame_wait();  // the game waits for its next frame
-        if (streak > 64 && !p.fixed_clock) {
+        if (tight > 64 && !p.fixed_clock) {
             const auto before = std::chrono::steady_clock::now();
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
             p.pace_sleep_ms += std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - before).count();
         }
         p.maybe_refresh();
-        if (p.cpu().stopped()) return ticks();
+        last_return = std::chrono::steady_clock::now();
         return ticks();
     });
     def("QueryPerformanceFrequency", 1, [&p, &cpu] {
